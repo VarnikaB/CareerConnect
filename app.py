@@ -49,7 +49,15 @@ login.init_app(app)
 # -------------------------------  MODELS ---------------------------------------
 # ------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------
+class Chat(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    sender_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    receiver_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    chat_text = db.Column(db.String(1000), nullable=False)
+    timestamp = db.Column(db.DateTime, default=datetime.utcnow)
 
+    sender = db.relationship('User', foreign_keys=[sender_id])
+    receiver = db.relationship('User', foreign_keys=[receiver_id])
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
@@ -63,18 +71,21 @@ class User(db.Model, UserMixin):
 
     # <-- MIGUEL GRINBERG --> 
     followers = db.relationship('Follow',
-                            foreign_keys='Follow.followed_id',
-                            backref=db.backref('followed', lazy='joined'),
-                            lazy='dynamic',
-                            cascade='all, delete-orphan')
+                                foreign_keys='Follow.followed_id',
+                                backref=db.backref('followed', lazy='joined'),
+                                lazy='dynamic',
+                                cascade='all, delete-orphan')
 
     following = db.relationship('Follow',
-                            foreign_keys='Follow.follower_id',
-                            backref=db.backref('follower', lazy='joined'),
-                            lazy='dynamic',
-                            cascade='all, delete-orphan')
+                                foreign_keys='Follow.follower_id',
+                                backref=db.backref('follower', lazy='joined'),
+                                lazy='dynamic',
+                                cascade='all, delete-orphan')
 
     # <-------------------->
+
+    chats_sent = db.relationship('Chat', foreign_keys=[Chat.sender_id], backref='sender', lazy='dynamic')
+    chats_received = db.relationship('Chat', foreign_keys=[Chat.receiver_id], backref='receiver', lazy='dynamic')
 
     follower_count = db.Column(db.Integer, default=0)
     following_count = db.Column(db.Integer, default=0)
@@ -87,7 +98,7 @@ class User(db.Model, UserMixin):
 
     def is_following(self, user):
         return self.following.filter(Follow.followed_id == user.id).count() > 0
-    
+
     def follow(self, user):
         if not self.is_following(user):
             existing_follow = Follow.query.filter_by(follower_id=self.id, followed_id=user.id).first()
@@ -106,7 +117,7 @@ class User(db.Model, UserMixin):
     def unfollow(self, user):
         if self.is_following(user):
             existing_follow = Follow.query.filter_by(follower_id=self.id, followed_id=user.id).first()
-            
+
             if existing_follow:
                 db.session.delete(existing_follow)
                 user.follower_count -= 1
@@ -130,6 +141,21 @@ class User(db.Model, UserMixin):
     def unlike_post(self, post):
         if self.has_liked_post(post):
             Like.query.filter_by( user_id=self.id, post_id=post.id).delete()
+
+
+
+
+    def send_chat(self, receiver, chat_text):
+        new_chat = Chat(sender=self, receiver=receiver, chat_text=chat_text)
+        db.session.add(new_chat)
+        db.session.commit()
+
+    def get_chats_with(self, other_user):
+        return Chat.query.filter(
+            (Chat.sender == self and Chat.receiver == other_user) |
+            (Chat.sender == other_user and Chat.receiver == self)
+        ).order_by(Chat.timestamp)
+
 
     def __repr__(self):
         return f"User('{self.id}', '{self.username}', '{self.profile_image}')"
