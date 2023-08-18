@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block title %} Feed Page {% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+
+    <div class="row">
+        <div class="col-md-9 offset-md-1">
+            <h3>All Liked Posts</h3>
+            {% for post in posts %}
+            <div class="card card-inner mb-4">
+                <div class="card-header">
+                    <a href="{{ url_for('profile', username=post.user.username) }}">
+                        <h5>{{ post.user.username }}</h5>
+                    </a>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{ post.title }}</h5>
+                    {% if post.image %}
+                    <img src="{{ url_for('static', filename='posts/' + post.image) }}"
+                         class="card-img-top"
+                         alt="{{ post.title | safe }}"
+                         style="
+                             height: 5rem;
+                              width: auto;
+                              display: block;
+                              margin-left: auto;
+                              margin-right: auto;
+                         "
+                    >
+                    {% endif %}
+                    <p class="card-text mt-3 text-secondary" style="font-size: 16px;"><strong>Caption:</strong> {{
+                        post.caption | safe }}
+                    </p>
+
+                </div>
+                <div class="card-footer" style="flex: fit-content">
+                    {% if current_user.is_authenticated and post.likes.filter_by(user_id=current_user.id).first() %}
+                    <a href="{{ url_for('unlike', post_id=post.id) }}" class="btn btn-primary">
+                        Unlike
+                        &nbsp;
+                        <span class="badge badge-light">{{ post.likes.count() }}</span>
+                    </a>
+                    {% else %}
+                    <a href="{{ url_for('like', post_id=post.id) }}" class="btn btn-primary">
+                        Like
+                        &nbsp;
+                        <span class="badge badge-light">{{ post.likes.count() }}</span>
+                    </a>
+                    {% endif %}
+                    <a href="{{ url_for('comment', post_id=post.id) }}" class="btn btn-warning">
+                        Comments &nbsp;<span class="badge badge-light">{{ post.comments.count() }}</span>
+                    </a>
+                    <span class="offset-md-4">
+                    {% if post.last_updated %}
+                    <small class="text-muted" style="text-align: end">Last updated on:
+                        {{ post.last_updated.replace(tzinfo=timezone('UTC')).astimezone(timezone('Asia/Kolkata')).strftime("%d-%m-%Y") }}
+                    </small>
+                    {% else %}
+                    <small class="text-muted" style="text-align: end">Created on:
+                        {{ post.timestamp.replace(tzinfo=timezone('UTC')).astimezone(timezone('Asia/Kolkata')).strftime("%d-%m-%Y") }}
+                    </small>
+                    {% endif %}
+                    </span>
+                </div>
+            </div>
+            {% endfor %}
+            {% if not posts %}
+            <div class="text-center mt-4">
+                <p style="font-size: 20px;">There are no posts in your feed. Connect with other users to see what
+                    they are posting.</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

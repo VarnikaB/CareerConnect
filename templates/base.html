@@ -12,26 +12,41 @@
 
     <!-- style.css -->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <title>{% block title %}{% endblock %}</title>
 </head>
 
-<body>
+<body style="width: 100vw; margin: 0px">
 
-    {% if request.endpoint != 'login' and request.endpoint != 'register' %}
-    {% include 'navbar.html' %}
-    {%endif%}
+{% if request.endpoint != 'login' and request.endpoint != 'register' %}
+{% include 'navbar.html' %}
+{%endif%}
 
-    <div class="container mt-3">
-        {% with messages = get_flashed_messages(with_categories=true) %}
-            {% for category, message in messages %}
-                <div class="{{category}}" style="width:40%"> {{ message }} </div>
-            {% endfor %}
-        {% endwith %}
+<div class="container ">
 
-        {% block content %}{% endblock %}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% for category, message in messages %}
+    <div class="toast "
+         style="position: absolute;
+                     z-index: 99;
+                     width:fit-content;
+                     margin-top: 80vh;
+                     margin-left: 70vw;">
+        <div class="toast-header bg-{{category}} py-2 text-white">
+            {{ message }}
+        </div>
     </div>
+    <script>
+        window.onload = () => {
+            $('.toast').toast({ delay: 2500 }).toast('show');
+        }
+    </script>
+    {% endfor %}
+    {% endwith %}
+
+    {% block content %}{% endblock %}
+</div>
 
 
 

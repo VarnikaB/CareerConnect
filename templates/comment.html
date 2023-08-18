@@ -3,10 +3,60 @@
 {%block title%} Comments page {%endblock%}
 
 {% block content %}
+<style>
+    .profile-image{
+        border-radius: 50%;
+        height: 3rem;
+        border: 1px solid black;
+    }
+    .view-comments{
+        max-height: 40vh;
+        overflow: hidden;
+    }
+    .card-img-top{
+        height: 5rem;
+        width: auto;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
 
-<h6>View all {{ post.comments.count() }} comments : </h6>
+</style>
+<div class="card card-inner mb-5 mt-2 post">
+    <div class="card-header">
+        <a href="{{ url_for('profile', username=post.user.username) }}">
+            <img class="profile-image" src="{{ url_for('static', filename='profile/' + post.user.profile_image) }}">
+            <span>{{ post.user.username }}</span>
+        </a>
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">{{ post.title }}</h5>
+        {% if post.image %}
+        <img src="{{ url_for('static', filename='posts/' + post.image) }}" class="card-img-top"
+             alt="{{ post.title | safe }}">
+        {% endif %}
+        <p class="card-text mt-3 text-secondary" style="font-size: 16px;"><strong>Caption:</strong> {{ post.caption | safe }}
+        </p>
 
-<div class="d-flex flex-column">
+    </div>
+    <div class="card-footer" style="flex: fit-content">
+
+        <span>
+                    {% if post.last_updated %}
+                    <small class="text-muted" style="text-align: end">Last updated on:
+                        {{ post.last_updated.replace(tzinfo=timezone('UTC')).astimezone(timezone('Asia/Kolkata')).strftime("%d-%m-%Y") }}
+                    </small>
+                    {% else %}
+                    <small class="text-muted" style="text-align: end">Created on:
+                        {{ post.timestamp.replace(tzinfo=timezone('UTC')).astimezone(timezone('Asia/Kolkata')).strftime("%d-%m-%Y") }}
+                    </small>
+                    {% endif %}
+                    </span>
+    </div>
+</div>
+<h6 >View all comments({{ post.comments.count() }}) : </h6>
+
+<div class="d-flex flex-column view-comments">
 
     <div class="existing-comments">
         {% for comment in comments %}
@@ -15,14 +65,15 @@
             
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <a href="{{ url_for('profile', username=comment.user.username) }}">
-                        <h5>{{ comment.user.username }}</h5>
+                        <img class="profile-image" src="{{ url_for('static', filename='profile/' + comment.user.profile_image) }}">
+                        <span>{{ comment.user.username }}</span>
                     </a>
                     
                     {% if comment.last_edited %}
-                    <small class="text-muted">Last edited on : {{ comment.last_edited.replace(tzinfo=timezone('UTC')).astimezone(timezone('Asia/Kolkata')).strftime("%d-%m-%Y %H:%M:%S") }}</small>
+                    <small class="text-muted">Last edited on : {{ comment.last_edited.replace(tzinfo=timezone('UTC')).astimezone(timezone('Asia/Kolkata')).strftime("%d-%m-%Y") }}</small>
                     
                     {% else %}
-                    <small class="text-muted">Comment on : {{ comment.timestamp.replace(tzinfo=timezone('UTC')).astimezone(timezone('Asia/Kolkata')).strftime("%d-%m-%Y %H:%M:%S") }}</small>
+                    <small class="text-muted">Comment on : {{ comment.timestamp.replace(tzinfo=timezone('UTC')).astimezone(timezone('Asia/Kolkata')).strftime("%d-%m-%Y") }}</small>
                     {% endif %}
 
                 </div>
@@ -63,7 +114,7 @@
             </div>
             
             <div class="form-group">
-                <input type="submit" value="Add Comment" class="btn btn-outline-primary">
+                <input type="submit" value="Add Comment" class="btn btn-warning">
             </div>
         </form>
     </div>

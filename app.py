@@ -5,7 +5,7 @@ from flask_login import LoginManager, current_user, login_user, logout_user, log
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
-from sqlalchemy import MetaData
+from sqlalchemy import MetaData, or_
 
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField, FileField
@@ -22,18 +22,10 @@ import os
 import secrets
 from PIL import Image
 
-# --------------------------------------------------------------------------------
-
-# imports related to TIMESTAMPS
-
 import datetime
 from datetime import datetime
 from pytz import timezone
 import pytz
-
-# -------------------------------------------------------------------------------
-
-# --------------------------------------------------------------------------------
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'SECRET_KEY'
@@ -343,7 +335,6 @@ class SearchForm(FlaskForm):
 def welcome():
     return render_template('welcome.html')
 
-
 # REGISTRATION page
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -356,7 +347,7 @@ def register():
         # check if the username is already registered or the username is already taken
         user = User.query.filter_by(username=form.username.data).first()
         if user is not None:
-            flash('User already registered !!')
+            flash('User already registered !!', 'danger')
             return redirect(url_for('login'))
 
         # Create a new user object and set their password
@@ -370,7 +361,7 @@ def register():
         db.session.add(new_user)
         db.session.commit()
         
-        flash('Successfully Registered !!')
+        flash('Successfully Registered !!', 'info')
         return redirect(url_for('login'))
     return render_template('register.html', form=form)
 
@@ -395,7 +386,7 @@ def login():
             return redirect(next_page) if next_page else redirect(url_for('feed'))
         else:
             flash('Login Unsuccessful !!', 'danger')
-            flash('Invalid username or password !!')
+            flash('Invalid username or password !!', 'danger')
     return render_template('login.html', title='Login', form=form)
 
 
@@ -413,18 +404,10 @@ def logout():
 @app.route('/feed')
 @login_required
 def feed():
-    # Get a list of the user's followers
-    followers = Follow.query.filter_by(follower=current_user).all()
-
-    # Get the list of user ids for the user's followers
-    follower_ids = [follower.followed_id for follower in followers]
-
-    # Add the current user's id to the list of follower ids
-    follower_ids.append(current_user.id)
 
     # Get a list of all posts by the user's followers, ordered by the timestamp
-    posts = Post.query.filter(Post.user_id.in_(follower_ids)).order_by(Post.timestamp.desc()).all()
-
+    posts = Post.query.order_by(Post.timestamp.desc()).all()
+    print(posts)
     return render_template('feed.html', title='Feed page', posts=posts, timezone=timezone)
 
 # --------------------------------------------------------------------------------
@@ -437,6 +420,10 @@ def profile(username):
     page = request.args.get('page', 1, type=int)
 
     posts = Post.query.filter_by(user_id=user.id).order_by(Post.timestamp.desc()).paginate(page=page, per_page=5)
+
+    likes = len(Like.query.filter_by(user_id = user.id).all())
+    comments = len(Comment.query.filter_by(user_id = user.id).all())
+
 
     published_posts_count = Post.query.filter_by(user_id=user.id).count()
 
@@ -452,7 +439,7 @@ def profile(username):
     unlike_form = UnlikeForm()
 
 
-    return render_template('profile.html', user=user, posts=posts, timezone=timezone, db=db, follow_form=follow_form, unfollow_form=unfollow_form, followers_count=followers_count, following_count=following_count, is_following=is_following, like_form=like_form, unlike_form=unlike_form, published_posts_count=published_posts_count)
+    return render_template('profile.html', likes=likes,comments=comments, user=user, posts=posts, timezone=timezone, db=db, follow_form=follow_form, unfollow_form=unfollow_form, followers_count=followers_count, following_count=following_count, is_following=is_following, like_form=like_form, unlike_form=unlike_form, published_posts_count=published_posts_count)
 
 
 # CRUD on posts -----------------------------------------------------------------
@@ -496,6 +483,7 @@ def update_post(post_id):
 
         if form.image.data:
             # first delete the existing image in the post
+            print(post.image)
             if post.image:
                 try:
                     os.remove(os.path.join(current_app.root_path, 'static/posts', post.image))
@@ -517,6 +505,7 @@ def update_post(post_id):
             db.session.rollback()
         
         flash('Post updated !!', 'success')
+        print(post)
         return redirect(url_for('profile', username=current_user.username))
 
     elif request.method == 'GET':
@@ -551,7 +540,6 @@ def delete_post(post_id):
         return redirect(url_for('profile', username=current_user.username))
 
     return render_template('delete_post.html', post=post, form=form)
-
 
 
 # CRUD on users / accounts -------------------------------------------------------
@@ -701,6 +689,30 @@ def following(username):
 # --------------------------------------------------------------------------------
 
 # LIKE route
+@app.route("/likes/user/<username>", methods=['GET', 'POST'])
+@login_required
+def likes_of_user(username):
+    user = User.query.filter_by(username=username).first_or_404()
+    likes = Like.query.filter_by(user_id = user.id).all()
+    posts = []
+    for like in likes:
+        posts.append(like.posts)
+    print(posts)
+    return render_template('all_likes.html', title='All likes page', posts=posts, timezone=timezone)
+
+@app.route("/comments/user/<username>", methods=['GET', 'POST'])
+@login_required
+def comments_of_user(username):
+    user = User.query.filter_by(username=username).first_or_404()
+    comments = Comment.query.filter_by(user_id = user.id).all()
+    posts = []
+    for comment in comments:
+        if comment.posts not in posts:
+            posts.append(comment.posts)
+    print(posts)
+    return render_template('all_comments.html', title='All comments page', posts=posts, timezone=timezone)
+
+
 @app.route("/like/<int:post_id>" , methods=['GET','POST'])
 @login_required
 def like(post_id):
@@ -709,13 +721,13 @@ def like(post_id):
     current_user.like_post(post)
     db.session.commit()
 
-    flash(f'You have liked the post {post.title} made by {post.user} !!', 'success')
+    flash(f'You have liked the post "{post.title}" made by {post.user.username} !!', 'success')
 
-    return redirect(url_for('profile', username=post.user.username))
+    return redirect(url_for('feed'))
 
 
 # UNLIKE route 
-@app.route('/unlike/<int:post_id>', methods=['POST'])
+@app.route('/unlike/<int:post_id>', methods=['POST', 'GET'])
 @login_required
 def unlike(post_id):
     post = Post.query.filter_by(id=post_id).first_or_404()
@@ -723,9 +735,9 @@ def unlike(post_id):
     current_user.unlike_post(post)
     db.session.commit()
 
-    flash(f'You have unliked the post {post.title} made by {post.user} !!', 'danger')
+    flash(f'You have unliked the post "{post.title}" made by {post.user.username} !!', 'danger')
 
-    return redirect(url_for('profile', username=post.user.username))
+    return redirect(url_for('feed'))
 
 
 # CRUD on comments ---------------------------------------------------------------
@@ -805,19 +817,25 @@ def search():
     if form.validate_on_submit():
         query = form.q.data
         print(f"Search query: {query}")
-
+        users = []
         if query: 
 
             users = User.query.filter(User.username.like(f"%{query}%")).all()
+            posts = Post.query.filter(or_(Post.caption.like(f"%{query}%"), Post.title.like(f"%{query}%") )).all()
             print(f"Search results: {users}")
+            print(f"Search results: {posts}")
 
             published_posts_count = db.session.query(Post).join(User).filter(User.username.in_([user.username for user in users]), Post.status=='published').count()
-    
+
         else:
             users = []
 
-        return render_template('search.html', users=users, form=form, db=db, published_posts_count = published_posts_count, query=query, default_value="")
-        # 
+        if len(users) == 0 and len(posts) == 0:
+            flash('No user/post available ', 'danger')
+        else:
+            flash('Successful Search ', 'info')
+
+        return render_template('search.html', users=users,posts=posts, form=form, db=db, published_posts_count = published_posts_count, query=query, default_value="", timezone=timezone)
 
     print(f"form validation failed: {form.errors}")
     return render_template('search.html', form=form, default_value="")

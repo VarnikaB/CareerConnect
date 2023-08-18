@@ -3,6 +3,14 @@
 {%block title%} Profile Page {%endblock%}
 
 {% block content %}
+<style>
+    img{
+        border-radius: 50%;
+        margin-left: 3rem;
+        border: 1px solid black;
+        justify-content: center;
+    }
+</style>
 
 <div class="container mt-5">
     <div class="row">
@@ -11,7 +19,7 @@
 
             {% if user.profile_image %}
                 <img src="{{ url_for('static', filename='profile/' + user.profile_image) }}" class="img-fluid rounded-circle"
-                    width="200" height="200" style="object-fit:cover">
+                    width="200" height="200" style="object-fit:cover" alt="profile image">
 
                 <br>
                 <br>
@@ -91,10 +99,8 @@
             <br>
             <br>
             <p style="font-size:20px">Total posts : {{ published_posts_count }} </p>
-            
-            <p style="font-size:20px"> <a href="{{ url_for('followers', username=user.username) }}"> Followers : {{ followers_count }}</a></p>
-            
-            <p style="font-size:20px"> <a href="{{ url_for('following', username=user.username) }}"> Following : {{ following_count }}</a></p>
+            <p style="font-size:20px"><a href="{{ url_for('likes_of_user', username=user.username) }}">Total likes : {{ likes }}</a> </p>
+            <p style="font-size:20px"><a href="{{ url_for('comments_of_user', username=user.username) }}">Total comments : {{ comments }} </a></p>
 
         </div>
         
@@ -109,13 +115,13 @@
                 <div class="card card-inner mb-2">
                 
                     <div class="card-header d-flex justify-content-between align-items-center">
-                        <h6>{{ post.title }}</h6>
+                        <h6>{{ post.title | safe }}</h6>
                 
                         {% if post.last_updated %}
-                        <small class="text-muted">Last updated on : {{ post.last_updated.replace(tzinfo=timezone('UTC')).astimezone(timezone('Asia/Kolkata')).strftime("%d-%m-%Y %H:%M:%S") }}</small>
+                        <small class="text-muted">Last updated on : {{ post.last_updated.replace(tzinfo=timezone('UTC')).astimezone(timezone('Asia/Kolkata')).strftime("%d-%m-%Y") }}</small>
                 
                         {% else %}
-                        <small class="text-muted">Created on : {{ post.timestamp.replace(tzinfo=timezone('UTC')).astimezone(timezone('Asia/Kolkata')).strftime("%d-%m-%Y %H:%M:%S") }}</small>
+                        <small class="text-muted">Created on : {{ post.timestamp.replace(tzinfo=timezone('UTC')).astimezone(timezone('Asia/Kolkata')).strftime("%d-%m-%Y") }}</small>
 
                         {% endif %}
                 
@@ -123,11 +129,9 @@
                 
                     <div class="card-body">
                         {% if post.image %}
-                        <img src="{{ url_for('static', filename='posts/' + post.image) }}" class="img-fluid rounded">
+                        <img src="{{ url_for('static', filename='posts/' + post.image) }}" class="img-fluid rounded " style="margin-bottom: 10px">
                         {% endif %}
-                        <br>
-                        <br>
-                        <p><strong>Caption : </strong>{{ post.caption }}</p>
+                        <p><strong>Caption : </strong>{{ post.caption | safe }}</p>
                     </div>
                 
                     <div class="card-footer d-flex justify-content">

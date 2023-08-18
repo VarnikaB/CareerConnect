@@ -1,68 +1,68 @@
 {% extends "base.html" %}
 
-{%block title%} Registration Page {%endblock%}
+{% block title %}Registration Page{% endblock %}
 
 {% block content %}
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#"></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="/" style="font-size:17px">Home</a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="/login" style="font-size:17px">Login</a>
-            </li>
-        </ul>
+<div style="margin-left: -17.84vw; width: 100vw">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand text-warning" href="#">CareerConnect</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/" style="font-size: 17px;">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/login" style="font-size: 17px;">Login</a>
+                </li>
+            </ul>
     </div>
 </nav>
-<br>
-<br>
 
-<h5>Registration Page</h5>
-<p>Fill this page to create an account.</p>
-<hr>
-<br>
+    <div class="container-fluid bg-light py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="card-title">Registration Page</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">Fill this form to create an account.</p>
+                        <hr>
 
-<div class="content-section">
-    <form method="POST" action="{{ url_for('register') }}">
-        {{ form.csrf_token }}
-        
-        <div class="form-group">
-            {{ form.username.label }}
-            {{ form.username(class="form-control", style="width:300px", placeholder="Enter username") }}
-            {% for error in form.username.errors %}
-            <div class="invalid-feedback">{{ error }}</div>
-            {% endfor %}
+                        <form method="POST" action="{{ url_for('register') }}" class="needs-validation" novalidate>
+                            {{ form.csrf_token }}
+
+                            <div class="form-group">
+                                {{ form.username.label }}
+                                {{ form.username(class="form-control", placeholder="Enter username", required=True) }}
+                                <div class="invalid-feedback">{{ form.username.errors[0] }}</div>
+                            </div>
+
+                            <div class="form-group">
+                                {{ form.password.label }}
+                                {{ form.password(class="form-control", placeholder="Enter password", required=True) }}
+                                <div class="invalid-feedback">{{ form.password.errors[0] }}</div>
+                            </div>
+
+                            <div class="form-group">
+                                {{ form.confirm_password.label }}
+                                {{ form.confirm_password(class="form-control", placeholder="Confirm Password",
+                                required=True) }}
+                                <div class="invalid-feedback">{{ form.confirm_password.errors[0] }}</div>
+                            </div>
+
+                            <div class="form-group">
+                                {{ form.submit(class="btn btn-warning btn-block") }}
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-        
-        <div class="form-group">
-            {{ form.password.label }}
-            {{ form.password(class="form-control", style="width:300px", placeholder="Enter password") }}
-            {% for error in form.password.errors %}
-            <div class="invalid-feedback">{{ error }}</div>
-            {% endfor %}
-        </div>
-        
-        <div class="form-group">
-            {{ form.confirm_password.label }}
-            {{ form.confirm_password(class="form-control", style="width:300px", placeholder="Confirm Password") }}
-            {% for error in form.confirm_password.errors %}
-            <div class="invalid-feedback">{{ error }}</div>
-            {% endfor %}
-        </div>
-
-
-
-        <div class="form-group">
-            {{ form.submit(class="btn btn-outline-primary") }}
-        </div>
-    </form>
+    </div>
 </div>
 {% endblock %}
