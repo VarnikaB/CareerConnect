@@ -84,8 +84,8 @@ class User(db.Model, UserMixin):
 
     # <-------------------->
 
-    chats_sent = db.relationship('Chat', foreign_keys=[Chat.sender_id], backref='sender', lazy='dynamic')
-    chats_received = db.relationship('Chat', foreign_keys=[Chat.receiver_id], backref='receiver', lazy='dynamic')
+    chats_sent = db.relationship('Chat', foreign_keys=[Chat.sender_id], backref='sender_user', lazy='dynamic')
+    chats_received = db.relationship('Chat', foreign_keys=[Chat.receiver_id], backref='receiver_user', lazy='dynamic')
 
     follower_count = db.Column(db.Integer, default=0)
     following_count = db.Column(db.Integer, default=0)
@@ -141,9 +141,6 @@ class User(db.Model, UserMixin):
     def unlike_post(self, post):
         if self.has_liked_post(post):
             Like.query.filter_by( user_id=self.id, post_id=post.id).delete()
-
-
-
 
     def send_chat(self, receiver, chat_text):
         new_chat = Chat(sender=self, receiver=receiver, chat_text=chat_text)
@@ -342,8 +339,8 @@ class LikeForm(FlaskForm):
 class UnlikeForm(FlaskForm):
     submit = SubmitField('Unlike')
 
-class FollowForm(FlaskForm):
-    submit = SubmitField('Follow')
+class ChatForm(FlaskForm):
+    submit = SubmitField('Chat')
 
 class UnfollowForm(FlaskForm):
     submit = SubmitField('Unfollow')
@@ -453,7 +450,7 @@ def profile(username):
 
     published_posts_count = Post.query.filter_by(user_id=user.id).count()
 
-    follow_form = FollowForm()
+    follow_form = ChatForm()
     unfollow_form = UnfollowForm()
 
     followers_count = user.followers.count()
@@ -685,7 +682,7 @@ def followers(username):
 
     followers = [x for x in followers if x != user]
 
-    follow_form = FollowForm()
+    follow_form = ChatForm()
     unfollow_form = UnfollowForm()
 
     return render_template('followers.html', user=user, followers=followers, username=username, follow_form=follow_form, unfollow_form=unfollow_form)
@@ -705,7 +702,7 @@ def following(username):
 
     following = [x for x in following if x != user]
 
-    follow_form = FollowForm()
+    follow_form = ChatForm()
     unfollow_form = UnfollowForm()
 
     return render_template('following.html', user=user, following=following, username=username, follow_form=follow_form, unfollow_form=unfollow_form)
@@ -867,6 +864,10 @@ def search():
     return render_template('search.html', form=form, default_value="")
 
 # ------------------------------------------------------------------------------
+@app.route("/chat")
+def chat():
+    return render_template("chat.html")
+
 
 if __name__ == '__main__':
     with app.app_context():

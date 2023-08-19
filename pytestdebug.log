@@ -1,0 +1,1252 @@
+versions pytest-7.4.0, python-3.9.6.final.0
+cwd=/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app
+args=('login_test_user.py', '--debug')
+
+  pytest_cmdline_main [hook]
+      config: <_pytest.config.Config object at 0x100b6ddc0>
+    pytest_plugin_registered [hook]
+        plugin: <Session app exitstatus='<UNSET>' testsfailed=0 testscollected=0>
+        manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+    finish pytest_plugin_registered --> [] [hook]
+    pytest_configure [hook]
+        config: <_pytest.config.Config object at 0x100b6ddc0>
+      pytest_plugin_registered [hook]
+          plugin: <_pytest.cacheprovider.LFPlugin object at 0x101a16130>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <_pytest.cacheprovider.NFPlugin object at 0x101a16820>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+    early skip of rewriting module: faulthandler [assertion]
+      pytest_plugin_registered [hook]
+          plugin: <class '_pytest.legacypath.LegacyTmpdirPlugin'>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+    early skip of rewriting module: pdb [assertion]
+    early skip of rewriting module: cmd [assertion]
+    early skip of rewriting module: code [assertion]
+    early skip of rewriting module: codeop [assertion]
+      pytest_plugin_registered [hook]
+          plugin: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <_pytest.config.Config object at 0x100b6ddc0>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <module '_pytest.mark' from '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/_pytest/mark/__init__.py'>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <module '_pytest.main' from '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/_pytest/main.py'>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <module '_pytest.runner' from '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/_pytest/runner.py'>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <module '_pytest.fixtures' from '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/_pytest/fixtures.py'>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <module '_pytest.helpconfig' from '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/_pytest/helpconfig.py'>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <module '_pytest.python' from '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/_pytest/python.py'>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <module '_pytest.terminal' from '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/_pytest/terminal.py'>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <module '_pytest.debugging' from '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/_pytest/debugging.py'>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <module '_pytest.unittest' from '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/_pytest/unittest.py'>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <module '_pytest.capture' from '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/_pytest/capture.py'>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <module '_pytest.skipping' from '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/_pytest/skipping.py'>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <module '_pytest.legacypath' from '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/_pytest/legacypath.py'>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <module '_pytest.tmpdir' from '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/_pytest/tmpdir.py'>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <module '_pytest.monkeypatch' from '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/_pytest/monkeypatch.py'>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <module '_pytest.recwarn' from '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/_pytest/recwarn.py'>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <module '_pytest.pastebin' from '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/_pytest/pastebin.py'>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <module '_pytest.nose' from '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/_pytest/nose.py'>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <module '_pytest.assertion' from '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/_pytest/assertion/__init__.py'>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <module '_pytest.junitxml' from '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/_pytest/junitxml.py'>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <module '_pytest.doctest' from '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/_pytest/doctest.py'>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <module '_pytest.cacheprovider' from '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/_pytest/cacheprovider.py'>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <module '_pytest.freeze_support' from '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/_pytest/freeze_support.py'>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <module '_pytest.setuponly' from '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/_pytest/setuponly.py'>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <module '_pytest.setupplan' from '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/_pytest/setupplan.py'>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <module '_pytest.stepwise' from '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/_pytest/stepwise.py'>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <module '_pytest.warnings' from '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/_pytest/warnings.py'>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <module '_pytest.logging' from '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/_pytest/logging.py'>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <module '_pytest.reports' from '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/_pytest/reports.py'>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <module '_pytest.python_path' from '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/_pytest/python_path.py'>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <module '_pytest.unraisableexception' from '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/_pytest/unraisableexception.py'>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <module '_pytest.threadexception' from '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/_pytest/threadexception.py'>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <module '_pytest.faulthandler' from '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/_pytest/faulthandler.py'>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <module 'pytest_snapshot.plugin' from '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/pytest_snapshot/plugin.py'>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <CaptureManager _method='fd' _global_capturing=<MultiCapture out=<FDCapture 1 oldfd=6 _state='suspended' tmpfile=<_io.TextIOWrapper name="<_io.FileIO name=7 mode='rb+' closefd=True>" mode='r+' encoding='utf-8'>> err=<FDCapture 2 oldfd=8 _state='suspended' tmpfile=<_io.TextIOWrapper name="<_io.FileIO name=9 mode='rb+' closefd=True>" mode='r+' encoding='utf-8'>> in_=<FDCapture 0 oldfd=4 _state='started' tmpfile=<_io.TextIOWrapper name='/dev/null' mode='r' encoding='utf-8'>> _state='suspended' _in_suspended=False> _capture_fixture=None>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <Session app exitstatus=<ExitCode.OK: 0> testsfailed=0 testscollected=0>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <_pytest.cacheprovider.LFPlugin object at 0x101a16130>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <_pytest.cacheprovider.NFPlugin object at 0x101a16820>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <class '_pytest.legacypath.LegacyTmpdirPlugin'>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <_pytest.terminal.TerminalReporter object at 0x101ab4fd0>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <_pytest.logging.LoggingPlugin object at 0x101a97700>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+    finish pytest_configure --> [] [hook]
+    pytest_sessionstart [hook]
+        session: <Session app exitstatus=<ExitCode.OK: 0> testsfailed=0 testscollected=0>
+      pytest_plugin_registered [hook]
+          plugin: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <_pytest.config.Config object at 0x100b6ddc0>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <module '_pytest.mark' from '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/_pytest/mark/__init__.py'>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <module '_pytest.main' from '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/_pytest/main.py'>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <module '_pytest.runner' from '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/_pytest/runner.py'>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <module '_pytest.fixtures' from '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/_pytest/fixtures.py'>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <module '_pytest.helpconfig' from '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/_pytest/helpconfig.py'>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <module '_pytest.python' from '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/_pytest/python.py'>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <module '_pytest.terminal' from '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/_pytest/terminal.py'>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <module '_pytest.debugging' from '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/_pytest/debugging.py'>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <module '_pytest.unittest' from '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/_pytest/unittest.py'>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <module '_pytest.capture' from '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/_pytest/capture.py'>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <module '_pytest.skipping' from '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/_pytest/skipping.py'>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <module '_pytest.legacypath' from '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/_pytest/legacypath.py'>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <module '_pytest.tmpdir' from '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/_pytest/tmpdir.py'>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <module '_pytest.monkeypatch' from '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/_pytest/monkeypatch.py'>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <module '_pytest.recwarn' from '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/_pytest/recwarn.py'>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <module '_pytest.pastebin' from '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/_pytest/pastebin.py'>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <module '_pytest.nose' from '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/_pytest/nose.py'>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <module '_pytest.assertion' from '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/_pytest/assertion/__init__.py'>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <module '_pytest.junitxml' from '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/_pytest/junitxml.py'>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <module '_pytest.doctest' from '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/_pytest/doctest.py'>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <module '_pytest.cacheprovider' from '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/_pytest/cacheprovider.py'>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <module '_pytest.freeze_support' from '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/_pytest/freeze_support.py'>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <module '_pytest.setuponly' from '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/_pytest/setuponly.py'>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <module '_pytest.setupplan' from '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/_pytest/setupplan.py'>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <module '_pytest.stepwise' from '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/_pytest/stepwise.py'>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <module '_pytest.warnings' from '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/_pytest/warnings.py'>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <module '_pytest.logging' from '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/_pytest/logging.py'>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <module '_pytest.reports' from '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/_pytest/reports.py'>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <module '_pytest.python_path' from '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/_pytest/python_path.py'>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <module '_pytest.unraisableexception' from '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/_pytest/unraisableexception.py'>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <module '_pytest.threadexception' from '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/_pytest/threadexception.py'>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <module '_pytest.faulthandler' from '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/_pytest/faulthandler.py'>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <module 'pytest_snapshot.plugin' from '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/pytest_snapshot/plugin.py'>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <CaptureManager _method='fd' _global_capturing=<MultiCapture out=<FDCapture 1 oldfd=6 _state='suspended' tmpfile=<_io.TextIOWrapper name="<_io.FileIO name=7 mode='rb+' closefd=True>" mode='r+' encoding='utf-8'>> err=<FDCapture 2 oldfd=8 _state='suspended' tmpfile=<_io.TextIOWrapper name="<_io.FileIO name=9 mode='rb+' closefd=True>" mode='r+' encoding='utf-8'>> in_=<FDCapture 0 oldfd=4 _state='started' tmpfile=<_io.TextIOWrapper name='/dev/null' mode='r' encoding='utf-8'>> _state='suspended' _in_suspended=False> _capture_fixture=None>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <Session app exitstatus=<ExitCode.OK: 0> testsfailed=0 testscollected=0>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <_pytest.cacheprovider.LFPlugin object at 0x101a16130>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <_pytest.cacheprovider.NFPlugin object at 0x101a16820>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <class '_pytest.legacypath.LegacyTmpdirPlugin'>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <_pytest.terminal.TerminalReporter object at 0x101ab4fd0>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <_pytest.logging.LoggingPlugin object at 0x101a97700>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_plugin_registered [hook]
+          plugin: <_pytest.fixtures.FixtureManager object at 0x101a161f0>
+          manager: <_pytest.config.PytestPluginManager object at 0x10185caf0>
+      finish pytest_plugin_registered --> [] [hook]
+      pytest_report_header [hook]
+          config: <_pytest.config.Config object at 0x100b6ddc0>
+          start_path: /Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app
+          startdir: /Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app
+      early skip of rewriting module: email.parser [assertion]
+      early skip of rewriting module: email.feedparser [assertion]
+      early skip of rewriting module: email.errors [assertion]
+      early skip of rewriting module: email._policybase [assertion]
+      early skip of rewriting module: email.header [assertion]
+      early skip of rewriting module: email.quoprimime [assertion]
+      early skip of rewriting module: email.base64mime [assertion]
+      early skip of rewriting module: base64 [assertion]
+      early skip of rewriting module: email.charset [assertion]
+      early skip of rewriting module: email.encoders [assertion]
+      early skip of rewriting module: quopri [assertion]
+      early skip of rewriting module: email.utils [assertion]
+      early skip of rewriting module: socket [assertion]
+      early skip of rewriting module: _socket [assertion]
+      early skip of rewriting module: array [assertion]
+      early skip of rewriting module: email._parseaddr [assertion]
+      early skip of rewriting module: calendar [assertion]
+      early skip of rewriting module: email.message [assertion]
+      early skip of rewriting module: uu [assertion]
+      early skip of rewriting module: email._encoded_words [assertion]
+      early skip of rewriting module: email.iterators [assertion]
+      finish pytest_report_header --> [['rootdir: /Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app', 'plugins: snapshot-0.9.0'], ['using: pytest-7.4.0', 'setuptools registered plugins:', '  pytest-snapshot-0.9.0 at /Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/pytest_snapshot/plugin.py']] [hook]
+    finish pytest_sessionstart --> [] [hook]
+    pytest_collection [hook]
+        session: <Session app exitstatus=<ExitCode.OK: 0> testsfailed=0 testscollected=0>
+    perform_collect <Session app exitstatus=<ExitCode.OK: 0> testsfailed=0 testscollected=0> ['login_test_user.py'] [collection]
+        pytest_collectstart [hook]
+            collector: <Session app exitstatus=<ExitCode.OK: 0> testsfailed=0 testscollected=0>
+        finish pytest_collectstart --> [] [hook]
+        pytest_make_collect_report [hook]
+            collector: <Session app exitstatus=<ExitCode.OK: 0> testsfailed=0 testscollected=0>
+        processing argument (PosixPath('/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/login_test_user.py'), []) [collection]
+            pytest_collect_file [hook]
+                parent: <Session app exitstatus=<ExitCode.OK: 0> testsfailed=0 testscollected=0>
+                file_path: /Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/login_test_user.py
+                path: /Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/login_test_user.py
+              pytest_pycollect_makemodule [hook]
+                  parent: <Session app exitstatus=<ExitCode.OK: 0> testsfailed=0 testscollected=0>
+                  module_path: /Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/login_test_user.py
+                  path: /Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/login_test_user.py
+              finish pytest_pycollect_makemodule --> <Module login_test_user.py> [hook]
+            finish pytest_collect_file --> [<Module login_test_user.py>] [hook]
+          matchnodes [<Module login_test_user.py>] [] [collection]
+            matchnodes finished ->  1 nodes [collection]
+        finish pytest_make_collect_report --> <CollectReport '' lenresult=1 outcome='passed'> [hook]
+        pytest_collectreport [hook]
+            report: <CollectReport '' lenresult=1 outcome='passed'>
+        finish pytest_collectreport --> [] [hook]
+    genitems <Module login_test_user.py> [collection]
+      pytest_collectstart [hook]
+          collector: <Module login_test_user.py>
+      finish pytest_collectstart --> [] [hook]
+      pytest_make_collect_report [hook]
+          collector: <Module login_test_user.py>
+      find_module called for: login_test_user [assertion]
+      matched test file (was specified on cmdline): '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/login_test_user.py' [assertion]
+      _read_pyc(/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/login_test_user.py): out of date [assertion]
+      rewriting PosixPath('/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/login_test_user.py') [assertion]
+      early skip of rewriting module: app [assertion]
+      early skip of rewriting module: flask [assertion]
+      early skip of rewriting module: flask.json [assertion]
+      early skip of rewriting module: flask.globals [assertion]
+      early skip of rewriting module: contextvars [assertion]
+      early skip of rewriting module: _contextvars [assertion]
+      early skip of rewriting module: werkzeug [assertion]
+      early skip of rewriting module: werkzeug.serving [assertion]
+      early skip of rewriting module: socketserver [assertion]
+      early skip of rewriting module: http [assertion]
+      early skip of rewriting module: http.server [assertion]
+      early skip of rewriting module: html [assertion]
+      early skip of rewriting module: html.entities [assertion]
+      early skip of rewriting module: http.client [assertion]
+      early skip of rewriting module: ssl [assertion]
+      early skip of rewriting module: _ssl [assertion]
+      early skip of rewriting module: mimetypes [assertion]
+      early skip of rewriting module: winreg [assertion]
+      early skip of rewriting module: werkzeug._internal [assertion]
+      early skip of rewriting module: werkzeug.exceptions [assertion]
+      early skip of rewriting module: markupsafe [assertion]
+      early skip of rewriting module: markupsafe._speedups [assertion]
+      early skip of rewriting module: werkzeug.urls [assertion]
+      early skip of rewriting module: werkzeug.datastructures [assertion]
+      early skip of rewriting module: werkzeug.datastructures.accept [assertion]
+      early skip of rewriting module: werkzeug.datastructures.structures [assertion]
+      early skip of rewriting module: werkzeug.datastructures.mixins [assertion]
+      early skip of rewriting module: werkzeug.http [assertion]
+      early skip of rewriting module: hashlib [assertion]
+      early skip of rewriting module: _hashlib [assertion]
+      early skip of rewriting module: _blake2 [assertion]
+      early skip of rewriting module: _sha3 [assertion]
+      early skip of rewriting module: urllib.request [assertion]
+      early skip of rewriting module: urllib.error [assertion]
+      early skip of rewriting module: urllib.response [assertion]
+      early skip of rewriting module: _scproxy [assertion]
+      early skip of rewriting module: werkzeug.sansio [assertion]
+      early skip of rewriting module: werkzeug.sansio.http [assertion]
+      early skip of rewriting module: werkzeug.datastructures.auth [assertion]
+      early skip of rewriting module: werkzeug.datastructures.cache_control [assertion]
+      early skip of rewriting module: werkzeug.datastructures.csp [assertion]
+      early skip of rewriting module: werkzeug.datastructures.etag [assertion]
+      early skip of rewriting module: werkzeug.datastructures.file_storage [assertion]
+      early skip of rewriting module: werkzeug.datastructures.headers [assertion]
+      early skip of rewriting module: werkzeug.datastructures.range [assertion]
+      early skip of rewriting module: werkzeug.test [assertion]
+      early skip of rewriting module: werkzeug.sansio.multipart [assertion]
+      early skip of rewriting module: werkzeug.utils [assertion]
+      early skip of rewriting module: pkgutil [assertion]
+      early skip of rewriting module: werkzeug.security [assertion]
+      early skip of rewriting module: hmac [assertion]
+      early skip of rewriting module: secrets [assertion]
+      early skip of rewriting module: werkzeug.wsgi [assertion]
+      early skip of rewriting module: werkzeug.sansio.utils [assertion]
+      early skip of rewriting module: werkzeug.wrappers [assertion]
+      early skip of rewriting module: werkzeug.wrappers.request [assertion]
+      early skip of rewriting module: werkzeug.formparser [assertion]
+      early skip of rewriting module: werkzeug.sansio.request [assertion]
+      early skip of rewriting module: werkzeug.user_agent [assertion]
+      early skip of rewriting module: werkzeug.wrappers.response [assertion]
+      early skip of rewriting module: werkzeug.sansio.response [assertion]
+      early skip of rewriting module: werkzeug.local [assertion]
+      early skip of rewriting module: flask.json.provider [assertion]
+      early skip of rewriting module: flask.app [assertion]
+      early skip of rewriting module: click [assertion]
+      early skip of rewriting module: click.core [assertion]
+      early skip of rewriting module: click.types [assertion]
+      early skip of rewriting module: click._compat [assertion]
+      early skip of rewriting module: click.exceptions [assertion]
+      early skip of rewriting module: click.utils [assertion]
+      early skip of rewriting module: click.globals [assertion]
+      early skip of rewriting module: click.formatting [assertion]
+      early skip of rewriting module: click.parser [assertion]
+      early skip of rewriting module: click.termui [assertion]
+      early skip of rewriting module: click.decorators [assertion]
+      early skip of rewriting module: werkzeug.routing [assertion]
+      early skip of rewriting module: werkzeug.routing.converters [assertion]
+      early skip of rewriting module: werkzeug.routing.exceptions [assertion]
+      early skip of rewriting module: werkzeug.routing.map [assertion]
+      early skip of rewriting module: werkzeug.routing.matcher [assertion]
+      early skip of rewriting module: werkzeug.routing.rules [assertion]
+      early skip of rewriting module: flask.cli [assertion]
+      early skip of rewriting module: flask.helpers [assertion]
+      early skip of rewriting module: flask.signals [assertion]
+      early skip of rewriting module: blinker [assertion]
+      early skip of rewriting module: blinker.base [assertion]
+      early skip of rewriting module: blinker._utilities [assertion]
+      early skip of rewriting module: asyncio [assertion]
+      early skip of rewriting module: asyncio.base_events [assertion]
+      early skip of rewriting module: concurrent [assertion]
+      early skip of rewriting module: concurrent.futures [assertion]
+      early skip of rewriting module: concurrent.futures._base [assertion]
+      early skip of rewriting module: asyncio.constants [assertion]
+      early skip of rewriting module: asyncio.coroutines [assertion]
+      early skip of rewriting module: asyncio.base_futures [assertion]
+      early skip of rewriting module: asyncio.format_helpers [assertion]
+      early skip of rewriting module: asyncio.log [assertion]
+      early skip of rewriting module: asyncio.events [assertion]
+      early skip of rewriting module: _asyncio [assertion]
+      early skip of rewriting module: asyncio.exceptions [assertion]
+      early skip of rewriting module: asyncio.base_tasks [assertion]
+      early skip of rewriting module: asyncio.futures [assertion]
+      early skip of rewriting module: asyncio.protocols [assertion]
+      early skip of rewriting module: asyncio.sslproto [assertion]
+      early skip of rewriting module: asyncio.transports [assertion]
+      early skip of rewriting module: asyncio.staggered [assertion]
+      early skip of rewriting module: asyncio.locks [assertion]
+      early skip of rewriting module: asyncio.tasks [assertion]
+      early skip of rewriting module: asyncio.trsock [assertion]
+      early skip of rewriting module: asyncio.runners [assertion]
+      early skip of rewriting module: asyncio.queues [assertion]
+      early skip of rewriting module: asyncio.streams [assertion]
+      early skip of rewriting module: asyncio.subprocess [assertion]
+      early skip of rewriting module: asyncio.threads [assertion]
+      early skip of rewriting module: asyncio.unix_events [assertion]
+      early skip of rewriting module: asyncio.base_subprocess [assertion]
+      early skip of rewriting module: asyncio.selector_events [assertion]
+      early skip of rewriting module: blinker._saferef [assertion]
+      early skip of rewriting module: flask.typing [assertion]
+      early skip of rewriting module: flask.config [assertion]
+      early skip of rewriting module: flask.ctx [assertion]
+      early skip of rewriting module: flask.logging [assertion]
+      early skip of rewriting module: flask.scaffold [assertion]
+      early skip of rewriting module: jinja2 [assertion]
+      early skip of rewriting module: jinja2.bccache [assertion]
+      early skip of rewriting module: pickle [assertion]
+      early skip of rewriting module: _compat_pickle [assertion]
+      early skip of rewriting module: _pickle [assertion]
+      early skip of rewriting module: org [assertion]
+      early skip of rewriting module: jinja2.environment [assertion]
+      early skip of rewriting module: jinja2.nodes [assertion]
+      early skip of rewriting module: jinja2.utils [assertion]
+      early skip of rewriting module: jinja2.compiler [assertion]
+      early skip of rewriting module: jinja2.exceptions [assertion]
+      early skip of rewriting module: jinja2.idtracking [assertion]
+      early skip of rewriting module: jinja2.visitor [assertion]
+      early skip of rewriting module: jinja2.optimizer [assertion]
+      early skip of rewriting module: jinja2.defaults [assertion]
+      early skip of rewriting module: jinja2.filters [assertion]
+      early skip of rewriting module: jinja2.async_utils [assertion]
+      early skip of rewriting module: jinja2.runtime [assertion]
+      early skip of rewriting module: jinja2.tests [assertion]
+      early skip of rewriting module: jinja2.lexer [assertion]
+      early skip of rewriting module: jinja2._identifier [assertion]
+      early skip of rewriting module: jinja2.parser [assertion]
+      early skip of rewriting module: jinja2.loaders [assertion]
+      early skip of rewriting module: flask.templating [assertion]
+      early skip of rewriting module: flask.sessions [assertion]
+      early skip of rewriting module: itsdangerous [assertion]
+      early skip of rewriting module: itsdangerous.encoding [assertion]
+      early skip of rewriting module: itsdangerous.exc [assertion]
+      early skip of rewriting module: itsdangerous.serializer [assertion]
+      early skip of rewriting module: itsdangerous.signer [assertion]
+      early skip of rewriting module: itsdangerous.timed [assertion]
+      early skip of rewriting module: itsdangerous.url_safe [assertion]
+      early skip of rewriting module: itsdangerous._json [assertion]
+      early skip of rewriting module: flask.json.tag [assertion]
+      early skip of rewriting module: flask.wrappers [assertion]
+      early skip of rewriting module: flask.blueprints [assertion]
+      early skip of rewriting module: flask_login [assertion]
+      early skip of rewriting module: flask_login.__about__ [assertion]
+      early skip of rewriting module: flask_login.config [assertion]
+      early skip of rewriting module: flask_login.login_manager [assertion]
+      early skip of rewriting module: flask_login.mixins [assertion]
+      early skip of rewriting module: flask_login.signals [assertion]
+      early skip of rewriting module: flask_login.utils [assertion]
+      find_module called for: flask_login.test_client [assertion]
+      matched test file '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/flask_login/test_client.py' [assertion]
+      found cached rewritten pyc for /Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/flask_login/test_client.py [assertion]
+      early skip of rewriting module: flask.testing [assertion]
+      early skip of rewriting module: click.testing [assertion]
+      early skip of rewriting module: flask_bootstrap [assertion]
+      early skip of rewriting module: wtforms [assertion]
+      early skip of rewriting module: wtforms.validators [assertion]
+      early skip of rewriting module: ipaddress [assertion]
+      early skip of rewriting module: email_validator [assertion]
+      early skip of rewriting module: wtforms.widgets [assertion]
+      early skip of rewriting module: wtforms.widgets.core [assertion]
+      early skip of rewriting module: wtforms.fields [assertion]
+      early skip of rewriting module: wtforms.fields.choices [assertion]
+      early skip of rewriting module: wtforms.fields.core [assertion]
+      early skip of rewriting module: wtforms.i18n [assertion]
+      early skip of rewriting module: wtforms.utils [assertion]
+      early skip of rewriting module: wtforms.fields.datetime [assertion]
+      early skip of rewriting module: wtforms.fields.form [assertion]
+      early skip of rewriting module: wtforms.fields.list [assertion]
+      early skip of rewriting module: wtforms.fields.numeric [assertion]
+      early skip of rewriting module: wtforms.fields.simple [assertion]
+      early skip of rewriting module: wtforms.form [assertion]
+      early skip of rewriting module: wtforms.meta [assertion]
+      early skip of rewriting module: flask_bootstrap.forms [assertion]
+      early skip of rewriting module: dominate [assertion]
+      early skip of rewriting module: dominate._version [assertion]
+      early skip of rewriting module: dominate.document [assertion]
+      early skip of rewriting module: dominate.tags [assertion]
+      early skip of rewriting module: dominate.dom_tag [assertion]
+      early skip of rewriting module: greenlet [assertion]
+      early skip of rewriting module: dominate.util [assertion]
+      early skip of rewriting module: dominate.dom1core [assertion]
+      early skip of rewriting module: visitor [assertion]
+      early skip of rewriting module: flask_sqlalchemy [assertion]
+      early skip of rewriting module: flask_sqlalchemy.extension [assertion]
+      early skip of rewriting module: sqlalchemy [assertion]
+      early skip of rewriting module: sqlalchemy.util [assertion]
+      early skip of rewriting module: sqlalchemy.util.preloaded [assertion]
+      early skip of rewriting module: sqlalchemy.util._collections [assertion]
+      early skip of rewriting module: sqlalchemy.util._has_cy [assertion]
+      early skip of rewriting module: sqlalchemy.cyextension [assertion]
+      early skip of rewriting module: sqlalchemy.cyextension.collections [assertion]
+      early skip of rewriting module: backports_abc [assertion]
+      early skip of rewriting module: sqlalchemy.cyextension.immutabledict [assertion]
+      early skip of rewriting module: sqlalchemy.cyextension.processors [assertion]
+      early skip of rewriting module: sqlalchemy.cyextension.resultproxy [assertion]
+      early skip of rewriting module: sqlalchemy.cyextension.util [assertion]
+      early skip of rewriting module: sqlalchemy.exc [assertion]
+      early skip of rewriting module: sqlalchemy.util.compat [assertion]
+      early skip of rewriting module: sqlalchemy.util.typing [assertion]
+      early skip of rewriting module: typing_extensions [assertion]
+      early skip of rewriting module: sqlalchemy.util.concurrency [assertion]
+      early skip of rewriting module: greenlet [assertion]
+      early skip of rewriting module: sqlalchemy.util.deprecations [assertion]
+      early skip of rewriting module: sqlalchemy.util.langhelpers [assertion]
+      early skip of rewriting module: sqlalchemy.engine [assertion]
+      early skip of rewriting module: sqlalchemy.engine.events [assertion]
+      early skip of rewriting module: sqlalchemy.engine.base [assertion]
+      early skip of rewriting module: sqlalchemy.engine.interfaces [assertion]
+      early skip of rewriting module: sqlalchemy.event [assertion]
+      early skip of rewriting module: sqlalchemy.event.api [assertion]
+      early skip of rewriting module: sqlalchemy.event.base [assertion]
+      early skip of rewriting module: sqlalchemy.event.attr [assertion]
+      early skip of rewriting module: sqlalchemy.event.legacy [assertion]
+      early skip of rewriting module: sqlalchemy.event.registry [assertion]
+      early skip of rewriting module: sqlalchemy.pool [assertion]
+      early skip of rewriting module: sqlalchemy.pool.events [assertion]
+      early skip of rewriting module: sqlalchemy.pool.base [assertion]
+      early skip of rewriting module: sqlalchemy.log [assertion]
+      early skip of rewriting module: sqlalchemy.pool.impl [assertion]
+      early skip of rewriting module: sqlalchemy.util.queue [assertion]
+      early skip of rewriting module: sqlalchemy.sql [assertion]
+      early skip of rewriting module: sqlalchemy.sql._typing [assertion]
+      early skip of rewriting module: sqlalchemy.sql.roles [assertion]
+      early skip of rewriting module: sqlalchemy.inspection [assertion]
+      early skip of rewriting module: sqlalchemy.sql.base [assertion]
+      early skip of rewriting module: sqlalchemy.sql.visitors [assertion]
+      early skip of rewriting module: sqlalchemy.sql.cache_key [assertion]
+      early skip of rewriting module: sqlalchemy.sql.traversals [assertion]
+      early skip of rewriting module: sqlalchemy.sql.operators [assertion]
+      early skip of rewriting module: sqlalchemy.sql.compiler [assertion]
+      early skip of rewriting module: sqlalchemy.sql.coercions [assertion]
+      early skip of rewriting module: sqlalchemy.sql.crud [assertion]
+      early skip of rewriting module: sqlalchemy.sql.dml [assertion]
+      early skip of rewriting module: sqlalchemy.sql.util [assertion]
+      early skip of rewriting module: sqlalchemy.sql.annotation [assertion]
+      early skip of rewriting module: sqlalchemy.sql.ddl [assertion]
+      early skip of rewriting module: sqlalchemy.sql.elements [assertion]
+      early skip of rewriting module: sqlalchemy.sql.type_api [assertion]
+      early skip of rewriting module: sqlalchemy.util.topological [assertion]
+      early skip of rewriting module: sqlalchemy.sql.schema [assertion]
+      early skip of rewriting module: sqlalchemy.sql.selectable [assertion]
+      early skip of rewriting module: sqlalchemy.sql.sqltypes [assertion]
+      early skip of rewriting module: sqlalchemy.engine.processors [assertion]
+      early skip of rewriting module: sqlalchemy.engine._py_processors [assertion]
+      early skip of rewriting module: sqlalchemy.sql.functions [assertion]
+      early skip of rewriting module: sqlalchemy.sql.expression [assertion]
+      early skip of rewriting module: sqlalchemy.sql._dml_constructors [assertion]
+      early skip of rewriting module: sqlalchemy.sql._elements_constructors [assertion]
+      early skip of rewriting module: sqlalchemy.sql._selectable_constructors [assertion]
+      early skip of rewriting module: sqlalchemy.sql.lambdas [assertion]
+      early skip of rewriting module: sqlalchemy.sql.naming [assertion]
+      early skip of rewriting module: sqlalchemy.sql.events [assertion]
+      early skip of rewriting module: sqlalchemy.sql.default_comparator [assertion]
+      early skip of rewriting module: sqlalchemy.engine.util [assertion]
+      early skip of rewriting module: sqlalchemy.engine.create [assertion]
+      early skip of rewriting module: sqlalchemy.engine.url [assertion]
+      early skip of rewriting module: sqlalchemy.dialects [assertion]
+      early skip of rewriting module: sqlalchemy.engine.mock [assertion]
+      early skip of rewriting module: sqlalchemy.engine.cursor [assertion]
+      early skip of rewriting module: sqlalchemy.engine.result [assertion]
+      early skip of rewriting module: sqlalchemy.engine.row [assertion]
+      early skip of rewriting module: sqlalchemy.engine.reflection [assertion]
+      early skip of rewriting module: sqlalchemy.schema [assertion]
+      early skip of rewriting module: sqlalchemy.types [assertion]
+      early skip of rewriting module: sqlalchemy.engine.default [assertion]
+      early skip of rewriting module: sqlalchemy.engine.characteristics [assertion]
+      early skip of rewriting module: sqlalchemy.orm [assertion]
+      early skip of rewriting module: sqlalchemy.orm.exc [assertion]
+      early skip of rewriting module: sqlalchemy.orm.mapper [assertion]
+      early skip of rewriting module: sqlalchemy.orm.attributes [assertion]
+      early skip of rewriting module: sqlalchemy.orm.collections [assertion]
+      early skip of rewriting module: sqlalchemy.orm.base [assertion]
+      early skip of rewriting module: sqlalchemy.orm._typing [assertion]
+      early skip of rewriting module: sqlalchemy.sql._orm_types [assertion]
+      early skip of rewriting module: sqlalchemy.orm.mapped_collection [assertion]
+      early skip of rewriting module: sqlalchemy.orm.interfaces [assertion]
+      early skip of rewriting module: sqlalchemy.orm.path_registry [assertion]
+      early skip of rewriting module: sqlalchemy.orm.instrumentation [assertion]
+      early skip of rewriting module: sqlalchemy.orm.state [assertion]
+      early skip of rewriting module: sqlalchemy.orm.loading [assertion]
+      early skip of rewriting module: sqlalchemy.orm.context [assertion]
+      early skip of rewriting module: sqlalchemy.orm.util [assertion]
+      early skip of rewriting module: sqlalchemy.future [assertion]
+      early skip of rewriting module: sqlalchemy.future.engine [assertion]
+      early skip of rewriting module: sqlalchemy.orm.properties [assertion]
+      early skip of rewriting module: sqlalchemy.orm.strategy_options [assertion]
+      early skip of rewriting module: sqlalchemy.orm.descriptor_props [assertion]
+      early skip of rewriting module: sqlalchemy.orm.relationships [assertion]
+      early skip of rewriting module: sqlalchemy.orm._orm_constructors [assertion]
+      early skip of rewriting module: sqlalchemy.orm.query [assertion]
+      early skip of rewriting module: sqlalchemy.orm.session [assertion]
+      early skip of rewriting module: sqlalchemy.orm.bulk_persistence [assertion]
+      early skip of rewriting module: sqlalchemy.orm.evaluator [assertion]
+      early skip of rewriting module: sqlalchemy.orm.persistence [assertion]
+      early skip of rewriting module: sqlalchemy.orm.sync [assertion]
+      early skip of rewriting module: sqlalchemy.orm.identity [assertion]
+      early skip of rewriting module: sqlalchemy.orm.state_changes [assertion]
+      early skip of rewriting module: sqlalchemy.orm.unitofwork [assertion]
+      early skip of rewriting module: sqlalchemy.orm.decl_api [assertion]
+      early skip of rewriting module: sqlalchemy.orm.clsregistry [assertion]
+      early skip of rewriting module: sqlalchemy.orm.decl_base [assertion]
+      early skip of rewriting module: sqlalchemy.orm.dynamic [assertion]
+      early skip of rewriting module: sqlalchemy.orm.writeonly [assertion]
+      early skip of rewriting module: sqlalchemy.orm.strategies [assertion]
+      early skip of rewriting module: sqlalchemy.orm.events [assertion]
+      early skip of rewriting module: sqlalchemy.orm.scoping [assertion]
+      early skip of rewriting module: sqlalchemy.orm.dependency [assertion]
+      early skip of rewriting module: flask_sqlalchemy.model [assertion]
+      early skip of rewriting module: flask_sqlalchemy.query [assertion]
+      early skip of rewriting module: flask_sqlalchemy.pagination [assertion]
+      early skip of rewriting module: flask_sqlalchemy.session [assertion]
+      early skip of rewriting module: flask_sqlalchemy.table [assertion]
+      early skip of rewriting module: flask_migrate [assertion]
+      early skip of rewriting module: alembic [assertion]
+      early skip of rewriting module: alembic.context [assertion]
+      early skip of rewriting module: alembic.runtime [assertion]
+      early skip of rewriting module: alembic.runtime.environment [assertion]
+      early skip of rewriting module: alembic.runtime.migration [assertion]
+      early skip of rewriting module: sqlalchemy.engine.strategies [assertion]
+      early skip of rewriting module: alembic.ddl [assertion]
+      early skip of rewriting module: alembic.ddl.mssql [assertion]
+      early skip of rewriting module: sqlalchemy.ext [assertion]
+      early skip of rewriting module: sqlalchemy.ext.compiler [assertion]
+      early skip of rewriting module: alembic.ddl.base [assertion]
+      early skip of rewriting module: alembic.util [assertion]
+      early skip of rewriting module: alembic.util.editor [assertion]
+      early skip of rewriting module: alembic.util.compat [assertion]
+      early skip of rewriting module: importlib.resources [assertion]
+      early skip of rewriting module: importlib._common [assertion]
+      early skip of rewriting module: alembic.util.exc [assertion]
+      early skip of rewriting module: alembic.util.langhelpers [assertion]
+      early skip of rewriting module: alembic.util.messaging [assertion]
+      early skip of rewriting module: alembic.util.sqla_compat [assertion]
+      early skip of rewriting module: fcntl [assertion]
+      early skip of rewriting module: termios [assertion]
+      early skip of rewriting module: alembic.util.pyfiles [assertion]
+      early skip of rewriting module: mako [assertion]
+      early skip of rewriting module: mako.exceptions [assertion]
+      early skip of rewriting module: mako.compat [assertion]
+      early skip of rewriting module: mako.util [assertion]
+      early skip of rewriting module: timeit [assertion]
+      early skip of rewriting module: mako.ext [assertion]
+      early skip of rewriting module: mako.ext.pygmentplugin [assertion]
+      early skip of rewriting module: pygments [assertion]
+      early skip of rewriting module: mako.filters [assertion]
+      early skip of rewriting module: mako.template [assertion]
+      early skip of rewriting module: mako.cache [assertion]
+      early skip of rewriting module: mako.codegen [assertion]
+      early skip of rewriting module: mako.ast [assertion]
+      early skip of rewriting module: mako.pyparser [assertion]
+      early skip of rewriting module: mako._ast_util [assertion]
+      early skip of rewriting module: mako.parsetree [assertion]
+      early skip of rewriting module: mako.pygen [assertion]
+      early skip of rewriting module: mako.runtime [assertion]
+      early skip of rewriting module: mako.lexer [assertion]
+      early skip of rewriting module: alembic.ddl.impl [assertion]
+      early skip of rewriting module: alembic.ddl.mysql [assertion]
+      early skip of rewriting module: alembic.autogenerate [assertion]
+      early skip of rewriting module: alembic.autogenerate.api [assertion]
+      early skip of rewriting module: alembic.autogenerate.compare [assertion]
+      early skip of rewriting module: alembic.operations [assertion]
+      early skip of rewriting module: alembic.operations.toimpl [assertion]
+      early skip of rewriting module: alembic.operations.ops [assertion]
+      early skip of rewriting module: alembic.operations.schemaobj [assertion]
+      early skip of rewriting module: alembic.operations.base [assertion]
+      early skip of rewriting module: alembic.operations.batch [assertion]
+      early skip of rewriting module: sqlalchemy.events [assertion]
+      early skip of rewriting module: alembic.autogenerate.render [assertion]
+      early skip of rewriting module: alembic.autogenerate.rewriter [assertion]
+      early skip of rewriting module: alembic.ddl.oracle [assertion]
+      early skip of rewriting module: alembic.ddl.postgresql [assertion]
+      early skip of rewriting module: sqlalchemy.dialects.postgresql [assertion]
+      early skip of rewriting module: sqlalchemy.dialects.postgresql.asyncpg [assertion]
+      early skip of rewriting module: sqlalchemy.dialects.postgresql.json [assertion]
+      early skip of rewriting module: sqlalchemy.dialects.postgresql.array [assertion]
+      early skip of rewriting module: sqlalchemy.dialects.postgresql.operators [assertion]
+      early skip of rewriting module: sqlalchemy.dialects.postgresql.ranges [assertion]
+      early skip of rewriting module: sqlalchemy.dialects.postgresql.base [assertion]
+      early skip of rewriting module: sqlalchemy.dialects.postgresql.hstore [assertion]
+      early skip of rewriting module: sqlalchemy.dialects.postgresql.pg_catalog [assertion]
+      early skip of rewriting module: sqlalchemy.dialects.postgresql.types [assertion]
+      early skip of rewriting module: sqlalchemy.dialects.postgresql.ext [assertion]
+      early skip of rewriting module: sqlalchemy.dialects.postgresql.named_types [assertion]
+      early skip of rewriting module: sqlalchemy.dialects.postgresql.pg8000 [assertion]
+      early skip of rewriting module: sqlalchemy.dialects.postgresql.psycopg [assertion]
+      early skip of rewriting module: sqlalchemy.dialects.postgresql._psycopg_common [assertion]
+      early skip of rewriting module: sqlalchemy.dialects.postgresql.psycopg2 [assertion]
+      early skip of rewriting module: sqlalchemy.dialects.postgresql.psycopg2cffi [assertion]
+      early skip of rewriting module: sqlalchemy.dialects.postgresql.dml [assertion]
+      early skip of rewriting module: sqlalchemy.dialects._typing [assertion]
+      early skip of rewriting module: alembic.ddl.sqlite [assertion]
+      early skip of rewriting module: alembic.op [assertion]
+      early skip of rewriting module: alembic.config [assertion]
+      early skip of rewriting module: alembic.command [assertion]
+      early skip of rewriting module: alembic.script [assertion]
+      early skip of rewriting module: alembic.script.base [assertion]
+      early skip of rewriting module: alembic.script.revision [assertion]
+      early skip of rewriting module: alembic.script.write_hooks [assertion]
+      early skip of rewriting module: dateutil [assertion]
+      early skip of rewriting module: flask_wtf [assertion]
+      early skip of rewriting module: flask_wtf.csrf [assertion]
+      early skip of rewriting module: wtforms.csrf [assertion]
+      early skip of rewriting module: wtforms.csrf.core [assertion]
+      early skip of rewriting module: flask_wtf.form [assertion]
+      early skip of rewriting module: flask_wtf.i18n [assertion]
+      early skip of rewriting module: babel [assertion]
+      early skip of rewriting module: flask_wtf.recaptcha [assertion]
+      early skip of rewriting module: flask_wtf.recaptcha.fields [assertion]
+      early skip of rewriting module: flask_wtf.recaptcha.widgets [assertion]
+      early skip of rewriting module: flask_wtf.recaptcha.validators [assertion]
+      early skip of rewriting module: flask_wtf.file [assertion]
+      early skip of rewriting module: bcrypt [assertion]
+      early skip of rewriting module: bcrypt.__about__ [assertion]
+      early skip of rewriting module: bcrypt._bcrypt [assertion]
+      early skip of rewriting module: PIL [assertion]
+      early skip of rewriting module: PIL._version [assertion]
+      early skip of rewriting module: PIL.Image [assertion]
+      early skip of rewriting module: defusedxml [assertion]
+      early skip of rewriting module: PIL.ExifTags [assertion]
+      early skip of rewriting module: PIL.ImageMode [assertion]
+      early skip of rewriting module: PIL.TiffTags [assertion]
+      early skip of rewriting module: PIL._binary [assertion]
+      early skip of rewriting module: PIL._util [assertion]
+      early skip of rewriting module: PIL._imaging [assertion]
+      early skip of rewriting module: cffi [assertion]
+      early skip of rewriting module: pytz [assertion]
+      early skip of rewriting module: pytz.exceptions [assertion]
+      early skip of rewriting module: pytz.lazy [assertion]
+      early skip of rewriting module: pytz.tzinfo [assertion]
+      early skip of rewriting module: pytz.tzfile [assertion]
+      early skip of rewriting module: jinja2.ext [assertion]
+      early skip of rewriting module: flask_sqlalchemy.cli [assertion]
+      early skip of rewriting module: sqlalchemy.dialects.sqlite [assertion]
+      early skip of rewriting module: sqlalchemy.dialects.sqlite.aiosqlite [assertion]
+      early skip of rewriting module: sqlalchemy.dialects.sqlite.base [assertion]
+      early skip of rewriting module: sqlalchemy.dialects.sqlite.json [assertion]
+      early skip of rewriting module: sqlalchemy.dialects.sqlite.pysqlite [assertion]
+      early skip of rewriting module: sqlalchemy.dialects.sqlite.pysqlcipher [assertion]
+      early skip of rewriting module: sqlalchemy.dialects.sqlite.dml [assertion]
+      early skip of rewriting module: sqlite3 [assertion]
+      early skip of rewriting module: sqlite3.dbapi2 [assertion]
+      early skip of rewriting module: _sqlite3 [assertion]
+      early skip of rewriting module: flask_migrate.cli [assertion]
+        pytest_pycollect_makeitem [hook]
+            collector: <Module login_test_user.py>
+            name: @py_builtins
+            obj: <module 'builtins' (built-in)>
+        finish pytest_pycollect_makeitem --> None [hook]
+        pytest_pycollect_makeitem [hook]
+            collector: <Module login_test_user.py>
+            name: @pytest_ar
+            obj: <module '_pytest.assertion.rewrite' from '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/_pytest/assertion/rewrite.py'>
+        finish pytest_pycollect_makeitem --> None [hook]
+        pytest_pycollect_makeitem [hook]
+            collector: <Module login_test_user.py>
+            name: db
+            obj: <SQLAlchemy>
+        finish pytest_pycollect_makeitem --> None [hook]
+        pytest_pycollect_makeitem [hook]
+            collector: <Module login_test_user.py>
+            name: User
+            obj: <class 'app.User'>
+        finish pytest_pycollect_makeitem --> None [hook]
+        pytest_pycollect_makeitem [hook]
+            collector: <Module login_test_user.py>
+            name: app
+            obj: <Flask 'app'>
+        finish pytest_pycollect_makeitem --> None [hook]
+        pytest_pycollect_makeitem [hook]
+            collector: <Module login_test_user.py>
+            name: current_user
+            obj: None
+        finish pytest_pycollect_makeitem --> None [hook]
+        pytest_pycollect_makeitem [hook]
+            collector: <Module login_test_user.py>
+            name: generate_password_hash
+            obj: <function generate_password_hash at 0x101eb29d0>
+        finish pytest_pycollect_makeitem --> None [hook]
+        pytest_pycollect_makeitem [hook]
+            collector: <Module login_test_user.py>
+            name: pytest
+            obj: <module 'pytest' from '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/pytest/__init__.py'>
+        finish pytest_pycollect_makeitem --> None [hook]
+        pytest_pycollect_makeitem [hook]
+            collector: <Module login_test_user.py>
+            name: client
+            obj: <function client at 0x103358dc0>
+        finish pytest_pycollect_makeitem --> None [hook]
+        pytest_pycollect_makeitem [hook]
+            collector: <Module login_test_user.py>
+            name: create_test_user
+            obj: <function create_test_user at 0x103828ca0>
+        finish pytest_pycollect_makeitem --> None [hook]
+        pytest_pycollect_makeitem [hook]
+            collector: <Module login_test_user.py>
+            name: test_successful_login
+            obj: <function test_successful_login at 0x103828d30>
+          pytest_generate_tests [hook]
+              metafunc: <_pytest.python.Metafunc object at 0x101b84610>
+          finish pytest_generate_tests --> [] [hook]
+        finish pytest_pycollect_makeitem --> [<Function test_successful_login>] [hook]
+        pytest_pycollect_makeitem [hook]
+            collector: <Module login_test_user.py>
+            name: test_unsuccessful_login
+            obj: <function test_unsuccessful_login at 0x103828ee0>
+          pytest_generate_tests [hook]
+              metafunc: <_pytest.python.Metafunc object at 0x101b84610>
+          finish pytest_generate_tests --> [] [hook]
+        finish pytest_pycollect_makeitem --> [<Function test_unsuccessful_login>] [hook]
+        pytest_pycollect_makeitem [hook]
+            collector: <Module login_test_user.py>
+            name: test_redirect_after_unsuccessful_login
+            obj: <function test_redirect_after_unsuccessful_login at 0x1038350d0>
+          pytest_generate_tests [hook]
+              metafunc: <_pytest.python.Metafunc object at 0x101b84610>
+          finish pytest_generate_tests --> [] [hook]
+        finish pytest_pycollect_makeitem --> [<Function test_redirect_after_unsuccessful_login>] [hook]
+      finish pytest_make_collect_report --> <CollectReport 'login_test_user.py' lenresult=3 outcome='passed'> [hook]
+    genitems <Function test_successful_login> [collection]
+      pytest_itemcollected [hook]
+          item: <Function test_successful_login>
+      finish pytest_itemcollected --> [] [hook]
+    genitems <Function test_unsuccessful_login> [collection]
+      pytest_itemcollected [hook]
+          item: <Function test_unsuccessful_login>
+      finish pytest_itemcollected --> [] [hook]
+    genitems <Function test_redirect_after_unsuccessful_login> [collection]
+      pytest_itemcollected [hook]
+          item: <Function test_redirect_after_unsuccessful_login>
+      finish pytest_itemcollected --> [] [hook]
+      pytest_collectreport [hook]
+          report: <CollectReport 'login_test_user.py' lenresult=3 outcome='passed'>
+      finish pytest_collectreport --> [] [hook]
+      pytest_collection_modifyitems [hook]
+          session: <Session app exitstatus=<ExitCode.OK: 0> testsfailed=0 testscollected=0>
+          config: <_pytest.config.Config object at 0x100b6ddc0>
+          items: [<Function test_successful_login>, <Function test_unsuccessful_login>, <Function test_redirect_after_unsuccessful_login>]
+      finish pytest_collection_modifyitems --> [] [hook]
+      pytest_collection_finish [hook]
+          session: <Session app exitstatus=<ExitCode.OK: 0> testsfailed=0 testscollected=0>
+        pytest_report_collectionfinish [hook]
+            config: <_pytest.config.Config object at 0x100b6ddc0>
+            items: [<Function test_successful_login>, <Function test_unsuccessful_login>, <Function test_redirect_after_unsuccessful_login>]
+            start_path: /Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app
+            startdir: /Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app
+        finish pytest_report_collectionfinish --> [] [hook]
+      finish pytest_collection_finish --> [] [hook]
+      pytest_warning_recorded [hook]
+          warning_message: {message : DeprecationWarning("'flask.Markup' is deprecated and will be removed in Flask 2.4. Import 'markupsafe.Markup' instead."), category : 'DeprecationWarning', filename : '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/flask_wtf/recaptcha/widgets.py', lineno : 2, line : None}
+          nodeid: 
+          when: collect
+          location: None
+      finish pytest_warning_recorded --> [] [hook]
+      pytest_warning_recorded [hook]
+          warning_message: {message : DeprecationWarning("'flask.Markup' is deprecated and will be removed in Flask 2.4. Import 'markupsafe.Markup' instead."), category : 'DeprecationWarning', filename : '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/newEnv/lib/python3.9/site-packages/flask_wtf/recaptcha/widgets.py', lineno : 2, line : None}
+          nodeid: 
+          when: collect
+          location: None
+      finish pytest_warning_recorded --> [] [hook]
+    finish pytest_collection --> None [hook]
+    pytest_runtestloop [hook]
+        session: <Session app exitstatus=<ExitCode.OK: 0> testsfailed=0 testscollected=3>
+      pytest_runtest_protocol [hook]
+          item: <Function test_successful_login>
+          nextitem: <Function test_unsuccessful_login>
+        pytest_runtest_logstart [hook]
+            nodeid: login_test_user.py::test_successful_login
+            location: ('login_test_user.py', 28, 'test_successful_login')
+        finish pytest_runtest_logstart --> [] [hook]
+        pytest_runtest_setup [hook]
+            item: <Function test_successful_login>
+          pytest_fixture_setup [hook]
+              fixturedef: <FixtureDef argname='client' scope='function' baseid='login_test_user.py'>
+              request: <SubRequest 'client' for <Function test_successful_login>>
+          finish pytest_fixture_setup --> <FlaskClient <Flask 'app'>> [hook]
+        finish pytest_runtest_setup --> [] [hook]
+        pytest_runtest_makereport [hook]
+            item: <Function test_successful_login>
+            call: <CallInfo when='setup' result: []>
+        finish pytest_runtest_makereport --> <TestReport 'login_test_user.py::test_successful_login' when='setup' outcome='passed'> [hook]
+        pytest_runtest_logreport [hook]
+            report: <TestReport 'login_test_user.py::test_successful_login' when='setup' outcome='passed'>
+          pytest_report_teststatus [hook]
+              report: <TestReport 'login_test_user.py::test_successful_login' when='setup' outcome='passed'>
+              config: <_pytest.config.Config object at 0x100b6ddc0>
+          finish pytest_report_teststatus --> ('', '', '') [hook]
+        finish pytest_runtest_logreport --> [] [hook]
+        pytest_runtest_call [hook]
+            item: <Function test_successful_login>
+          pytest_pyfunc_call [hook]
+              pyfuncitem: <Function test_successful_login>
+          early skip of rewriting module: encodings.idna [assertion]
+          early skip of rewriting module: stringprep [assertion]
+          early skip of rewriting module: encodings.unicode_escape [assertion]
+          finish pytest_pyfunc_call --> True [hook]
+        finish pytest_runtest_call --> [] [hook]
+        pytest_runtest_makereport [hook]
+            item: <Function test_successful_login>
+            call: <CallInfo when='call' result: []>
+        finish pytest_runtest_makereport --> <TestReport 'login_test_user.py::test_successful_login' when='call' outcome='passed'> [hook]
+        pytest_runtest_logreport [hook]
+            report: <TestReport 'login_test_user.py::test_successful_login' when='call' outcome='passed'>
+          pytest_report_teststatus [hook]
+              report: <TestReport 'login_test_user.py::test_successful_login' when='call' outcome='passed'>
+              config: <_pytest.config.Config object at 0x100b6ddc0>
+          finish pytest_report_teststatus --> ('passed', '.', 'PASSED') [hook]
+        finish pytest_runtest_logreport --> [] [hook]
+        pytest_runtest_teardown [hook]
+            item: <Function test_successful_login>
+            nextitem: <Function test_unsuccessful_login>
+          pytest_fixture_post_finalizer [hook]
+              fixturedef: <FixtureDef argname='client' scope='function' baseid='login_test_user.py'>
+              request: <SubRequest 'client' for <Function test_successful_login>>
+          finish pytest_fixture_post_finalizer --> [] [hook]
+        finish pytest_runtest_teardown --> [] [hook]
+        pytest_runtest_makereport [hook]
+            item: <Function test_successful_login>
+            call: <CallInfo when='teardown' result: []>
+        finish pytest_runtest_makereport --> <TestReport 'login_test_user.py::test_successful_login' when='teardown' outcome='passed'> [hook]
+        pytest_runtest_logreport [hook]
+            report: <TestReport 'login_test_user.py::test_successful_login' when='teardown' outcome='passed'>
+          pytest_report_teststatus [hook]
+              report: <TestReport 'login_test_user.py::test_successful_login' when='teardown' outcome='passed'>
+              config: <_pytest.config.Config object at 0x100b6ddc0>
+          finish pytest_report_teststatus --> ('', '', '') [hook]
+        finish pytest_runtest_logreport --> [] [hook]
+        pytest_runtest_logfinish [hook]
+            nodeid: login_test_user.py::test_successful_login
+            location: ('login_test_user.py', 28, 'test_successful_login')
+        finish pytest_runtest_logfinish --> [] [hook]
+        pytest_warning_recorded [hook]
+            warning_message: {message : SAWarning('relationship \'Chat.sender_user\' will copy column user.id to column chat.sender_id, which conflicts with relationship(s): \'Chat.sender\' (copies user.id to chat.sender_id). If this is not the intention, consider if these relationships should be linked with back_populates, or if viewonly=True should be applied to one or more if they are read-only. For the less common case that foreign key constraints are partially overlapping, the orm.foreign() annotation can be used to isolate the columns that should be written towards.   To silence this warning, add the parameter \'overlaps="sender"\' to the \'Chat.sender_user\' relationship. (Background on this warning at: https://sqlalche.me/e/20/qzyx) (This warning originated from the `configure_mappers()` process, which was invoked automatically in response to a user-initiated operation.)'), category : 'SAWarning', filename : '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/login_test_user.py', lineno : 24, line : None}
+            nodeid: login_test_user.py::test_successful_login
+            when: runtest
+            location: None
+        finish pytest_warning_recorded --> [] [hook]
+        pytest_warning_recorded [hook]
+            warning_message: {message : SAWarning('relationship \'User.chats_sent\' will copy column user.id to column chat.sender_id, which conflicts with relationship(s): \'Chat.sender\' (copies user.id to chat.sender_id). If this is not the intention, consider if these relationships should be linked with back_populates, or if viewonly=True should be applied to one or more if they are read-only. For the less common case that foreign key constraints are partially overlapping, the orm.foreign() annotation can be used to isolate the columns that should be written towards.   To silence this warning, add the parameter \'overlaps="sender"\' to the \'User.chats_sent\' relationship. (Background on this warning at: https://sqlalche.me/e/20/qzyx) (This warning originated from the `configure_mappers()` process, which was invoked automatically in response to a user-initiated operation.)'), category : 'SAWarning', filename : '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/login_test_user.py', lineno : 24, line : None}
+            nodeid: login_test_user.py::test_successful_login
+            when: runtest
+            location: None
+        finish pytest_warning_recorded --> [] [hook]
+        pytest_warning_recorded [hook]
+            warning_message: {message : SAWarning('relationship \'Chat.receiver_user\' will copy column user.id to column chat.receiver_id, which conflicts with relationship(s): \'Chat.receiver\' (copies user.id to chat.receiver_id). If this is not the intention, consider if these relationships should be linked with back_populates, or if viewonly=True should be applied to one or more if they are read-only. For the less common case that foreign key constraints are partially overlapping, the orm.foreign() annotation can be used to isolate the columns that should be written towards.   To silence this warning, add the parameter \'overlaps="receiver"\' to the \'Chat.receiver_user\' relationship. (Background on this warning at: https://sqlalche.me/e/20/qzyx) (This warning originated from the `configure_mappers()` process, which was invoked automatically in response to a user-initiated operation.)'), category : 'SAWarning', filename : '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/login_test_user.py', lineno : 24, line : None}
+            nodeid: login_test_user.py::test_successful_login
+            when: runtest
+            location: None
+        finish pytest_warning_recorded --> [] [hook]
+        pytest_warning_recorded [hook]
+            warning_message: {message : SAWarning('relationship \'User.chats_received\' will copy column user.id to column chat.receiver_id, which conflicts with relationship(s): \'Chat.receiver\' (copies user.id to chat.receiver_id). If this is not the intention, consider if these relationships should be linked with back_populates, or if viewonly=True should be applied to one or more if they are read-only. For the less common case that foreign key constraints are partially overlapping, the orm.foreign() annotation can be used to isolate the columns that should be written towards.   To silence this warning, add the parameter \'overlaps="receiver"\' to the \'User.chats_received\' relationship. (Background on this warning at: https://sqlalche.me/e/20/qzyx) (This warning originated from the `configure_mappers()` process, which was invoked automatically in response to a user-initiated operation.)'), category : 'SAWarning', filename : '/Users/varnika.bagaria/Downloads/flask-blog-app-v1-main/app/login_test_user.py', lineno : 24, line : None}
+            nodeid: login_test_user.py::test_successful_login
+            when: runtest
+            location: None
+        finish pytest_warning_recorded --> [] [hook]
+      finish pytest_runtest_protocol --> True [hook]
+      pytest_runtest_protocol [hook]
+          item: <Function test_unsuccessful_login>
+          nextitem: <Function test_redirect_after_unsuccessful_login>
+        pytest_runtest_logstart [hook]
+            nodeid: login_test_user.py::test_unsuccessful_login
+            location: ('login_test_user.py', 38, 'test_unsuccessful_login')
+        finish pytest_runtest_logstart --> [] [hook]
+        pytest_runtest_setup [hook]
+            item: <Function test_unsuccessful_login>
+          pytest_fixture_setup [hook]
+              fixturedef: <FixtureDef argname='client' scope='function' baseid='login_test_user.py'>
+              request: <SubRequest 'client' for <Function test_unsuccessful_login>>
+          finish pytest_fixture_setup --> <FlaskClient <Flask 'app'>> [hook]
+        finish pytest_runtest_setup --> [] [hook]
+        pytest_runtest_makereport [hook]
+            item: <Function test_unsuccessful_login>
+            call: <CallInfo when='setup' result: []>
+        finish pytest_runtest_makereport --> <TestReport 'login_test_user.py::test_unsuccessful_login' when='setup' outcome='passed'> [hook]
+        pytest_runtest_logreport [hook]
+            report: <TestReport 'login_test_user.py::test_unsuccessful_login' when='setup' outcome='passed'>
+          pytest_report_teststatus [hook]
+              report: <TestReport 'login_test_user.py::test_unsuccessful_login' when='setup' outcome='passed'>
+              config: <_pytest.config.Config object at 0x100b6ddc0>
+          finish pytest_report_teststatus --> ('', '', '') [hook]
+        finish pytest_runtest_logreport --> [] [hook]
+        pytest_runtest_call [hook]
+            item: <Function test_unsuccessful_login>
+          pytest_pyfunc_call [hook]
+              pyfuncitem: <Function test_unsuccessful_login>
+          finish pytest_pyfunc_call --> True [hook]
+        finish pytest_runtest_call --> [] [hook]
+        pytest_runtest_makereport [hook]
+            item: <Function test_unsuccessful_login>
+            call: <CallInfo when='call' result: []>
+        finish pytest_runtest_makereport --> <TestReport 'login_test_user.py::test_unsuccessful_login' when='call' outcome='passed'> [hook]
+        pytest_runtest_logreport [hook]
+            report: <TestReport 'login_test_user.py::test_unsuccessful_login' when='call' outcome='passed'>
+          pytest_report_teststatus [hook]
+              report: <TestReport 'login_test_user.py::test_unsuccessful_login' when='call' outcome='passed'>
+              config: <_pytest.config.Config object at 0x100b6ddc0>
+          finish pytest_report_teststatus --> ('passed', '.', 'PASSED') [hook]
+        finish pytest_runtest_logreport --> [] [hook]
+        pytest_runtest_teardown [hook]
+            item: <Function test_unsuccessful_login>
+            nextitem: <Function test_redirect_after_unsuccessful_login>
+          pytest_fixture_post_finalizer [hook]
+              fixturedef: <FixtureDef argname='client' scope='function' baseid='login_test_user.py'>
+              request: <SubRequest 'client' for <Function test_unsuccessful_login>>
+          finish pytest_fixture_post_finalizer --> [] [hook]
+        finish pytest_runtest_teardown --> [] [hook]
+        pytest_runtest_makereport [hook]
+            item: <Function test_unsuccessful_login>
+            call: <CallInfo when='teardown' result: []>
+        finish pytest_runtest_makereport --> <TestReport 'login_test_user.py::test_unsuccessful_login' when='teardown' outcome='passed'> [hook]
+        pytest_runtest_logreport [hook]
+            report: <TestReport 'login_test_user.py::test_unsuccessful_login' when='teardown' outcome='passed'>
+          pytest_report_teststatus [hook]
+              report: <TestReport 'login_test_user.py::test_unsuccessful_login' when='teardown' outcome='passed'>
+              config: <_pytest.config.Config object at 0x100b6ddc0>
+          finish pytest_report_teststatus --> ('', '', '') [hook]
+        finish pytest_runtest_logreport --> [] [hook]
+        pytest_runtest_logfinish [hook]
+            nodeid: login_test_user.py::test_unsuccessful_login
+            location: ('login_test_user.py', 38, 'test_unsuccessful_login')
+        finish pytest_runtest_logfinish --> [] [hook]
+      finish pytest_runtest_protocol --> True [hook]
+      pytest_runtest_protocol [hook]
+          item: <Function test_redirect_after_unsuccessful_login>
+          nextitem: None
+        pytest_runtest_logstart [hook]
+            nodeid: login_test_user.py::test_redirect_after_unsuccessful_login
+            location: ('login_test_user.py', 46, 'test_redirect_after_unsuccessful_login')
+        finish pytest_runtest_logstart --> [] [hook]
+        pytest_runtest_setup [hook]
+            item: <Function test_redirect_after_unsuccessful_login>
+          pytest_fixture_setup [hook]
+              fixturedef: <FixtureDef argname='client' scope='function' baseid='login_test_user.py'>
+              request: <SubRequest 'client' for <Function test_redirect_after_unsuccessful_login>>
+          finish pytest_fixture_setup --> <FlaskClient <Flask 'app'>> [hook]
+        finish pytest_runtest_setup --> [] [hook]
+        pytest_runtest_makereport [hook]
+            item: <Function test_redirect_after_unsuccessful_login>
+            call: <CallInfo when='setup' result: []>
+        finish pytest_runtest_makereport --> <TestReport 'login_test_user.py::test_redirect_after_unsuccessful_login' when='setup' outcome='passed'> [hook]
+        pytest_runtest_logreport [hook]
+            report: <TestReport 'login_test_user.py::test_redirect_after_unsuccessful_login' when='setup' outcome='passed'>
+          pytest_report_teststatus [hook]
+              report: <TestReport 'login_test_user.py::test_redirect_after_unsuccessful_login' when='setup' outcome='passed'>
+              config: <_pytest.config.Config object at 0x100b6ddc0>
+          finish pytest_report_teststatus --> ('', '', '') [hook]
+        finish pytest_runtest_logreport --> [] [hook]
+        pytest_runtest_call [hook]
+            item: <Function test_redirect_after_unsuccessful_login>
+          pytest_pyfunc_call [hook]
+              pyfuncitem: <Function test_redirect_after_unsuccessful_login>
+          finish pytest_pyfunc_call --> True [hook]
+        finish pytest_runtest_call --> [] [hook]
+        pytest_runtest_makereport [hook]
+            item: <Function test_redirect_after_unsuccessful_login>
+            call: <CallInfo when='call' result: []>
+        finish pytest_runtest_makereport --> <TestReport 'login_test_user.py::test_redirect_after_unsuccessful_login' when='call' outcome='passed'> [hook]
+        pytest_runtest_logreport [hook]
+            report: <TestReport 'login_test_user.py::test_redirect_after_unsuccessful_login' when='call' outcome='passed'>
+          pytest_report_teststatus [hook]
+              report: <TestReport 'login_test_user.py::test_redirect_after_unsuccessful_login' when='call' outcome='passed'>
+              config: <_pytest.config.Config object at 0x100b6ddc0>
+          finish pytest_report_teststatus --> ('passed', '.', 'PASSED') [hook]
+        finish pytest_runtest_logreport --> [] [hook]
+        pytest_runtest_teardown [hook]
+            item: <Function test_redirect_after_unsuccessful_login>
+            nextitem: None
+          pytest_fixture_post_finalizer [hook]
+              fixturedef: <FixtureDef argname='client' scope='function' baseid='login_test_user.py'>
+              request: <SubRequest 'client' for <Function test_redirect_after_unsuccessful_login>>
+          finish pytest_fixture_post_finalizer --> [] [hook]
+        finish pytest_runtest_teardown --> [] [hook]
+        pytest_runtest_makereport [hook]
+            item: <Function test_redirect_after_unsuccessful_login>
+            call: <CallInfo when='teardown' result: []>
+        finish pytest_runtest_makereport --> <TestReport 'login_test_user.py::test_redirect_after_unsuccessful_login' when='teardown' outcome='passed'> [hook]
+        pytest_runtest_logreport [hook]
+            report: <TestReport 'login_test_user.py::test_redirect_after_unsuccessful_login' when='teardown' outcome='passed'>
+          pytest_report_teststatus [hook]
+              report: <TestReport 'login_test_user.py::test_redirect_after_unsuccessful_login' when='teardown' outcome='passed'>
+              config: <_pytest.config.Config object at 0x100b6ddc0>
+          finish pytest_report_teststatus --> ('', '', '') [hook]
+        finish pytest_runtest_logreport --> [] [hook]
+        pytest_runtest_logfinish [hook]
+            nodeid: login_test_user.py::test_redirect_after_unsuccessful_login
+            location: ('login_test_user.py', 46, 'test_redirect_after_unsuccessful_login')
+        finish pytest_runtest_logfinish --> [] [hook]
+      finish pytest_runtest_protocol --> True [hook]
+    finish pytest_runtestloop --> True [hook]
+    pytest_sessionfinish [hook]
+        session: <Session app exitstatus=0 testsfailed=0 testscollected=3>
+        exitstatus: 0
+      pytest_terminal_summary [hook]
+          terminalreporter: <_pytest.terminal.TerminalReporter object at 0x101ab4fd0>
+          exitstatus: 0
+          config: <_pytest.config.Config object at 0x100b6ddc0>
+      finish pytest_terminal_summary --> [] [hook]
+    finish pytest_sessionfinish --> [] [hook]
+    pytest_unconfigure [hook]
+        config: <_pytest.config.Config object at 0x100b6ddc0>
+    finish pytest_unconfigure --> [] [hook]

@@ -57,12 +57,12 @@
                     {% if current_user.is_following(user) %}
 
                     <div class="row">
-                        <!-- <div class="col-6 text-center">
-                            <form method="POST" action="{{ url_for('follow', username=user.username) }}">
+                        <div class="col-6 text-center">
+                            <form method="POST" action="{{ url_for('chat', username=user.username) }}">
                                 {{ follow_form.hidden_tag() }}
-                                <button type="submit" class="btn btn-outline-primary">Follow</button>
+                                <button type="submit" class="btn btn-outline-primary">Chat</button>
                             </form>
-                        </div> -->
+                        </div>
 
                         <div class="col-6 text-center">
                             <form method="POST" action="{{ url_for('unfollow', username=user.username) }}">
