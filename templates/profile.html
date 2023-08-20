@@ -54,7 +54,6 @@
             <div class="profile-action">
             
                 {% if current_user != user %}
-                    {% if current_user.is_following(user) %}
 
                     <div class="row">
                         <div class="col-6 text-center">
@@ -63,35 +62,8 @@
                                 <button type="submit" class="btn btn-outline-primary">Chat</button>
                             </form>
                         </div>
-
-                        <div class="col-6 text-center">
-                            <form method="POST" action="{{ url_for('unfollow', username=user.username) }}">
-                                {{ unfollow_form.hidden_tag() }}
-                                <button type="submit" class="btn btn-outline-danger">Unfollow</button>
-                            </form>
-                        </div>
                     </div>
-                    
-                
-                    {% else %}
 
-                    <div class="row">
-                        <div class="col-6 text-center">
-                            <form method="POST" action="{{ url_for('chat', username=user.username) }}">
-                                {{ follow_form.hidden_tag() }}
-                                <button type="submit" class="btn btn-outline-primary">Chat</button>
-                            </form>
-                        </div>
-                    
-                        <!-- <div class="col-6 text-center">
-                            <form method="POST" action="{{ url_for('unfollow', username=user.username) }}">
-                                {{ unfollow_form.hidden_tag() }}
-                                <button type="submit" class="btn btn-outline-danger ml+2">Unfollow</button>
-                            </form>
-                        </div> -->
-                    </div>
-                
-                    {% endif %}
                 {% endif %}
             </div>
 

@@ -42,6 +42,10 @@ The application is designed to be easy to use, with a focus on user experience. 
 
 
 ##
+### Tools used to make the code better
+- black: for pep8 formatting
+- pylint: for code quality
+
 ## Getting Started
 
 ### Prerequisites
@@ -51,6 +55,7 @@ The application is designed to be easy to use, with a focus on user experience. 
 
 ### Run the application
 - Clone this repo
+- Run `source newenv/bin/activate
 - pip install -r requirements.txt
 - python app.py
 
