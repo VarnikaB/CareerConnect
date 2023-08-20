@@ -1,0 +1,62 @@
+
+# Career Connect
+
+A platform for connecting with other users and sharing your experience. 
+
+The application is designed to be easy to use, with a focus on user experience. Whether you're a working professional or student, our application makes it easy to share your experience with the world and connect with other users.
+
+###
+
+### Features : 
+
+- User registration and login
+
+- Create and manage posts
+
+- Upload image while creating and updating posts
+
+- Change username and profile image
+
+- Search for other users using their usernames
+
+- Search for posts with keyword 
+
+- Like and comment on other users' posts
+
+- Chat with other users
+
+- Edit and delete comments
+
+- Responsive design
+
+##
+### Technologies Used : 
+
+- Flask - web framework
+
+- Jinja2 - templating engine
+
+- Bootstrap - for HTML and CSS styling
+
+- SQLite - for data storage
+
+
+##
+## Getting Started
+
+### Prerequisites
+
+- Python 3.x
+- pip
+
+### Run the application
+- Clone this repo
+- pip install -r requirements.txt
+- python app.py
+
+Now the application will start running on `http://localhost:5000`
+
+
+
+
+
