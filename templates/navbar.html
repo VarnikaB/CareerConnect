@@ -59,25 +59,21 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('search') }}">Search</a>
                 </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('all_chats_with_people') }}">Chat</a>
+                </li>
     
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('profile', username=current_user.username) }}">Profile</a>
+                    <a class="nav-link" href="{{ url_for('create_post') }}">Post</a>
+                </li>
+    
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('logout') }}">Logout&nbsp;</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('chat') }}">Chat</a>
-                </li>
-    
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('create_post') }}">Create Post</a>
-                </li>
-    
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link profile-img" href="{{ url_for('profile', username=current_user.username) }}" style="border-radius: 50%; "> {{ current_user.username[:3] }}</a>
+                    <a class="nav-link profile-img" href="{{ url_for('profile', username=current_user.username) }}" style="border-radius: 50%; border: 1px solid white "> {{ current_user.username[:3] }}</a>
                 </li>
     
                 {% else %}

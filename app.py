@@ -5,7 +5,7 @@ from flask_login import LoginManager, current_user, login_user, logout_user, log
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
-from sqlalchemy import MetaData, or_
+from sqlalchemy import MetaData, or_, and_
 
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField, FileField
@@ -29,7 +29,7 @@ import pytz
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'SECRET_KEY'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///flaskblog.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///careerconnect.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['POSTS_PER_PAGE'] = 4
 app.config['UPLOAD_FOLDER'] = 'static/posts'
@@ -274,7 +274,7 @@ def load_user(user_id):
 class RegistrationForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
-    confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
+    confirm_password = PasswordField('Confirm Password', validators=[DataRequired()])
     submit = SubmitField('Sign Up')
 
     def validate_username(self, username):
@@ -340,7 +340,8 @@ class UnlikeForm(FlaskForm):
     submit = SubmitField('Unlike')
 
 class ChatForm(FlaskForm):
-    submit = SubmitField('Chat')
+    message = TextAreaField('Message', validators=[DataRequired()])
+    submit = SubmitField('Send')
 
 class UnfollowForm(FlaskForm):
     submit = SubmitField('Unfollow')
@@ -372,6 +373,10 @@ def register():
         if user is not None:
             flash('User already registered !!', 'danger')
             return redirect(url_for('login'))
+
+        if form.password.data != form.confirm_password.data:
+            flash('Passwords do not match!', 'danger')
+            return redirect(url_for('register'))
 
         # Create a new user object and set their password
         hashed_password = generate_password_hash(form.password.data)
@@ -864,10 +869,57 @@ def search():
     return render_template('search.html', form=form, default_value="")
 
 # ------------------------------------------------------------------------------
-@app.route("/chat")
+@app.route("/chat", methods=['POST', 'GET'])
 def chat():
-    return render_template("chat.html")
+    username = request.args.get('username')
+    user = User.query.filter_by(username=username).first()
+    print(user,"User")
+    chatform = ChatForm()
+    current_name = current_user.username
+    current_user_send = User.query.filter_by(username=current_name).first()
+    print(current_user_send, "current_user")
+    all_chats = Chat.query.filter(or_
+        (and_(Chat.sender == current_user_send,Chat.receiver == user),
+        and_(Chat.sender == user, Chat.receiver == current_user_send))
+    ).order_by(Chat.timestamp)
+    print("all chats, before loop")
+    for chat in all_chats:
+        print(chat.chat_text, chat.sender, chat.receiver)
+    if chatform.validate_on_submit():
+        print("username successful")
+        if user == None:
+            flash('User does not exist', 'danger')
+            return redirect(url_for('feed'))
 
+        message = chatform.message.data
+        current_user_send.send_chat(user, message)
+        all_chats = Chat.query.filter(or_
+                                      (and_(Chat.sender == current_user_send,Chat.receiver == user),
+                                       and_(Chat.sender == user, Chat.receiver == current_user_send))
+                                      ).order_by(Chat.timestamp)
+
+    return render_template("chat.html", form=chatform, user=user, all_chats=all_chats, current_user = current_user_send)
+
+@app.route("/all_chats")
+def all_chats_with_people():
+    user = User.query.filter_by(username=current_user.username).first()
+    all_chats = Chat.query.filter(
+        (Chat.sender == user) |
+        (Chat.receiver == user)
+    ).order_by(Chat.timestamp.desc())
+    people = []
+    chat_text = []
+    for chat in all_chats:
+        if chat.sender.username != user.username:
+            if chat.sender not in people:
+                people.append(chat.sender)
+                chat_text.append(chat.chat_text)
+        else:
+            if chat.receiver not in people:
+                people.append(chat.receiver)
+                chat_text.append(chat.chat_text)
+    print(people)
+    return render_template("all_chats.html", people = list(zip(people, chat_text)), form=ChatForm())
 
 if __name__ == '__main__':
     with app.app_context():

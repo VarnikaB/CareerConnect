@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{%block title%} Chat {%endblock%}
+
+{% block content %}
+
+<section class="vh-100" >
+    <div class="container py-5 h-100">
+
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col col-md-9 col-lg-7 col-xl-5">
+                <h3>All Chats</h3>
+                {% for person in people %}
+                <div class="card" style="border-radius: 15px; margin-bottom: 1rem">
+                    <div class="card-body p-4">
+                        <div class="d-flex text-black">
+                            <div class="flex-shrink-0">
+                                <img src="{{ url_for('static', filename='profile/' + person[0].profile_image) }}"
+                                     alt="Generic placeholder image" class="img-fluid rounded-circle profile p-3"
+                                    style="height: 5rem;width: auto"
+                                >
+                            </div>
+                            <div class="flex-grow-1 ms-3">
+                                <h5 class="mb-1">{{ person[0].username }}</h5>
+                                <small class="text-secondary">Last chat: {{ person[1] | safe }}</small>
+                                <div class="d-flex pt-1">
+                                    <form method="POST" action="{{ url_for('chat', username=person[0].username) }}">
+                                        {{ form.hidden_tag() }}
+                                        <button type="submit" class="btn btn-outline-primary">Chat</button>
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
