@@ -167,6 +167,24 @@ class Post(db.Model):
 
     def __repr__(self):
         return f"Post('{self.id}', '{self.title}', '{self.timestamp}')"
+    
+class Question(db.Model):
+    id=db.Column(db.Integer, primary_key=True)
+    question = db.Column(db.String(100), nullable=False)
+    timestamp = db.Column(
+        db.DateTime, nullable=False, default=datetime.now(timezone("Asia/Kolkata"))
+    )
+    option1=db.Column(db.String(100))
+    option2=db.Column(db.String(100))
+    option3=db.Column(db.String(100))
+    option4=db.Column(db.String(100))
+    answer=db.Column(db.String(100))
+    timestamp = db.Column(
+        db.DateTime, nullable=False, default=datetime.now(timezone("Asia/Kolkata"))
+    )
+
+    def __rep__(self):
+        return f"Question('{self.id}', '{self.title}', '{self.timestamp}')"
 
 
 class Like(db.Model):
@@ -285,6 +303,7 @@ class PostForm(FlaskForm):
     submit = SubmitField("Post")
 
 
+
 class UpdatePostForm(FlaskForm):
     title = StringField("Title", validators=[DataRequired()])
     image = FileField("Image", validators=[FileAllowed(["jpg", "png"])])
@@ -295,6 +314,17 @@ class UpdatePostForm(FlaskForm):
 class DeletePostForm(FlaskForm):
     submit = SubmitField("Delete")
 
+class QuestionForm(FlaskForm):
+    question=StringField("Title", validators=[DataRequired()])
+    option1=StringField("Option1", validators=[DataRequired()])
+    option2=StringField("Option2", validators=[DataRequired()])
+    option3=StringField("Option3", validators=[DataRequired()])
+    option4=StringField("Option4", validators=[DataRequired()])
+    answer=StringField("Answer", validators=[DataRequired()])
+    submit=SubmitField("Question")
+
+class DeleteQuestionForm(FlaskForm):
+    submit = SubmitField("Delete")
 
 class UpdateAccountForm(FlaskForm):
     username = StringField("Username", validators=[DataRequired()])
@@ -443,6 +473,27 @@ def feed():
 
 # --------------------------------------------------------------------------------
 
+@app.route("/questions")
+@login_required
+def questions():
+    questions = Question.query.order_by(Question.timestamp).all()
+    data={}
+    return render_template(
+        "questions.html", title="Practise Questions",data=data, questions=questions, timezone=timezone
+    )
+
+@app.route('/question/submit', methods=['POST'])
+def submit():
+    print(request.form)
+    for key, value in request.form.items():
+        question = Question.query.filter_by(id=key).first_or_404()
+        if(question.answer==value):
+            flash("Correct! Your answer is right.", "success")
+        else:
+            flash(f"Oops! Your answer is incorrect. The correct answer is {getattr(question, question.answer)}", "danger")
+
+    return redirect(url_for("questions"))
+    
 
 # PROFILE page
 @app.route("/profile/<username>")
@@ -480,6 +531,28 @@ def profile(username):
         unlike_form=unlike_form,
         published_posts_count=published_posts_count,
     )
+
+@app.route("/question/add_question", methods=["POST","GET"])
+@login_required
+def add_question():
+    form=QuestionForm()
+
+    if form.validate_on_submit():
+        question=Question(
+            question=form.question.data,
+            option1=form.option1.data,
+            option2=form.option2.data,
+            option3=form.option3.data,
+            option4=form.option4.data,
+            answer=form.answer.data
+        )
+
+        db.session.add(question)
+        db.session.commit()
+
+        flash("Question added !!", "success")
+        return redirect(url_for("questions", username=current_user.username))
+    return render_template("add_question.html", title="Add New Question", form=form)
 
 
 # CRUD on posts -----------------------------------------------------------------
@@ -535,10 +608,7 @@ def update_post(post_id):
                         os.path.join(current_app.root_path, "static/posts", post.image)
                     )
                 except Exception as exception:
-                    flash(
-                        f"Couldn't delete existing POST image due to {exception}!!",
-                        "danger",
-                    )
+                    flash(f"Couldn't delete existing POST image due to {exception}!!","danger")
                     return redirect(url_for("update_post", post_id=post.id))
 
             # saving new image

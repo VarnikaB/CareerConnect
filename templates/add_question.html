@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{%block title%} Create Post page {%endblock%}
+
+{% block content %}
+<br>
+<h4>New question</h4>
+<p>Add new practise question with options</p>
+
+<hr>
+<form method="POST" action="{{ url_for('add_question') }}" enctype="multipart/form-data">
+
+    {{ form.csrf_token }}
+
+    <div class="form-group">
+        <label for="question">Question</label>
+        <input type="text" class="form-control" id="question" name="question" placeholder="Enter question">
+        {% if form.question.errors %}
+        {% for error in form.question.errors %}
+        <div class="text-danger">{{ error }}</div>
+        {% endfor %}
+        {% endif %}
+    </div>
+
+    <div class="form-group">
+        <label for="option1">option1</label>
+        <input type="text" class="form-control" id="option1" name="option1" placeholder="Enter option1" style="width:50%">
+        {% if form.option1.errors %}
+        {% for error in form.option1.errors %}
+        <div class="text-danger">{{ error }}</div>
+        {% endfor %}
+        {% endif %}
+    </div>
+
+    <div class="form-group">
+        <label for="option2">option2</label>
+        <input type="text" class="form-control" id="option2" name="option2" placeholder="Enter option2" style="width:50%">
+        {% if form.option2.errors %}
+        {% for error in form.option2.errors %}
+        <div class="text-danger">{{ error }}</div>
+        {% endfor %}
+        {% endif %}
+    </div>
+
+    <div class="form-group">
+        <label for="option3">option3</label>
+        <input type="text" class="form-control" id="option3" name="option3" placeholder="Enter option3" style="width:50%">
+        {% if form.option3.errors %}
+        {% for error in form.option3.errors %}
+        <div class="text-danger">{{ error }}</div>
+        {% endfor %}
+        {% endif %}
+    </div>
+
+    <div class="form-group">
+        <label for="option4">option4</label>
+        <input type="text" class="form-control" id="option4" name="option4" placeholder="Enter option4" style="width:50%">
+        {% if form.option4.errors %}
+        {% for error in form.option4.errors %}
+        <div class="text-danger">{{ error }}</div>
+        {% endfor %}
+        {% endif %}
+    </div>
+
+    <div class="form-group">
+        <label for="Answers">State</label>
+        <select id="answer" name="answer" class="form-control" style="width:50%">
+            <option selected name="option1" value="option1">Option 1</option>
+            <option name="option2" value="option2">Option 2</option>
+            <option name="option3" value="option3">Option 3</option>
+            <option name="option4" value="option4">Option 4</option>
+        </select>
+        <!-- <input type="text" class="form-control" id="option4" name="option4" placeholder="Enter option4" style="width:50%"> -->
+        {% if form.answer.errors %}
+        {% for error in form.answer.errors %}
+        <div class="text-danger">{{ error }}</div>
+        {% endfor %}
+        {% endif %}
+    </div>
+
+
+
+    <br>
+    <button type="submit" class="btn btn-outline-primary">Create Post</button>
+</form>
+{% endblock %}
