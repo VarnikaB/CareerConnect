@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %} Feed Page {% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row d-flex justify-content-end">
+        <a href="{{url_for('add_question')}}" class="btn btn-primary btn-lg active" role="button"
+        aria-pressed="true">Add Question</a>
+    </div>
+    <div class="row">
+        <div class="col-md-9 offset-md-1">
+            <h1>Quiz Questions</h1>
+            {% for question in questions %}
+                <div class="quiz-container">
+                    <form method="POST" action="/question/submit">
+                        <div class="question">Question {{question.id}}: {{question.question}}</div>
+                        <label class="option">
+                            <input type="radio" name="{{question.id}}" value="option1"> {{question.option1}}
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="{{question.id}}" value="option2"> {{question.option2}}
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="{{question.id}}" value="option3"> {{question.option3}}
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="{{question.id}}" value="option4"> {{question.option4}}
+                        </label>
+                        <!-- Add more questions and options here -->
+                        <button class="submit-btn" type="submit">Check Answer</button>
+                    </form>
+                </div>
+                <!-- <div class="card-body">
+                    <form method="POST" action="/submit">
+                        <h1>{{question.id}}</h1>
+                        <h3>{{question.question}}</h3>
+                        <input type="radio" name="option1" value="{{question.option1}}">{{question.option1}}<br>
+                        <input type="radio" name="q1" value="London"> London<br>
+                        <input type="radio" name="q1" value="Berlin"> Berlin<br>
+                        <br>
+                        Add more questions and options here
+                        <button type="submit">Submit</button>
+                    </form>
+
+                </div> -->
+            </div>
+            {% endfor %}
+            {% if not questions %}
+            <div class="text-center mt-4">
+                <p style="font-size: 20px;">There are no questions yet...</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
