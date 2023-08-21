@@ -16,7 +16,7 @@
                     </a>
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title">{{ post.title }}</h5>
+                    <h5 class="card-title">{{ post.title | replace("\n", "<br>") | safe }}</h5>
                     {% if post.image %}
                     <img src="{{ url_for('static', filename='posts/' + post.image) }}"
                          class="card-img-top"
@@ -31,7 +31,7 @@
                     >
                     {% endif %}
                     <p class="card-text mt-3 text-secondary" style="font-size: 16px;"><strong>Caption:</strong> {{
-                        post.caption | safe }}
+                        post.caption | replace("\n", "<br>") | safe }}
                     </p>
 
                 </div>

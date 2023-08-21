@@ -76,8 +76,6 @@
 
         </div>
         
-
-
             <div class="card card-body bg-light mt-5">
                 <h4>My Posts</h4>
 
@@ -87,7 +85,7 @@
                 <div class="card card-inner mb-2">
                 
                     <div class="card-header d-flex justify-content-between align-items-center">
-                        <h6>{{ post.title | safe }}</h6>
+                        <h6>{{ post.title | replace("\n", "<br>") | safe }}</h6>
                 
                         {% if post.last_updated %}
                         <small class="text-muted">Last updated on : {{ post.last_updated.replace(tzinfo=timezone('UTC')).astimezone(timezone('Asia/Kolkata')).strftime("%d-%m-%Y") }}</small>
@@ -103,7 +101,7 @@
                         {% if post.image %}
                         <img src="{{ url_for('static', filename='posts/' + post.image) }}" class="img-fluid rounded " style="margin-bottom: 10px">
                         {% endif %}
-                        <p><strong>Caption : </strong>{{ post.caption | safe }}</p>
+                        <p><strong>Caption : </strong>{{ post.caption | replace("\n", "<br>") | safe }}</p>
                     </div>
                 
                     <div class="card-footer d-flex justify-content">
