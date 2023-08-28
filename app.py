@@ -93,6 +93,7 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(20), unique=True, nullable=False)
     password_hash = db.Column(db.String(128), nullable=False)
     profile_image = db.Column(db.String(128), default="def.jpg")
+    occupation=db.Column(db.String(80), default="Student")
 
     posts = db.relationship("Post", back_populates="user", lazy="subquery")
     comments = db.relationship("Comment", backref="user", lazy="dynamic")
@@ -329,6 +330,7 @@ class DeleteQuestionForm(FlaskForm):
 class UpdateAccountForm(FlaskForm):
     username = StringField("Username", validators=[DataRequired()])
     profile_image = FileField("Profile Image", validators=[FileAllowed(["jpg", "png"])])
+    occupation = StringField("Occupation", validators=[DataRequired()])
     submit = SubmitField("Update")
 
     def validate_username(self, username):
@@ -501,6 +503,7 @@ def submit():
 def profile(username):
     user = User.query.filter_by(username=username).first_or_404()
     page = request.args.get("page", 1, type=int)
+    
 
     posts = (
         Post.query.filter_by(user_id=user.id)
@@ -677,6 +680,7 @@ def update_account():
             current_user.profile_image = picture_file
 
         current_user.username = form.username.data
+        current_user.occupation = form.occupation.data
         db.session.commit()
 
         flash("Account updated !!", "success")
