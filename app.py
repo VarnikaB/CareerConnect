@@ -476,7 +476,7 @@ def feed():
 @app.route("/questions")
 @login_required
 def questions():
-    questions = Question.query.order_by(Question.timestamp).all()
+    questions = Question.query.order_by(Question.timestamp.desc()).all()
     data={}
     return render_template(
         "questions.html", title="Practise Questions",data=data, questions=questions, timezone=timezone
