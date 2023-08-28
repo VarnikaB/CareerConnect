@@ -40,7 +40,7 @@
 
                             <div class="form-group">
                                 {{ form.username.label }}
-                                {{ form.username(class="form-control", placeholder="Enter username", required=True) }}
+                                {{ form.username(class="form-control", placeholder="Enter username", required=True, pattern="^[^\s]*$") }}
                                 <div class="invalid-feedback">{{ form.username.errors[0] }}</div>
                             </div>
 

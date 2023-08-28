@@ -392,6 +392,13 @@ class SearchForm(FlaskForm):
 # WELCOME page
 @app.route("/")
 def welcome():
+    user = User.query.filter_by(username="ADMIN_USER").first()
+    if user is None:
+        hashed_password = generate_password_hash("password")
+        new_user = User(username="ADMIN_USER", password_hash=hashed_password)
+        new_user.occupation = "Administrator"
+        db.session.add(new_user)
+        db.session.commit()
     return render_template("welcome.html")
 
 
@@ -753,7 +760,6 @@ def likes_of_user(username):
     posts = []
     for like_element in likes:
         posts.append(like_element.posts)
-    print(posts)
     return render_template(
         "all_likes.html", title="All likes page", posts=posts, timezone=timezone
     )
