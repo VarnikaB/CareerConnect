@@ -35,6 +35,16 @@
         <div class="text-danger">{{ error }}</div>
         {% endfor %}
     </div>
+
+    <div class="form-group">
+        <input type="checkbox"  id="anonymous" name="is_anonymous" {% if form.is_anonymous.data == True %} checked {% endif %}>&nbsp;
+        <label for="anonymous"><strong>Anonymous</strong></label>
+        {% if form.is_anonymous.errors %}
+        {% for error in form.is_anonymous.errors %}
+        <div class="text-danger">{{ error }}</div>
+        {% endfor %}
+        {% endif %}
+    </div>
     <br>
 
     <button type="submit" class="btn btn-primary">Update Post</button>

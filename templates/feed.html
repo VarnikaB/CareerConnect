@@ -9,9 +9,13 @@
             {% for post in posts %}
             <div class="card card-inner mb-4">
                 <div class="card-header">
-                    <a href="{{ url_for('profile', username=post.user.username) }}">
-                        <h5>{{ post.user.username }}</h5>
-                    </a>
+                    {% if post.is_anonymous != True %}
+                        <a href="{{ url_for('profile', username=post.user.username) }}">
+                            <h5>{{ post.user.username }}</h5>
+                        </a>
+                    {% else %}
+                        Anonymous User
+                    {% endif %}
                 </div>
                 <div class="card-body">
                     <h5 class="card-title">{{ post.title | replace("\n", "<br>") | safe }}</h5>

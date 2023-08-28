@@ -34,6 +34,7 @@ from wtforms import (
     PasswordField,
     SubmitField,
     TextAreaField,
+    BooleanField,
     FileField,
 )
 from wtforms.validators import DataRequired, EqualTo, ValidationError
@@ -154,7 +155,7 @@ class Post(db.Model):
         default=datetime.now(timezone("Asia/Kolkata")),
         onupdate=datetime.now(timezone("Asia/Kolkata")),
     )
-
+    is_anonymous = db.Column(db.Boolean, default=False)
     status = db.Column(db.String(20))
 
     caption = db.Column(db.Text, nullable=False)
@@ -167,7 +168,7 @@ class Post(db.Model):
     comments = db.relationship("Comment", backref="posts", lazy="dynamic")
 
     def __repr__(self):
-        return f"Post('{self.id}', '{self.title}', '{self.timestamp}')"
+        return f"Post('{self.id}', '{self.title}', '{self.timestamp}' ,'{self.is_anonymous}')"
 
 
 class Question(db.Model):
@@ -302,6 +303,7 @@ class PostForm(FlaskForm):
     title = StringField("Title", validators=[DataRequired()])
     image = FileField("Image", validators=[FileAllowed(["jpg", "png"])])
     caption = TextAreaField("Caption", validators=[DataRequired()])
+    is_anonymous = BooleanField("Anonymous")
     submit = SubmitField("Post")
 
 
@@ -309,6 +311,7 @@ class UpdatePostForm(FlaskForm):
     title = StringField("Title", validators=[DataRequired()])
     image = FileField("Image", validators=[FileAllowed(["jpg", "png"])])
     caption = TextAreaField("Caption", validators=[DataRequired()])
+    is_anonymous = BooleanField("Anonymous")
     submit = SubmitField("Update")
 
 
@@ -605,6 +608,7 @@ def create_post():
             caption=form.caption.data,
             image=image_file,
             user_id=current_user.id,
+            is_anonymous=form.is_anonymous.data
         )
 
         db.session.add(post)
@@ -628,6 +632,7 @@ def update_post(post_id):
     if form.validate_on_submit():
         post.title = form.title.data
         post.caption = form.caption.data
+        post.is_anonymous = form.is_anonymous.data
 
         if form.image.data:
             # first delete the existing image in the post
@@ -664,6 +669,7 @@ def update_post(post_id):
     if request.method == "GET":
         form.title.data = post.title
         form.caption.data = post.caption
+        form.is_anonymous.data = post.is_anonymous
 
     return render_template("update_post.html", form=form)
 

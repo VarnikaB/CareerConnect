@@ -13,7 +13,7 @@
     {{ form.csrf_token }}
 
     <div class="form-group">
-        <label for="title">Title</label>
+        <label for="title"><strong>Title</strong></label>
         <input type="text" class="form-control" id="title" name="title" placeholder="Enter title" style="width:60%">
         {% if form.title.errors %}
         {% for error in form.title.errors %}
@@ -23,7 +23,7 @@
     </div>
 
     <div class="form-group">
-        <label for="caption">Caption</label>
+        <label for="caption"><strong>Caption</strong></label>
         <textarea class="form-control" id="caption" name="caption" placeholder="Enter Caption / Description" style="width:60%" rows="6"></textarea>
         {% if form.caption.errors %}
         {% for error in form.caption.errors %}
@@ -33,7 +33,7 @@
     </div>
 
     <div class="form-group">
-        <label for="image">Image</label>
+        <label for="image"><strong>Image</strong></label>
         <input type="file" class="form-control-file" id="image" name="image">
         {% if form.image.errors %}
         {% for error in form.image.errors %}
@@ -41,6 +41,17 @@
         {% endfor %}
         {% endif %}
     </div>
+
+    <div class="form-group">
+        <input type="checkbox"  id="anonymous" name="is_anonymous">&nbsp;
+        <label for="anonymous"><strong>Anonymous</strong></label>
+        {% if form.is_anonymous.errors %}
+        {% for error in form.is_anonymous.errors %}
+        <div class="text-danger">{{ error }}</div>
+        {% endfor %}
+        {% endif %}
+    </div>
+
 
     <br>
     <button type="submit" class="btn btn-outline-primary">Create Post</button>
