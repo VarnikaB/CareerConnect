@@ -12,6 +12,7 @@
 </div>
 <div id="carouselExample" class="carousel slide" data-interval="false" data-ride="carousel">
     <h3>All Questions</h3>
+    {% if questions %}
     <div class="carousel-inner">
         {% for question in questions %}
         <div class="carousel-item {% if loop.index | string() == loop_index | string() %} active {% endif %} ">
@@ -40,15 +41,15 @@
 
     </div>
     <a class="carousel-control-prev" href="#carouselExample" role="button" style="padding: 2rem" data-slide="prev">
-        <span class="carousel-control-prev-icon bg-warning" style="border-radius: 50%;" aria-hidden="true"></span>
+        <span class="carousel-control-prev-icon bg-dark" style="border-radius: 10%;" aria-hidden="true"></span>
         <span class="sr-only">Previous</span>
     </a>
     <a class="carousel-control-next" href="#carouselExample" role="button" style="padding: 2rem" data-slide="next">
-        <span class="carousel-control-next-icon bg-warning" style="border-radius: 50%;" aria-hidden="true"></span>
+        <span class="carousel-control-next-icon bg-dark" style="border-radius: 10%;" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
     </a>
 
-    {% if not questions %}
+    {% else %}
     <div class="text-center mt-4">
         <p style="font-size: 20px;">There are no questions yet...</p>
     </div>

@@ -506,10 +506,10 @@ def submit():
     for key, value in request.form.items():
         question = Question.query.filter_by(id=key).first_or_404()
         if question.answer == value:
-            flash("Correct! Your answer is right.", "success")
+            flash("Correct! ", "success")
         else:
             flash(
-                f"Oops! Your answer is incorrect. The correct answer is {getattr(question, question.answer)}",
+                f"Oops! Incorrect.",
                 "danger",
             )
 

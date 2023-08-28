@@ -23,11 +23,11 @@
 
                 <br>
                 <br>
-
+                {% if current_user == user %}
                 <a href="{{ url_for('update_account') }}" class="btn btn-outline-primary ml-auto">Update Account</a>
 
                 <a href="{{ url_for('delete_account') }}" class="btn btn-outline-danger ml-2">Delete Account</a>
-
+                {% endif %}
             {% else %}
 
             <img src="{{ url_for('static', filename='profile/def.jpg') }}" class="img-fluid rounded-circle" width="200"
