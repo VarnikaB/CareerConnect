@@ -14,10 +14,9 @@
     <h3>All Questions</h3>
     <div class="carousel-inner">
         {% for question in questions %}
-
-        <div class="carousel-item {% if loop.index == 1 %}active{% endif %}">
+        <div class="carousel-item {% if loop.index | string() == loop_index | string() %} active {% endif %} ">
             <div class="quiz-container">
-                <form method="POST" action="/question/submit">
+                <form method="POST" action="/question/submit?question_id={{ question.id }}">
                     <div class="question">Question {{ loop.index }} of {{ questions | length }}: {{question.question}}</div>
                     <label class="option">
                         <input type="radio" name="{{question.id}}" value="option1"> {{question.option1}}
@@ -38,11 +37,7 @@
         </div>
 
         {% endfor %}
-        {% if not questions %}
-        <div class="text-center mt-4">
-            <p style="font-size: 20px;">There are no questions yet...</p>
-        </div>
-        {% endif %}
+
     </div>
     <a class="carousel-control-prev" href="#carouselExample" role="button" style="padding: 2rem" data-slide="prev">
         <span class="carousel-control-prev-icon bg-warning" style="border-radius: 50%;" aria-hidden="true"></span>
@@ -52,6 +47,13 @@
         <span class="carousel-control-next-icon bg-warning" style="border-radius: 50%;" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
     </a>
+
+    {% if not questions %}
+    <div class="text-center mt-4">
+        <p style="font-size: 20px;">There are no questions yet...</p>
+    </div>
+    {% endif %}
+
 </div>
 
 
