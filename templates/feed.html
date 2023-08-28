@@ -61,6 +61,13 @@
                     </small>
                     {% endif %}
                     </span>
+                    {% if current_user.username  == "ADMIN_USER"  %}
+                    <div class="btn-group">
+
+                        <a href="{{ url_for('delete_post', post_id=post.id) }}" class="btn btn-outline-danger btn-sm ml-2">Delete</a>
+                    </div>
+
+                    {% endif %}
                 </div>
             </div>
             {% endfor %}

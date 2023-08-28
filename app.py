@@ -399,13 +399,13 @@ def welcome():
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if current_user.is_authenticated:
-        return redirect(url_for("index"))
+        return redirect(url_for("feed"))
 
     form = RegistrationForm()
 
     if form.validate_on_submit():
-        # check if the username is already registered or the username is already taken
         user = User.query.filter_by(username=form.username.data).first()
+        print(user)
         if user is not None:
             flash("User already registered !!", "danger")
             return redirect(url_for("login"))
@@ -472,7 +472,7 @@ def feed():
     posts = Post.query.order_by(Post.timestamp.desc()).all()
     print(posts)
     return render_template(
-        "feed.html", title="Feed page", posts=posts, timezone=timezone
+        "feed.html", title="Feed page", posts=posts, timezone=timezone, current_user=current_user
     )
 
 
@@ -666,7 +666,7 @@ def update_post(post_id):
 @login_required
 def delete_post(post_id):
     post = Post.query.get_or_404(post_id)
-    if post.user != current_user:
+    if post.user != current_user and current_user.username != "ADMIN_USER":
         abort(403)
 
     form = DeletePostForm()
@@ -876,7 +876,7 @@ def edit_comment(post_id, comment_id):
 @login_required
 def delete_comment(post_id, comment_id):
     particular_comment = Comment.query.get_or_404(comment_id)
-    if particular_comment.user != current_user:
+    if particular_comment.user != current_user and current_user.username != "ADMIN_USER":
         abort(403)
 
     form = DeleteCommentForm()

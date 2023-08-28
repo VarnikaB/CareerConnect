@@ -94,6 +94,12 @@
                 </div>
                 
             </div>
+            {% elif current_user.username == "ADMIN_USER" %}
+            <div class="card-footer d-flex justify-content-end">
+
+                <a href="{{ url_for('delete_comment', post_id=post_id, comment_id=comment.id) }}" class="btn btn-outline-danger btn-sm ml-2">Delete</a>
+
+            </div>
             {% endif %}
         </div>
         {% endfor %}
