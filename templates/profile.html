@@ -69,6 +69,7 @@
 
             <br>
             <br>
+            <p style="font-size:20px">Occupation : {{ user.occupation }} </p>
             <br>
             <p style="font-size:20px">Total posts : {{ published_posts_count }} </p>
             <p style="font-size:20px"><a href="{{ url_for('likes_of_user', username=user.username) }}">Total likes : {{ likes }}</a> </p>
