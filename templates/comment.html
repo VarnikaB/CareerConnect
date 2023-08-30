@@ -22,7 +22,8 @@
     }
 
 </style>
-<div class="card card-inner mb-5 mt-2 post">
+<div style="overflow-y: scroll; max-height: 30vh;">
+<div class="card card-inner mb-5 mt-2 post" >
     <div class="card-header">
         <a href="{{ url_for('profile', username=post.user.username) }}">
             <img class="profile-image" src="{{ url_for('static', filename='profile/' + post.user.profile_image) }}">
@@ -54,6 +55,8 @@
                     </span>
     </div>
 </div>
+</div>
+<br>
 <h6 >View all comments({{ post.comments.count() }}) : </h6>
 
 <div class="d-flex flex-column view-comments">
@@ -61,7 +64,7 @@
     <div class="existing-comments">
         {% for comment in comments %}
 
-        <div class="card card-inner mb-2">
+        <div class="card card-inner mb-2" >
             
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <a href="{{ url_for('profile', username=comment.user.username) }}">

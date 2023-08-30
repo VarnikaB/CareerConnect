@@ -45,6 +45,7 @@ The application is designed to be easy to use, with a focus on user experience. 
 ### Tools used to make the code better
 - black: for pep8 formatting
 - pylint: for code quality
+- radon: for obtaining raw metrics on line counts, Cyclomatic Complexity, Halstead metrics and maintainability metrics.
 
 ## Getting Started
 
@@ -58,6 +59,11 @@ The application is designed to be easy to use, with a focus on user experience. 
 - Run `source newenv/bin/activate
 - pip install -r requirements.txt
 - python app.py
+
+### Run code quality tests
+- pylint app.py `Code quality: 8.3/10`
+- radon cc app.py `Cyclomatic Complexity: All the functions, class, methods are A/B`
+- radon mi app.py `Maintainability Index: All A`
 
 Now the application will start running on `http://localhost:5000`
 
