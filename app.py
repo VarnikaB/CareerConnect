@@ -1,3 +1,5 @@
+# pylint: disable=missing-module-docstring, missing-function-docstring, missing-class-docstring, invalid-name
+
 import os
 import secrets
 import datetime
@@ -917,7 +919,29 @@ def delete_comment(post_id, comment_id):
 @login_required
 def search():
     form = SearchForm()
+    print(request.args)
     search_tag = request.args.get('search_string')
+    print(search_tag)
+    if search_tag is not None:
+        posts = Post.query.filter(
+            or_(Post.caption.like(f"%{search_tag}%"), Post.title.like(f"%{search_tag}%"))
+        ).all()
+        print(f"Search results: {posts}")
+        if len(posts) == 0:
+            flash("No post available ", "danger")
+        else:
+            flash("Successful Search ", "info")
+        return render_template(
+            "search.html",
+            users=[],
+            posts=posts,
+            form=form,
+            db=db,
+            published_posts_count=0,
+            query=search_tag,
+            default_value="",
+            timezone=timezone,
+        )
     if form.validate_on_submit():
         query = form.q.data
         print(f"Search query: {query}")
@@ -959,26 +983,7 @@ def search():
             default_value="",
             timezone=timezone,
         )
-    if search_tag is not None:
-        posts = Post.query.filter(
-            or_(Post.caption.like(f"%{search_tag}%"), Post.title.like(f"%{search_tag}%"))
-        ).all()
-        print(f"Search results: {posts}")
-        if len(posts) == 0:
-            flash("No post available ", "danger")
-        else:
-            flash("Successful Search ", "info")
-        return render_template(
-            "search.html",
-            users=[],
-            posts=posts,
-            form=form,
-            db=db,
-            published_posts_count=0,
-            query=search_tag,
-            default_value="",
-            timezone=timezone,
-        )
+
 
     print(f"form validation failed: {form.errors}")
     return render_template("search.html", form=form, default_value="")

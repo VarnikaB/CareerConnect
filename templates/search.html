@@ -149,10 +149,30 @@
                             var regexPattern = /#[A-Za-z0-9]+/g; // Match hashtags with alphanumeric characters
 
                             var highlightedText = text.replace(regexPattern, function(match) {
+                                console.log('<a href="/search?search_string='+match+'" class="tags" data-search="' + match + '">' + match + '</a>')
                                 return '<a href="/search?search_string='+match+'" class="tags">' + match + '</a>';
                             });
 
                             textContainer.querySelector('.card-text').innerHTML = highlightedText;
+                        });
+
+                        var tags = document.querySelectorAll('.tags');
+                        tags.forEach(function(tag) {
+                            tag.addEventListener('click', function(event) {
+                                event.preventDefault(); // Prevent the default link behavior
+
+                                // Get the search string from the data attribute
+                                var searchQuery = tag.getAttribute('data-search');
+                                fetch('/search?search_string=' + searchQuery)
+                                    .then(response => response.json())
+                                    .then(data => {
+                                        // Handle the API response here
+                                        console.log(data);
+                                    })
+                                    .catch(error => {
+                                        console.error('Error:', error);
+                                    });
+                            });
                         });
                     });
 
