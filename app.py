@@ -917,7 +917,7 @@ def delete_comment(post_id, comment_id):
 @login_required
 def search():
     form = SearchForm()
-
+    search_tag = request.args.get('search_string')
     if form.validate_on_submit():
         query = form.q.data
         print(f"Search query: {query}")
@@ -956,6 +956,26 @@ def search():
             db=db,
             published_posts_count=published_posts_count,
             query=query,
+            default_value="",
+            timezone=timezone,
+        )
+    if search_tag is not None:
+        posts = Post.query.filter(
+            or_(Post.caption.like(f"%{search_tag}%"), Post.title.like(f"%{search_tag}%"))
+        ).all()
+        print(f"Search results: {posts}")
+        if len(posts) == 0:
+            flash("No post available ", "danger")
+        else:
+            flash("Successful Search ", "info")
+        return render_template(
+            "search.html",
+            users=[],
+            posts=posts,
+            form=form,
+            db=db,
+            published_posts_count=0,
+            query=search_tag,
             default_value="",
             timezone=timezone,
         )

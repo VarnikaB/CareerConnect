@@ -102,7 +102,7 @@
                         {% if post.image %}
                         <img src="{{ url_for('static', filename='posts/' + post.image) }}" class="img-fluid rounded " style="margin-bottom: 10px">
                         {% endif %}
-                        <p><strong>Caption : </strong>{{ post.caption | replace("\n", "<br>") | safe }}</p>
+                        <p ><strong>Caption : </strong>{{ post.caption | replace("\n", "<br>") | safe }}</p>
                     </div>
                 
                     <div class="card-footer d-flex justify-content">
@@ -166,6 +166,23 @@
             {% endif %}
 
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var textContainers = document.querySelectorAll('.card-body');
+
+            textContainers.forEach(function(textContainer) {
+                var text = textContainer.querySelector('.card-text').innerHTML;
+                var regexPattern = /#[A-Za-z0-9]+/g; // Match hashtags with alphanumeric characters
+
+                var highlightedText = text.replace(regexPattern, function(match) {
+                    return '<a href="/search?search_string='+match+'" class="tags">' + match + '</a>';
+                });
+
+                textContainer.querySelector('.card-text').innerHTML = highlightedText;
+            });
+        });
+
+    </script>
 </div>
 
 
