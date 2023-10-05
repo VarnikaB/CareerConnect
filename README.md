@@ -1,3 +1,5 @@
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![Pylint](https://github.com/VarnikaB/CareerConnect/actions/workflows/pylint.yml/badge.svg)](https://github.com/VarnikaB/CareerConnect/actions/workflows/pylint.yml)
 
 # Career Connect
 
