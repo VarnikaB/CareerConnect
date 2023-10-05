@@ -96,7 +96,7 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(20), unique=True, nullable=False)
     password_hash = db.Column(db.String(128), nullable=False)
     profile_image = db.Column(db.String(128), default="def.jpg")
-    occupation=db.Column(db.String(80), default="Student")
+    occupation = db.Column(db.String(80), default="Student")
 
     posts = db.relationship("Post", back_populates="user", lazy="subquery")
     comments = db.relationship("Comment", backref="user", lazy="dynamic")
@@ -484,7 +484,11 @@ def feed():
     posts = Post.query.order_by(Post.timestamp.desc()).all()
     print(posts)
     return render_template(
-        "feed.html", title="Feed page", posts=posts, timezone=timezone, current_user=current_user
+        "feed.html",
+        title="Feed page",
+        posts=posts,
+        timezone=timezone,
+        current_user=current_user,
     )
 
 
@@ -494,7 +498,7 @@ def feed():
 @app.route("/questions")
 @login_required
 def questions():
-    questionId = request.args.get('question_id')
+    questionId = request.args.get("question_id")
     print(questionId)
     if questionId is None:
         questionId = 1
@@ -507,13 +511,13 @@ def questions():
         data=data,
         questions=allQuestions,
         timezone=timezone,
-        loop_index = questionId
+        loop_index=questionId,
     )
 
 
 @app.route("/question/submit", methods=["POST"])
 def submit():
-    questionId = request.args.get('question_id')
+    questionId = request.args.get("question_id")
 
     for key, value in request.form.items():
         question = Question.query.filter_by(id=key).first_or_404()
@@ -525,7 +529,7 @@ def submit():
                 "danger",
             )
 
-    return redirect(url_for("questions", question_id = questionId))
+    return redirect(url_for("questions", question_id=questionId))
 
 
 # PROFILE page
@@ -534,7 +538,6 @@ def submit():
 def profile(username):
     user = User.query.filter_by(username=username).first_or_404()
     page = request.args.get("page", 1, type=int)
-    
 
     posts = (
         Post.query.filter_by(user_id=user.id)
@@ -610,7 +613,7 @@ def create_post():
             caption=form.caption.data,
             image=image_file,
             user_id=current_user.id,
-            is_anonymous=form.is_anonymous.data
+            is_anonymous=form.is_anonymous.data,
         )
 
         db.session.add(post)
@@ -890,7 +893,10 @@ def edit_comment(post_id, comment_id):
 @login_required
 def delete_comment(post_id, comment_id):
     particular_comment = Comment.query.get_or_404(comment_id)
-    if particular_comment.user != current_user and current_user.username != "ADMIN_USER":
+    if (
+        particular_comment.user != current_user
+        and current_user.username != "ADMIN_USER"
+    ):
         abort(403)
 
     form = DeleteCommentForm()
@@ -920,11 +926,13 @@ def delete_comment(post_id, comment_id):
 def search():
     form = SearchForm()
     print(request.args)
-    search_tag = request.args.get('search_string')
+    search_tag = request.args.get("search_string")
     print(search_tag)
     if search_tag is not None:
         posts = Post.query.filter(
-            or_(Post.caption.like(f"%{search_tag}%"), Post.title.like(f"%{search_tag}%"))
+            or_(
+                Post.caption.like(f"%{search_tag}%"), Post.title.like(f"%{search_tag}%")
+            )
         ).all()
         print(f"Search results: {posts}")
         if len(posts) == 0:
@@ -983,7 +991,6 @@ def search():
             default_value="",
             timezone=timezone,
         )
-
 
     print(f"form validation failed: {form.errors}")
     return render_template("search.html", form=form, default_value="")
