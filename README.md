@@ -44,6 +44,7 @@ The application is designed to be easy to use, with a focus on user experience. 
 ##
 ### Tools used to make the code better
 - black: for pep8 formatting
+  `black app.py`
 - pylint: for code quality
 - radon: for obtaining raw metrics on line counts, Cyclomatic Complexity, Halstead metrics and maintainability metrics.
 
