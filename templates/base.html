@@ -28,11 +28,12 @@
 
     {% with messages = get_flashed_messages(with_categories=true) %}
     {% for category, message in messages %}
-    <div class="toast "
-         style="position: fixed;
-                     z-index: 99;
-                     width:fit-content;
-                     margin-left: 70vw;">
+    <div class="toast"
+            style="position: fixed;
+                    z-index: 99;
+                    width: fit-content;
+                    top: 70px;
+                    right: 15px;">
         <div class="toast-header bg-{{category}} py-2 text-white">
             {{ message }}
         </div>
