@@ -1,86 +1,65 @@
 {% extends "base.html" %}
 
-{%block title%} Create Post page {%endblock%}
+{% block title %}Add Question - CareerConnect{% endblock %}
 
 {% block content %}
-<br>
-<h4>New question</h4>
-<p>Add new practise question with options</p>
-
-<hr>
-<form method="POST" action="{{ url_for('questions.add_question') }}" enctype="multipart/form-data">
-
-    {{ form.csrf_token }}
-
-    <div class="form-group">
-        <label for="question">Question</label>
-        <input type="text" class="form-control" id="question" name="question" placeholder="Enter question">
-        {% if form.question.errors %}
-        {% for error in form.question.errors %}
-        <div class="text-danger">{{ error }}</div>
-        {% endfor %}
-        {% endif %}
+<div class="content-wrapper" style="max-width: 600px;">
+    <div class="page-header">
+        <h1><i class="bi bi-plus-circle me-2"></i>Add Question</h1>
     </div>
 
-    <div class="form-group">
-        <label for="option1">option1</label>
-        <input type="text" class="form-control" id="option1" name="option1" placeholder="Enter option1" style="width:50%">
-        {% if form.option1.errors %}
-        {% for error in form.option1.errors %}
-        <div class="text-danger">{{ error }}</div>
-        {% endfor %}
-        {% endif %}
+    <div class="card">
+        <div class="card-body p-4">
+            <form method="POST" action="{{ url_for('questions.add_question') }}">
+                {{ form.csrf_token }}
+
+                <div class="mb-3">
+                    <label for="question" class="form-label fw-medium">Question</label>
+                    <input type="text" class="form-control" id="question" name="question" placeholder="Enter your question">
+                    {% if form.question.errors %}
+                    <div class="text-danger small mt-1">{{ form.question.errors[0] }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-medium">Options</label>
+                    <div class="row g-2">
+                        <div class="col-6">
+                            <input type="text" class="form-control" id="option1" name="option1" placeholder="Option 1">
+                        </div>
+                        <div class="col-6">
+                            <input type="text" class="form-control" id="option2" name="option2" placeholder="Option 2">
+                        </div>
+                        <div class="col-6">
+                            <input type="text" class="form-control" id="option3" name="option3" placeholder="Option 3">
+                        </div>
+                        <div class="col-6">
+                            <input type="text" class="form-control" id="option4" name="option4" placeholder="Option 4">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label for="answer" class="form-label fw-medium">Correct Answer</label>
+                    <select id="answer" name="answer" class="form-select">
+                        <option value="option1">Option 1</option>
+                        <option value="option2">Option 2</option>
+                        <option value="option3">Option 3</option>
+                        <option value="option4">Option 4</option>
+                    </select>
+                    {% if form.answer.errors %}
+                    <div class="text-danger small mt-1">{{ form.answer.errors[0] }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-check-lg me-1"></i>Add Question
+                    </button>
+                    <a href="{{ url_for('questions.questions') }}" class="btn btn-outline-secondary">Cancel</a>
+                </div>
+            </form>
+        </div>
     </div>
-
-    <div class="form-group">
-        <label for="option2">option2</label>
-        <input type="text" class="form-control" id="option2" name="option2" placeholder="Enter option2" style="width:50%">
-        {% if form.option2.errors %}
-        {% for error in form.option2.errors %}
-        <div class="text-danger">{{ error }}</div>
-        {% endfor %}
-        {% endif %}
-    </div>
-
-    <div class="form-group">
-        <label for="option3">option3</label>
-        <input type="text" class="form-control" id="option3" name="option3" placeholder="Enter option3" style="width:50%">
-        {% if form.option3.errors %}
-        {% for error in form.option3.errors %}
-        <div class="text-danger">{{ error }}</div>
-        {% endfor %}
-        {% endif %}
-    </div>
-
-    <div class="form-group">
-        <label for="option4">option4</label>
-        <input type="text" class="form-control" id="option4" name="option4" placeholder="Enter option4" style="width:50%">
-        {% if form.option4.errors %}
-        {% for error in form.option4.errors %}
-        <div class="text-danger">{{ error }}</div>
-        {% endfor %}
-        {% endif %}
-    </div>
-
-    <div class="form-group">
-        <label for="Answers">State</label>
-        <select id="answer" name="answer" class="form-control" style="width:50%">
-            <option selected name="option1" value="option1">Option 1</option>
-            <option name="option2" value="option2">Option 2</option>
-            <option name="option3" value="option3">Option 3</option>
-            <option name="option4" value="option4">Option 4</option>
-        </select>
-        <!-- <input type="text" class="form-control" id="option4" name="option4" placeholder="Enter option4" style="width:50%"> -->
-        {% if form.answer.errors %}
-        {% for error in form.answer.errors %}
-        <div class="text-danger">{{ error }}</div>
-        {% endfor %}
-        {% endif %}
-    </div>
-
-
-
-    <br>
-    <button type="submit" class="btn btn-outline-primary">Add Question</button>
-</form>
+</div>
 {% endblock %}

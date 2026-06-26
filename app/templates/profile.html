@@ -1,187 +1,139 @@
 {% extends "base.html" %}
 
-{%block title%} Profile Page {%endblock%}
+{% block title %}{{ user.username }} - CareerConnect{% endblock %}
 
 {% block content %}
-<style>
-    img{
-        border-radius: 50%;
-        margin-left: 3rem;
-        border: 1px solid black;
-        justify-content: center;
-    }
-</style>
-
-<div class="container mt-5">
-    <div class="row">
-
-        <div class="col-md-4">
-
-            {% if user.profile_image %}
-                <img src="{{ url_for('static', filename='profile/' + user.profile_image) }}" class="img-fluid rounded-circle"
-                    width="200" height="200" style="object-fit:cover" alt="profile image">
-
-                <br>
-                <br>
-                {% if current_user == user %}
-                <a href="{{ url_for('users.update_account') }}" class="btn btn-outline-primary ml-auto">Update Account</a>
-
-                <a href="{{ url_for('users.delete_account') }}" class="btn btn-outline-danger ml-2">Delete Account</a>
-                {% endif %}
-            {% else %}
-
-            <img src="{{ url_for('static', filename='profile/def.jpg') }}" class="img-fluid rounded-circle" width="200"
-                height="200">
-            
-            <br>
-            <br>
-            
-            <a href="{{ url_for('users.update_account') }}" class="btn btn-outline-primary ml-auto">Update Account</a>
-            
-            <a href="{{ url_for('users.delete_account') }}" class="btn btn-outline-danger ml-2">Delete Account</a>
-
-            {% endif %}
-
-                
-        </div>
-
-        <div class="col-md-8">
-
-            <div class="d-flex justify-content-between align-items-center mt-5">
-                <h4>{{ user.username }}</h4>
-            </div>
-            
-            <div class="profile-action">
-            
-                {% if current_user != user %}
-
-                    <div class="row">
-                        <div class="col-6 text-center">
-                            <form method="POST" action="{{ url_for('chat.chat', username=user.username) }}">
-                                {{ follow_form.hidden_tag() }}
-                                <button type="submit" class="btn btn-outline-primary">Chat</button>
-                            </form>
-                        </div>
+<div class="content-wrapper" style="max-width: 900px;">
+    <div class="card mb-4">
+        <div class="card-body p-4">
+            <div class="row align-items-center">
+                <div class="col-auto">
+                    {% if user.profile_image and user.profile_image != 'def.jpg' %}
+                    <img src="{{ url_for('static', filename='profile/' + user.profile_image) }}"
+                         class="avatar avatar-lg" alt="profile">
+                    {% else %}
+                    <div class="profile-avatar-placeholder avatar-lg d-flex" style="width:120px;height:120px;font-size:2.5rem;">
+                        {{ user.username[:2] | upper }}
                     </div>
-
-                {% endif %}
-            </div>
-
-            <br>
-            <br>
-            <p style="font-size:20px">Occupation : {{ user.occupation }} </p>
-            <br>
-            <p style="font-size:20px">Total posts : {{ published_posts_count }} </p>
-            <p style="font-size:20px"><a href="{{ url_for('users.likes_of_user', username=user.username) }}">Total likes : {{ likes }}</a> </p>
-            <p style="font-size:20px"><a href="{{ url_for('users.comments_of_user', username=user.username) }}">Total comments : {{ comments }} </a></p>
-
-        </div>
-        
-            <div class="card card-body bg-light mt-5">
-                <h4>My Posts</h4>
-
-                {% if user.posts|length > 0 %}
-                {% for post in user.posts | reverse %}
-                
-                <div class="card card-inner mb-2">
-                
-                    <div class="card-header d-flex justify-content-between align-items-center">
-                        <h6>{{ post.title | replace("\n", "<br>") | safe }}</h6>
-                
-                        {% if post.last_updated %}
-                        <small class="text-muted">Updated {{ post.last_updated.strftime("%d %b %Y") }}</small>
-                        {% else %}
-                        <small class="text-muted">{{ post.timestamp.strftime("%d %b %Y") }}</small>
-                        {% endif %}
-                
-                    </div>
-                
-                    <div class="card-body">
-                        {% if post.image %}
-                        <img src="{{ url_for('static', filename='posts/' + post.image) }}" class="img-fluid rounded " style="margin-bottom: 10px">
-                        {% endif %}
-                        <p ><strong>Caption : </strong>{{ post.caption | replace("\n", "<br>") | safe }}</p>
-                    </div>
-                
-                    <div class="card-footer d-flex justify-content">
-                        {% if current_user.is_authenticated and current_user.username == user.username %}
-
-                        <div class="btn-group">
-                            <a href="#" class="btn btn-outline-info btn-sm">Likes : {{ post.likes.count() }}</a>
-
-                            <a href="{{ url_for('comments.comment', post_id=post.id) }}" class="btn btn-outline-info btn-sm ml-2">Comments : {{
-                                post.comments.count()}}</a>
-
-                            <a href="#" class="btn btn-outline-info btn-sm ml-2">Engagement: {{ post.likes.count() + post.comments.count() }}</a>
-                        </div>
-                        
-                        {% endif %}
-
-
-                        <div class="btn-group">
-                            {% if current_user.is_authenticated and current_user != user %}
-                        
-                            <form method="POST" action="{{ url_for('posts.like', post_id=post.id) }}">
-                                {{ like_form.hidden_tag() }}
-                                <button type="submit" class="btn btn-outline-primary btn-sm">Like : {{ post.likes.count() }}</button>
-                            </form>
-                        
-                            <form method="POST" action="{{ url_for('posts.unlike', post_id=post.id) }}">
-                                {{ unlike_form.hidden_tag() }}
-                                <button type="submit" class="btn btn-outline-danger btn-sm ml-2">Unlike</button>
-                            </form>
-                            
-                            <a href="{{ url_for('comments.comment', post_id=post.id) }}" class="btn btn-outline-info btn-sm ml-2">Comments : {{
-                                post.comments.count()}}</a>
-                            {% endif %}
-                        </div>
-
-                    </div>
-                        
-
-                    <div class="card-footer d-flex justify-content-end">
-                    
-                        {% if current_user.is_authenticated and current_user.username == user.username %}
-                        <div class="btn-group">
-                            <a href="{{ url_for('posts.update_post', post_id=post.id) }}" class="btn btn-outline-primary btn-sm">Update</a>
-                    
-                            <a href="{{ url_for('posts.delete_post', post_id=post.id) }}" class="btn btn-outline-danger btn-sm ml-2">Delete</a>
-                        </div>
-                    
-                        {% endif %}
-                    </div>
-
-                            
-                    
+                    {% endif %}
                 </div>
+                <div class="col">
+                    <h3 class="fw-bold mb-1">{{ user.username }}</h3>
+                    <p class="text-muted mb-3">
+                        <i class="bi bi-briefcase me-1"></i>{{ user.occupation }}
+                    </p>
 
-            {% endfor %}
+                    <div class="d-flex gap-4 mb-3">
+                        <div class="text-center">
+                            <div class="fw-bold fs-5">{{ published_posts_count }}</div>
+                            <small class="text-muted">Posts</small>
+                        </div>
+                        <div class="text-center">
+                            <a href="{{ url_for('users.likes_of_user', username=user.username) }}" class="text-decoration-none">
+                                <div class="fw-bold fs-5">{{ likes }}</div>
+                                <small class="text-muted">Likes</small>
+                            </a>
+                        </div>
+                        <div class="text-center">
+                            <a href="{{ url_for('users.comments_of_user', username=user.username) }}" class="text-decoration-none">
+                                <div class="fw-bold fs-5">{{ comments }}</div>
+                                <small class="text-muted">Comments</small>
+                            </a>
+                        </div>
+                    </div>
 
+                    <div class="d-flex gap-2">
+                        {% if current_user == user %}
+                        <a href="{{ url_for('users.update_account') }}" class="btn btn-outline-primary btn-sm">
+                            <i class="bi bi-pencil me-1"></i>Edit Profile
+                        </a>
+                        <a href="{{ url_for('users.delete_account') }}" class="btn btn-outline-danger btn-sm">
+                            <i class="bi bi-trash me-1"></i>Delete Account
+                        </a>
+                        {% else %}
+                        <a href="{{ url_for('chat.chat', username=user.username) }}" class="btn btn-primary btn-sm">
+                            <i class="bi bi-chat-dots me-1"></i>Message
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h5 class="fw-bold mb-3"><i class="bi bi-grid me-2"></i>Posts</h5>
+
+    {% if user.posts|length > 0 %}
+    {% for post in user.posts | reverse %}
+    <div class="card mb-3">
+        <div class="card-body">
+            <div class="d-flex justify-content-between align-items-start mb-2">
+                <h6 class="fw-bold mb-0">{{ post.title }}</h6>
+                <small class="text-muted text-nowrap ms-3">
+                    {% if post.last_updated %}
+                    {{ post.last_updated.strftime("%d %b %Y") }}
+                    {% else %}
+                    {{ post.timestamp.strftime("%d %b %Y") }}
+                    {% endif %}
+                </small>
             </div>
 
-            {% else %}
-            <p>No posts yet.</p>
+            {% if post.image %}
+            <img src="{{ url_for('static', filename='posts/' + post.image) }}"
+                 class="img-fluid rounded mb-3" style="max-height: 300px; width: 100%; object-fit: cover;">
             {% endif %}
 
+            <p class="text-muted mb-3">{{ post.caption }}</p>
+
+            <div class="d-flex align-items-center gap-2 pt-2 border-top">
+                {% if current_user.is_authenticated and current_user.username == user.username %}
+                <span class="badge bg-light text-dark border">
+                    <i class="bi bi-heart-fill text-danger me-1"></i>{{ post.likes.count() }}
+                </span>
+                <a href="{{ url_for('comments.comment', post_id=post.id) }}" class="badge bg-light text-dark border text-decoration-none">
+                    <i class="bi bi-chat me-1"></i>{{ post.comments.count() }}
+                </a>
+                <span class="badge bg-light text-dark border">
+                    <i class="bi bi-graph-up me-1"></i>{{ post.likes.count() + post.comments.count() }}
+                </span>
+                {% elif current_user.is_authenticated and current_user != user %}
+                <form method="POST" action="{{ url_for('posts.like', post_id=post.id) }}" class="d-inline">
+                    {{ like_form.hidden_tag() }}
+                    <button type="submit" class="btn btn-sm btn-outline-primary">
+                        <i class="bi bi-heart me-1"></i>{{ post.likes.count() }}
+                    </button>
+                </form>
+                <form method="POST" action="{{ url_for('posts.unlike', post_id=post.id) }}" class="d-inline">
+                    {{ unlike_form.hidden_tag() }}
+                    <button type="submit" class="btn btn-sm btn-outline-secondary">
+                        <i class="bi bi-heart-break me-1"></i>Unlike
+                    </button>
+                </form>
+                <a href="{{ url_for('comments.comment', post_id=post.id) }}" class="btn btn-sm btn-outline-secondary">
+                    <i class="bi bi-chat me-1"></i>{{ post.comments.count() }}
+                </a>
+                {% endif %}
+
+                {% if current_user.is_authenticated and current_user.username == user.username %}
+                <div class="ms-auto d-flex gap-2">
+                    <a href="{{ url_for('posts.update_post', post_id=post.id) }}" class="btn btn-sm btn-outline-primary">
+                        <i class="bi bi-pencil"></i>
+                    </a>
+                    <a href="{{ url_for('posts.delete_post', post_id=post.id) }}" class="btn btn-sm btn-outline-danger">
+                        <i class="bi bi-trash"></i>
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
     </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var textContainers = document.querySelectorAll('.card-body');
+    {% endfor %}
 
-            textContainers.forEach(function(textContainer) {
-                var text = textContainer.querySelector('.card-text').innerHTML;
-                var regexPattern = /#[A-Za-z0-9]+/g; // Match hashtags with alphanumeric characters
-
-                var highlightedText = text.replace(regexPattern, function(match) {
-                    return '<a href="/search?search_string='+match+'" class="tags">' + match + '</a>';
-                });
-
-                textContainer.querySelector('.card-text').innerHTML = highlightedText;
-            });
-        });
-
-    </script>
+    {% else %}
+    <div class="text-center py-4">
+        <i class="bi bi-journal-text" style="font-size: 2rem; color: var(--cc-text-muted);"></i>
+        <p class="text-muted mt-2">No posts yet.</p>
+    </div>
+    {% endif %}
 </div>
-
-
 {% endblock %}

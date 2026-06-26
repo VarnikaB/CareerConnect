@@ -1,54 +1,58 @@
 {% extends "base.html" %}
 
-{% block title%} Update Post page {%endblock%}
+{% block title %}Update Post - CareerConnect{% endblock %}
 
 {% block content %}
-<br>
-<h4>Update Post</h4>
-<p>Fill the form to update an existing post.</p>
-
-<hr>
-
-<form method="POST" action="" enctype="multipart/form-data">
-    {{ form.hidden_tag() }}
-    <div class="form-group" placeholder="Enter title" style="width:60%">
-        {{ form.title.label }} {{ form.title(class="form-control") }}
-        {% for error in form.title.errors %}
-        <div class="text-danger">{{ error }}</div>
-        {% endfor %}
+<div class="content-wrapper" style="max-width: 600px;">
+    <div class="page-header">
+        <h1><i class="bi bi-pencil-square me-2"></i>Update Post</h1>
     </div>
 
-    <div class="form-group" placeholder="Enter caption" style="width:60%">
-        {{ form.caption.label }} 
-        {{ form.caption(class="form-control", rows="6") }}
+    <div class="card">
+        <div class="card-body p-4">
+            <form method="POST" action="" enctype="multipart/form-data">
+                {{ form.hidden_tag() }}
 
-        {% for error in form.caption.errors %}
-        <div class="text-danger">{{ error }}</div>
-        {% endfor %}
+                <div class="mb-3">
+                    <label class="form-label fw-medium">Title</label>
+                    {{ form.title(class="form-control", placeholder="Enter title") }}
+                    {% for error in form.title.errors %}
+                    <div class="text-danger small mt-1">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-medium">Caption</label>
+                    {{ form.caption(class="form-control", rows="5", placeholder="Enter caption") }}
+                    {% for error in form.caption.errors %}
+                    <div class="text-danger small mt-1">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-medium">Image (optional)</label>
+                    {{ form.image(class="form-control") }}
+                    {% for error in form.image.errors %}
+                    <div class="text-danger small mt-1">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+                <div class="mb-4">
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="anonymous" name="is_anonymous"
+                               {% if form.is_anonymous.data %}checked{% endif %}>
+                        <label class="form-check-label" for="anonymous">Post anonymously</label>
+                    </div>
+                </div>
+
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-check-lg me-1"></i>Update Post
+                    </button>
+                    <a href="{{ url_for('users.profile', username=current_user.username) }}" class="btn btn-outline-secondary">Cancel</a>
+                </div>
+            </form>
+        </div>
     </div>
-
-    <div class="form-group">
-        {{ form.image.label }} 
-        {{ form.image(class="form-control-file") }}
-
-        {% for error in form.image.errors %}
-        <div class="text-danger">{{ error }}</div>
-        {% endfor %}
-    </div>
-
-    <div class="form-group">
-        <input type="checkbox"  id="anonymous" name="is_anonymous" {% if form.is_anonymous.data == True %} checked {% endif %}>&nbsp;
-        <label for="anonymous"><strong>Anonymous</strong></label>
-        {% if form.is_anonymous.errors %}
-        {% for error in form.is_anonymous.errors %}
-        <div class="text-danger">{{ error }}</div>
-        {% endfor %}
-        {% endif %}
-    </div>
-    <br>
-
-    <button type="submit" class="btn btn-primary">Update Post</button>
-
-    <a href="{{ url_for('auth.login') }}" class="btn btn-outline-secondary ml-2">Cancel</a>
-</form>
+</div>
 {% endblock %}

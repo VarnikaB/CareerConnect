@@ -1,102 +1,119 @@
 {% extends "base.html" %}
 
-{% block title %}Feed{% endblock %}
+{% block title %}Feed - CareerConnect{% endblock %}
 
 {% block content %}
-<div class="container mt-5">
-    <div class="row">
-        <div class="col-md-9 offset-md-1">
-            {% for post in posts.items %}
-            <div class="card card-inner mb-4">
-                <div class="card-header">
-                    {% if post.is_anonymous != True %}
-                        <a href="{{ url_for('users.profile', username=post.user.username) }}">
-                            <h5>{{ post.user.username }}</h5>
-                        </a>
-                    {% else %}
-                        Anonymous User
-                    {% endif %}
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">{{ post.title }}</h5>
-                    {% if post.image %}
-                    <img src="{{ url_for('static', filename='posts/' + post.image) }}"
-                         class="img-fluid rounded mb-3"
-                         alt="{{ post.title }}"
-                         style="max-height: 300px; display: block; margin: 0 auto;">
-                    {% endif %}
-                    <p class="card-text mt-3 text-secondary">{{ post.caption }}</p>
-                </div>
-                <div class="card-footer">
-                    {% if current_user.is_authenticated and post.likes.filter_by(user_id=current_user.id).first() %}
-                    <a href="{{ url_for('posts.unlike', post_id=post.id) }}" class="btn btn-primary btn-sm">
-                        Unlike <span class="badge badge-light">{{ post.likes.count() }}</span>
-                    </a>
-                    {% else %}
-                    <a href="{{ url_for('posts.like', post_id=post.id) }}" class="btn btn-primary btn-sm">
-                        Like <span class="badge badge-light">{{ post.likes.count() }}</span>
-                    </a>
-                    {% endif %}
-                    <a href="{{ url_for('comments.comment', post_id=post.id) }}" class="btn btn-warning btn-sm">
-                        Comments <span class="badge badge-light">{{ post.comments.count() }}</span>
-                    </a>
-                    <small class="text-muted float-right mt-1">
-                        {% if post.last_updated %}
-                        Updated {{ post.last_updated.strftime("%d %b %Y") }}
-                        {% else %}
-                        {{ post.timestamp.strftime("%d %b %Y") }}
-                        {% endif %}
-                    </small>
-                    {% if current_user.username == "ADMIN_USER" %}
-                    <a href="{{ url_for('posts.delete_post', post_id=post.id) }}" class="btn btn-outline-danger btn-sm ml-2">Delete</a>
-                    {% endif %}
-                </div>
-            </div>
-            {% endfor %}
+<div class="content-wrapper">
+    <div class="page-header d-flex justify-content-between align-items-center">
+        <h1><i class="bi bi-house me-2"></i>Feed</h1>
+        <a href="{{ url_for('posts.create_post') }}" class="btn btn-primary">
+            <i class="bi bi-plus-lg me-1"></i>New Post
+        </a>
+    </div>
 
-            {% if not posts.items %}
-            <div class="text-center mt-4">
-                <p class="text-muted" style="font-size: 20px;">No posts yet. Be the first to share!</p>
+    {% for post in posts.items %}
+    <div class="card mb-4">
+        <div class="card-body">
+            <div class="d-flex align-items-center mb-3">
+                {% if post.is_anonymous != True %}
+                <a href="{{ url_for('users.profile', username=post.user.username) }}" class="text-decoration-none d-flex align-items-center gap-2">
+                    <div class="profile-avatar-placeholder avatar-sm" style="width:36px;height:36px;font-size:0.75rem;">
+                        {{ post.user.username[:2] | upper }}
+                    </div>
+                    <span class="fw-semibold">{{ post.user.username }}</span>
+                </a>
+                {% else %}
+                <div class="d-flex align-items-center gap-2">
+                    <div class="profile-avatar-placeholder avatar-sm" style="width:36px;height:36px;font-size:0.75rem;background:#94a3b8;">
+                        <i class="bi bi-incognito" style="font-size:0.9rem;"></i>
+                    </div>
+                    <span class="fw-semibold text-muted">Anonymous</span>
+                </div>
+                {% endif %}
+
+                <small class="text-muted ms-auto">
+                    {% if post.last_updated %}
+                    {{ post.last_updated.strftime("%d %b %Y") }}
+                    {% else %}
+                    {{ post.timestamp.strftime("%d %b %Y") }}
+                    {% endif %}
+                </small>
             </div>
+
+            <h5 class="fw-bold mb-2">{{ post.title }}</h5>
+
+            {% if post.image %}
+            <img src="{{ url_for('static', filename='posts/' + post.image) }}"
+                 class="img-fluid rounded mb-3"
+                 alt="{{ post.title }}"
+                 style="max-height: 400px; width: 100%; object-fit: cover;">
             {% endif %}
 
-            <!-- Pagination -->
-            {% if posts.pages > 1 %}
-            <nav class="mt-4">
-                <ul class="pagination justify-content-center">
-                    {% if posts.has_prev %}
-                    <li class="page-item">
-                        <a class="page-link" href="{{ url_for('main.feed', page=posts.prev_num) }}">Previous</a>
-                    </li>
-                    {% else %}
-                    <li class="page-item disabled">
-                        <span class="page-link">Previous</span>
-                    </li>
-                    {% endif %}
+            <p class="text-muted mb-3">{{ post.caption }}</p>
 
-                    {% for p in posts.iter_pages() %}
-                        {% if p %}
-                        <li class="page-item {% if p == posts.page %}active{% endif %}">
-                            <a class="page-link" href="{{ url_for('main.feed', page=p) }}">{{ p }}</a>
-                        </li>
-                        {% else %}
-                        <li class="page-item disabled"><span class="page-link">...</span></li>
-                        {% endif %}
-                    {% endfor %}
+            <div class="d-flex align-items-center gap-2 pt-2 border-top">
+                {% if current_user.is_authenticated and post.likes.filter_by(user_id=current_user.id).first() %}
+                <a href="{{ url_for('posts.unlike', post_id=post.id) }}" class="btn btn-sm btn-primary">
+                    <i class="bi bi-heart-fill me-1"></i>{{ post.likes.count() }}
+                </a>
+                {% else %}
+                <a href="{{ url_for('posts.like', post_id=post.id) }}" class="btn btn-sm btn-outline-primary">
+                    <i class="bi bi-heart me-1"></i>{{ post.likes.count() }}
+                </a>
+                {% endif %}
 
-                    {% if posts.has_next %}
-                    <li class="page-item">
-                        <a class="page-link" href="{{ url_for('main.feed', page=posts.next_num) }}">Next</a>
-                    </li>
-                    {% else %}
-                    <li class="page-item disabled">
-                        <span class="page-link">Next</span>
-                    </li>
-                    {% endif %}
-                </ul>
-            </nav>
-            {% endif %}
+                <a href="{{ url_for('comments.comment', post_id=post.id) }}" class="btn btn-sm btn-outline-secondary">
+                    <i class="bi bi-chat me-1"></i>{{ post.comments.count() }}
+                </a>
+
+                {% if current_user.username == "ADMIN_USER" %}
+                <a href="{{ url_for('posts.delete_post', post_id=post.id) }}" class="btn btn-sm btn-outline-danger ms-auto">
+                    <i class="bi bi-trash"></i>
+                </a>
+                {% endif %}
+            </div>
         </div>
     </div>
+    {% endfor %}
+
+    {% if not posts.items %}
+    <div class="text-center py-5">
+        <i class="bi bi-journal-text" style="font-size: 3rem; color: var(--cc-text-muted);"></i>
+        <p class="text-muted mt-3 fs-5">No posts yet. Be the first to share!</p>
+        <a href="{{ url_for('posts.create_post') }}" class="btn btn-primary mt-2">Create a Post</a>
+    </div>
+    {% endif %}
+
+    {% if posts.pages > 1 %}
+    <nav class="mt-4">
+        <ul class="pagination justify-content-center">
+            {% if posts.has_prev %}
+            <li class="page-item">
+                <a class="page-link" href="{{ url_for('main.feed', page=posts.prev_num) }}">
+                    <i class="bi bi-chevron-left"></i> Previous
+                </a>
+            </li>
+            {% endif %}
+
+            {% for p in posts.iter_pages() %}
+                {% if p %}
+                <li class="page-item {% if p == posts.page %}active{% endif %}">
+                    <a class="page-link" href="{{ url_for('main.feed', page=p) }}">{{ p }}</a>
+                </li>
+                {% else %}
+                <li class="page-item disabled"><span class="page-link">...</span></li>
+                {% endif %}
+            {% endfor %}
+
+            {% if posts.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="{{ url_for('main.feed', page=posts.next_num) }}">
+                    Next <i class="bi bi-chevron-right"></i>
+                </a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
 </div>
 {% endblock %}

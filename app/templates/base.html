@@ -1,40 +1,197 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-bs-theme="light">
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
-        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='Logo.png') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        :root {
+            --cc-primary: #4f46e5;
+            --cc-primary-hover: #4338ca;
+            --cc-bg: #f8fafc;
+            --cc-card-bg: #ffffff;
+            --cc-text: #1e293b;
+            --cc-text-muted: #64748b;
+            --cc-border: #e2e8f0;
+            --cc-success: #10b981;
+            --cc-danger: #ef4444;
+            --cc-warning: #f59e0b;
+        }
+
+        body {
+            background-color: var(--cc-bg);
+            color: var(--cc-text);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        .navbar {
+            background: var(--cc-primary) !important;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.25rem;
+            letter-spacing: -0.025em;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            font-size: 0.9rem;
+            padding: 0.5rem 1rem !important;
+            border-radius: 0.5rem;
+            transition: background-color 0.2s;
+        }
+
+        .nav-link:hover {
+            background-color: rgba(255,255,255,0.15);
+        }
+
+        .card {
+            border: 1px solid var(--cc-border);
+            border-radius: 0.75rem;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+            transition: box-shadow 0.2s;
+        }
+
+        .card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .btn-primary {
+            background-color: var(--cc-primary);
+            border-color: var(--cc-primary);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--cc-primary-hover);
+            border-color: var(--cc-primary-hover);
+        }
+
+        .btn {
+            border-radius: 0.5rem;
+            font-weight: 500;
+            font-size: 0.875rem;
+            padding: 0.5rem 1rem;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--cc-border);
+        }
+
+        .avatar-lg {
+            width: 120px;
+            height: 120px;
+        }
+
+        .avatar-sm {
+            width: 32px;
+            height: 32px;
+        }
+
+        .badge-pill {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.625rem;
+            border-radius: 9999px;
+        }
+
+        .toast-container {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            z-index: 1080;
+            max-width: 380px;
+        }
+
+        .form-control, .form-select {
+            border-radius: 0.5rem;
+            border: 1px solid var(--cc-border);
+            padding: 0.625rem 0.875rem;
+        }
+
+        .form-control:focus, .form-select:focus {
+            border-color: var(--cc-primary);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        }
+
+        .page-header {
+            padding: 1.5rem 0;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--cc-border);
+        }
+
+        .page-header h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .content-wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .profile-avatar-placeholder {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--cc-primary);
+            color: white;
+            font-weight: 600;
+            border-radius: 50%;
+        }
+
+        a {
+            color: var(--cc-primary);
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: var(--cc-primary-hover);
+        }
+    </style>
 
     <title>{% block title %}CareerConnect{% endblock %}</title>
 </head>
 
-<body style="width: 100vw; margin: 0px">
+<body>
 
-{% if request.endpoint not in ['auth.login', 'auth.register'] %}
+{% if request.endpoint not in ['auth.login', 'auth.register', 'main.welcome'] %}
 {% include 'navbar.html' %}
 {% endif %}
 
-<div class="container">
+<div class="toast-container">
     {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
     {% for category, message in messages %}
-    <div class="alert alert-{{ category }} alert-dismissible fade show mt-3" role="alert"
-         style="position: fixed; z-index: 99; top: 70px; right: 15px; max-width: 400px;">
-        {{ message }}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
+    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+        <div class="d-flex align-items-center gap-2">
+            {% if category == 'success' %}
+            <i class="bi bi-check-circle-fill"></i>
+            {% elif category == 'danger' %}
+            <i class="bi bi-exclamation-triangle-fill"></i>
+            {% else %}
+            <i class="bi bi-info-circle-fill"></i>
+            {% endif %}
+            <span>{{ message }}</span>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     {% endfor %}
     <script>
-        window.setTimeout(function() {
-            document.querySelectorAll('.alert').forEach(function(el) {
+        setTimeout(function() {
+            document.querySelectorAll('.toast-container .alert').forEach(function(el) {
                 el.classList.remove('show');
                 setTimeout(function() { el.remove(); }, 150);
             });
@@ -42,14 +199,12 @@
     </script>
     {% endif %}
     {% endwith %}
-
-    {% block content %}{% endblock %}
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
-    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+{% block content %}{% endblock %}
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 
 </html>

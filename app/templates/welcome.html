@@ -1,47 +1,118 @@
-<!doctype html>
-<html lang="en">
+{% extends "base.html" %}
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>CareerConnect</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
-          integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-</head>
+{% block title %}CareerConnect - Your Path to Success{% endblock %}
 
-<body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <a class="navbar-brand text-warning" href="#">CareerConnect</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('auth.register') }}">Register</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('auth.login') }}">Login</a>
-            </li>
-        </ul>
+{% block content %}
+<style>
+    .hero-section {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #a855f7 100%);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .hero-section::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        right: -50%;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+        border-radius: 50%;
+    }
+
+    .hero-nav {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        padding: 1.5rem 0;
+    }
+
+    .feature-card {
+        background: rgba(255,255,255,0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255,255,255,0.2);
+        border-radius: 1rem;
+        padding: 1.5rem;
+        text-align: center;
+        color: white;
+    }
+
+    .feature-card i {
+        font-size: 2rem;
+        margin-bottom: 0.75rem;
+    }
+</style>
+
+<section class="hero-section">
+    <div class="hero-nav">
+        <div class="container d-flex justify-content-between align-items-center">
+            <a class="text-white text-decoration-none fw-bold fs-4" href="#">
+                <i class="bi bi-rocket-takeoff me-2"></i>CareerConnect
+            </a>
+            <div class="d-flex gap-2">
+                <a href="{{ url_for('auth.login') }}" class="btn btn-outline-light btn-sm px-3">Login</a>
+                <a href="{{ url_for('auth.register') }}" class="btn btn-light btn-sm px-3 text-dark fw-semibold">Sign Up</a>
+            </div>
+        </div>
     </div>
-</nav>
 
-<div class="container mt-5">
-    <div class="jumbotron text-center bg-warning text-white">
-        <h1 class="display-4">CareerConnect: Your Path to Success</h1>
-        <p class="lead">Explore opportunities and build your future.</p>
-        <hr class="my-4" style="border-color: rgba(255,255,255,0.5)">
-        <p>Connect with professionals, share your experiences, and grow your career.</p>
-        <a class="btn btn-light btn-lg" href="{{ url_for('auth.register') }}">Get Started</a>
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 text-white mb-5 mb-lg-0">
+                <h1 class="display-4 fw-bold mb-3" style="line-height: 1.1;">
+                    Your Path to<br>Career Success
+                </h1>
+                <p class="lead mb-4 opacity-75" style="font-size: 1.15rem;">
+                    Connect with professionals, share experiences, and grow your career.
+                    Whether you're a student or working professional, join a community that helps you thrive.
+                </p>
+                <div class="d-flex gap-3">
+                    <a href="{{ url_for('auth.register') }}" class="btn btn-light btn-lg px-4 fw-semibold text-dark">
+                        Get Started <i class="bi bi-arrow-right ms-1"></i>
+                    </a>
+                    <a href="{{ url_for('auth.login') }}" class="btn btn-outline-light btn-lg px-4">
+                        Login
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="row g-3">
+                    <div class="col-6">
+                        <div class="feature-card">
+                            <i class="bi bi-people-fill"></i>
+                            <h6 class="fw-semibold mb-1">Connect</h6>
+                            <small class="opacity-75">Network with professionals</small>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="feature-card">
+                            <i class="bi bi-pencil-square"></i>
+                            <h6 class="fw-semibold mb-1">Share</h6>
+                            <small class="opacity-75">Post your experiences</small>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="feature-card">
+                            <i class="bi bi-chat-heart-fill"></i>
+                            <h6 class="fw-semibold mb-1">Chat</h6>
+                            <small class="opacity-75">Message other users</small>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="feature-card">
+                            <i class="bi bi-trophy-fill"></i>
+                            <h6 class="fw-semibold mb-1">Learn</h6>
+                            <small class="opacity-75">Practice with quizzes</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
-</body>
-
-</html>
+</section>
+{% endblock %}

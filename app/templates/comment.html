@@ -1,149 +1,102 @@
 {% extends "base.html" %}
 
-{%block title%} Comments page {%endblock%}
+{% block title %}Comments - CareerConnect{% endblock %}
 
 {% block content %}
-<style>
-    .profile-image{
-        border-radius: 50%;
-        height: 3rem;
-        border: 1px solid black;
-    }
-    .view-comments{
-        max-height: 40vh;
-        overflow: hidden;
-    }
-    .card-img-top{
-        height: 5rem;
-        width: auto;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-</style>
-<div style="overflow-y: scroll; max-height: 30vh;">
-<div class="card card-inner mb-5 mt-2 post" >
-    <div class="card-header">
-        <a href="{{ url_for('users.profile', username=post.user.username) }}">
-            <img class="profile-image" src="{{ url_for('static', filename='profile/' + post.user.profile_image) }}">
-            <span>{{ post.user.username }}</span>
-        </a>
-    </div>
-    <div class="card-body">
-        <h5 class="card-title">{{ post.title }}</h5>
-        {% if post.image %}
-        <img src="{{ url_for('static', filename='posts/' + post.image) }}" class="card-img-top"
-             alt="{{ post.title | safe }}">
-        {% endif %}
-        <p class="card-text mt-3 text-secondary" style="font-size: 16px;"><strong>Caption:</strong> {{ post.caption | safe }}
-        </p>
-
-    </div>
-    <div class="card-footer" style="flex: fit-content">
-
-        <span>
+<div class="content-wrapper" style="max-width: 700px;">
+    <div class="card mb-4">
+        <div class="card-body">
+            <div class="d-flex align-items-center gap-2 mb-3">
+                <a href="{{ url_for('users.profile', username=post.user.username) }}" class="text-decoration-none d-flex align-items-center gap-2">
+                    <div class="profile-avatar-placeholder avatar-sm" style="width:36px;height:36px;font-size:0.75rem;">
+                        {{ post.user.username[:2] | upper }}
+                    </div>
+                    <span class="fw-semibold">{{ post.user.username }}</span>
+                </a>
+                <small class="text-muted ms-auto">
                     {% if post.last_updated %}
-                    <small class="text-muted" style="text-align: end">Last updated on:
-                        {{ post.last_updated.strftime("%d %b %Y") }}
-                    </small>
+                    {{ post.last_updated.strftime("%d %b %Y") }}
                     {% else %}
-                    <small class="text-muted" style="text-align: end">Created on:
-                        {{ post.timestamp.strftime("%d %b %Y") }}
-                    </small>
+                    {{ post.timestamp.strftime("%d %b %Y") }}
                     {% endif %}
-                    </span>
+                </small>
+            </div>
+
+            <h5 class="fw-bold">{{ post.title }}</h5>
+            {% if post.image %}
+            <img src="{{ url_for('static', filename='posts/' + post.image) }}"
+                 class="img-fluid rounded mb-3" style="max-height: 300px; width: 100%; object-fit: cover;">
+            {% endif %}
+            <p class="text-muted">{{ post.caption }}</p>
+        </div>
     </div>
-</div>
-</div>
-<br>
-<h6 >View all comments({{ post.comments.count() }}) : </h6>
 
-<div class="d-flex flex-column view-comments">
+    <h6 class="fw-bold mb-3">
+        <i class="bi bi-chat me-1"></i>Comments ({{ post.comments.count() }})
+    </h6>
 
-    <div class="existing-comments">
-        {% for comment in comments %}
-
-        <div class="card card-inner mb-2" >
-            
-                <div class="card-header d-flex justify-content-between align-items-center">
-                    <a href="{{ url_for('users.profile', username=comment.user.username) }}">
-                        <img class="profile-image" src="{{ url_for('static', filename='profile/' + comment.user.profile_image) }}">
-                        <span>{{ comment.user.username }}</span>
-                    </a>
-                    
+    {% for comment in comments %}
+    <div class="card mb-2">
+        <div class="card-body p-3">
+            <div class="d-flex justify-content-between align-items-start mb-2">
+                <a href="{{ url_for('users.profile', username=comment.user.username) }}" class="text-decoration-none d-flex align-items-center gap-2">
+                    <div class="profile-avatar-placeholder avatar-sm" style="width:28px;height:28px;font-size:0.65rem;">
+                        {{ comment.user.username[:2] | upper }}
+                    </div>
+                    <span class="fw-semibold small">{{ comment.user.username }}</span>
+                </a>
+                <small class="text-muted">
                     {% if comment.last_edited %}
-                    <small class="text-muted">Last edited on : {{ comment.last_edited.strftime("%d %b %Y") }}</small>
-                    
+                    {{ comment.last_edited.strftime("%d %b %Y") }}
                     {% else %}
-                    <small class="text-muted">Comment on : {{ comment.timestamp.strftime("%d %b %Y") }}</small>
+                    {{ comment.timestamp.strftime("%d %b %Y") }}
                     {% endif %}
+                </small>
+            </div>
+            <p class="mb-2 ps-5">{{ comment.content }}</p>
 
-                </div>
-            
-                <div class="card-body">
-                    <p>{{ comment.content }}</p>
-                </div>
-
-            
             {% if current_user == comment.user %}
-            <div class="comment-actions">
-                <div class="card-footer d-flex justify-content-end">
-                    <a href="{{ url_for('comments.edit_comment', post_id=post_id, comment_id=comment.id) }}"
-                        class="btn btn-outline-primary btn-sm">Edit</a>
-                    
-                    <a href="{{ url_for('comments.delete_comment', post_id=post_id, comment_id=comment.id) }}" class="btn btn-outline-danger btn-sm ml-2">Delete</a>
-                    
-                </div>
-                
+            <div class="ps-5 d-flex gap-2">
+                <a href="{{ url_for('comments.edit_comment', post_id=post_id, comment_id=comment.id) }}" class="btn btn-sm btn-outline-primary">
+                    <i class="bi bi-pencil me-1"></i>Edit
+                </a>
+                <a href="{{ url_for('comments.delete_comment', post_id=post_id, comment_id=comment.id) }}" class="btn btn-sm btn-outline-danger">
+                    <i class="bi bi-trash me-1"></i>Delete
+                </a>
             </div>
             {% elif current_user.username == "ADMIN_USER" %}
-            <div class="card-footer d-flex justify-content-end">
-
-                <a href="{{ url_for('comments.delete_comment', post_id=post_id, comment_id=comment.id) }}" class="btn btn-outline-danger btn-sm ml-2">Delete</a>
-
+            <div class="ps-5">
+                <a href="{{ url_for('comments.delete_comment', post_id=post_id, comment_id=comment.id) }}" class="btn btn-sm btn-outline-danger">
+                    <i class="bi bi-trash me-1"></i>Delete
+                </a>
             </div>
             {% endif %}
         </div>
-        {% endfor %}
     </div>
+    {% endfor %}
 
-    <div class="add-comment-form-sticky-bottom">
-            <hr>
-
-        <form method="POST" action="{{ url_for('comments.comment', post_id=post_id) }}">
-            {{ form.hidden_tag() }}
-            <div class="form-group">
-                {{ form.content.label }}
-                {{ form.content(class="form-control" ,width="50%") }}
-            
-                {% for error in form.content.errors %}
-                <div class="text-danger">{{ error }}</div>
-                {% endfor %}
-            </div>
-            
-            <div class="form-group">
-                <input type="submit" value="Add Comment" class="btn btn-warning">
-            </div>
-        </form>
+    {% if not comments %}
+    <div class="text-center py-4">
+        <p class="text-muted">No comments yet. Be the first to comment!</p>
     </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var textContainers = document.querySelectorAll('.card-body');
+    {% endif %}
 
-            textContainers.forEach(function(textContainer) {
-                var text = textContainer.querySelector('.card-text').innerHTML;
-                var regexPattern = /#[A-Za-z0-9]+/g; // Match hashtags with alphanumeric characters
-
-                var highlightedText = text.replace(regexPattern, function(match) {
-                    return '<a href="/search?search_string='+match+'" class="tags">' + match + '</a>';
-                });
-
-                textContainer.querySelector('.card-text').innerHTML = highlightedText;
-            });
-        });
-
-    </script>
+    <div class="card mt-4">
+        <div class="card-body p-3">
+            <form method="POST" action="{{ url_for('comments.comment', post_id=post_id) }}">
+                {{ form.hidden_tag() }}
+                <div class="mb-3">
+                    <label class="form-label fw-medium">Add a comment</label>
+                    {{ form.content(class="form-control", placeholder="Write your comment...", rows="3") }}
+                    {% for error in form.content.errors %}
+                    <div class="text-danger small mt-1">{{ error }}</div>
+                    {% endfor %}
+                </div>
+                <button type="submit" class="btn btn-primary btn-sm">
+                    <i class="bi bi-send me-1"></i>Post Comment
+                </button>
+            </form>
+        </div>
+    </div>
 </div>
-
 {% endblock %}
