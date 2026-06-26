@@ -1,0 +1,50 @@
+[project]
+name = "careerconnect"
+version = "1.0.0"
+description = "A career networking platform for professionals and students"
+requires-python = ">=3.11"
+authors = [
+    {name = "Varnika Bagaria"},
+]
+
+[tool.black]
+line-length = 100
+target-version = ["py311"]
+
+[tool.isort]
+profile = "black"
+line_length = 100
+
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_configs = true
+ignore_missing_imports = true
+check_untyped_defs = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--strict-markers -v"
+
+[tool.pylint.main]
+py-version = "3.11"
+max-line-length = 100
+disable = [
+    "missing-module-docstring",
+    "missing-class-docstring",
+    "missing-function-docstring",
+    "too-few-public-methods",
+    "import-error",
+]
+
+[tool.pylint.design]
+max-args = 6
+max-attributes = 10
+
+[tool.coverage.run]
+source = ["app"]
+omit = ["tests/*"]
+
+[tool.coverage.report]
+fail_under = 70
+show_missing = true

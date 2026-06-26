@@ -1,0 +1,16 @@
+venv/
+newEnv/
+__pycache__/
+*.pyc
+.git/
+.github/
+.pytest_cache/
+.mypy_cache/
+htmlcov/
+.coverage
+*.db
+.env
+.DS_Store
+.vscode/
+instance/
+docs/

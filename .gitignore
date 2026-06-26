@@ -1,8 +1,50 @@
-newEnv/
+# Python
 __pycache__/
-*.pyc
-instance/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Virtual environments
+venv/
+newEnv/
+.venv/
+
+# Environment
 .env
-*.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
 .DS_Store
+Thumbs.db
+
+# Database
+instance/
+*.db
+
+# Testing
+.pytest_cache/
+htmlcov/
+.coverage
+coverage.xml
+
+# Type checking
+.mypy_cache/
+
+# Logs
+*.log
 pytestdebug.log
+
+# Docker
+docker-compose.override.yml
+
+# Build artifacts
+*.whl
