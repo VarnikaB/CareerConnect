@@ -8,6 +8,7 @@ from wtforms import (
     TextAreaField,
     BooleanField,
     FileField,
+    SelectField,
 )
 from wtforms.validators import DataRequired, EqualTo, ValidationError
 
@@ -18,6 +19,15 @@ class RegistrationForm(FlaskForm):
     username = StringField("Username", validators=[DataRequired()])
     password = PasswordField("Password", validators=[DataRequired()])
     confirm_password = PasswordField("Confirm Password", validators=[DataRequired()])
+    role = SelectField(
+        "I am a",
+        choices=[
+            ("student", "Student"),
+            ("senior_student", "Senior Student"),
+            ("teacher", "Teacher"),
+        ],
+        validators=[DataRequired()],
+    )
     submit = SubmitField("Sign Up")
 
     def validate_username(self, username):
@@ -118,3 +128,16 @@ class ChatForm(FlaskForm):
 
 class SearchForm(FlaskForm):
     q = StringField("Search", validators=[DataRequired()], default="")
+
+
+class ChangeRoleForm(FlaskForm):
+    role = SelectField(
+        "New Role",
+        choices=[
+            ("student", "Student"),
+            ("senior_student", "Senior Student"),
+            ("teacher", "Teacher"),
+        ],
+        validators=[DataRequired()],
+    )
+    submit = SubmitField("Update Role")

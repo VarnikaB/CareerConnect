@@ -4,6 +4,7 @@ from flask_login import login_required, current_user
 from app.extensions import db
 from app.models import Question
 from app.forms import QuestionForm
+from app.permissions import role_required
 
 questions_bp = Blueprint("questions", __name__)
 
@@ -41,6 +42,7 @@ def submit():
 
 @questions_bp.route("/question/add_question", methods=["POST", "GET"])
 @login_required
+@role_required("senior_student", "teacher")
 def add_question():
     form = QuestionForm()
 

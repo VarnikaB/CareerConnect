@@ -4,6 +4,7 @@ from flask_login import login_required, current_user
 from app.extensions import db
 from app.models import Post, Comment
 from app.forms import CommentForm, EditCommentForm, DeleteCommentForm
+from app.metrics import COMMENTS_CREATED
 
 comments_bp = Blueprint("comments", __name__)
 
@@ -75,9 +76,10 @@ def edit_comment(post_id, comment_id):
 @login_required
 def delete_comment(post_id, comment_id):
     particular_comment = Comment.query.get_or_404(comment_id)
+    post = Post.query.get_or_404(post_id)
     if (
         particular_comment.user != current_user
-        and current_user.username != "ADMIN_USER"
+        and not current_user.can_delete_others_comments(post)
     ):
         abort(403)
 

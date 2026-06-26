@@ -8,6 +8,7 @@ def test_register_new_user(client, db):
             "username": "newuser",
             "password": "password123",
             "confirm_password": "password123",
+            "role": "student",
         },
         follow_redirects=True,
     )
@@ -28,6 +29,7 @@ def test_register_existing_user(client, db):
             "username": "existing",
             "password": "password123",
             "confirm_password": "password123",
+            "role": "student",
         },
         follow_redirects=True,
     )

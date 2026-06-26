@@ -6,11 +6,13 @@ from app.models import User, Post, Like, Comment
 from app.forms import (
     UpdateAccountForm,
     DeleteAccountForm,
+    ChangeRoleForm,
     ChatForm,
     LikeForm,
     UnlikeForm,
 )
 from app.utils import save_profile
+from app.permissions import teacher_required
 
 users_bp = Blueprint("users", __name__)
 
@@ -111,3 +113,35 @@ def comments_of_user(username):
         if comment_element.posts not in posts:
             posts.append(comment_element.posts)
     return render_template("all_comments.html", title="All Comments", posts=posts)
+
+
+@users_bp.route("/profile/<username>/change_role", methods=["GET", "POST"])
+@login_required
+@teacher_required
+def change_role(username):
+    target_user = User.query.filter_by(username=username).first_or_404()
+    form = ChangeRoleForm()
+
+    if target_user.is_admin:
+        flash("Cannot change admin's role.", "danger")
+        return redirect(url_for("users.profile", username=username))
+
+    if form.validate_on_submit():
+        new_role = form.role.data
+        if current_user.is_admin:
+            target_user.role = new_role
+        elif current_user.is_teacher:
+            if target_user.role == "student" and new_role == "senior_student":
+                target_user.role = new_role
+            else:
+                flash("You can only promote Students to Senior Student.", "danger")
+                return redirect(url_for("users.profile", username=username))
+
+        db.session.commit()
+        flash(f"Role updated to {new_role.replace('_', ' ').title()}!", "success")
+        return redirect(url_for("users.profile", username=username))
+
+    form.role.data = target_user.role
+    return render_template(
+        "change_role.html", form=form, target_user=target_user, title="Change Role"
+    )

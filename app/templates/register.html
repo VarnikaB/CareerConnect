@@ -58,11 +58,19 @@
                             {% endif %}
                         </div>
 
-                        <div class="mb-4">
+                        <div class="mb-3">
                             <label for="confirm_password" class="form-label fw-medium">Confirm Password</label>
                             {{ form.confirm_password(class="form-control form-control-lg", placeholder="Confirm your password", id="confirm_password") }}
                             {% if form.confirm_password.errors %}
                             <div class="text-danger small mt-1">{{ form.confirm_password.errors[0] }}</div>
+                            {% endif %}
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="role" class="form-label fw-medium">I am a</label>
+                            {{ form.role(class="form-select form-select-lg", id="role") }}
+                            {% if form.role.errors %}
+                            <div class="text-danger small mt-1">{{ form.role.errors[0] }}</div>
                             {% endif %}
                         </div>
 

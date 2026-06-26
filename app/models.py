@@ -9,6 +9,8 @@ from app.extensions import db, login_manager
 
 IST = ZoneInfo("Asia/Kolkata")
 
+VALID_ROLES = ("student", "senior_student", "teacher")
+
 
 def get_current_time():
     return datetime.now(IST)
@@ -39,6 +41,7 @@ class User(db.Model, UserMixin):
     password_hash = db.Column(db.String(128), nullable=False)
     profile_image = db.Column(db.String(128), default="def.jpg")
     occupation = db.Column(db.String(80), default="Student")
+    role = db.Column(db.String(20), nullable=False, default="student")
 
     posts = db.relationship("Post", back_populates="user", lazy="subquery")
     comments = db.relationship("Comment", backref="user", lazy="dynamic")
@@ -90,6 +93,33 @@ class User(db.Model, UserMixin):
                 and_(Chat.sender == other_user, Chat.receiver == self),
             )
         ).order_by(Chat.timestamp)
+
+    @property
+    def is_admin(self):
+        return self.username == "ADMIN_USER"
+
+    @property
+    def is_teacher(self):
+        return self.role == "teacher" or self.is_admin
+
+    @property
+    def is_senior_student(self):
+        return self.role == "senior_student" or self.is_teacher
+
+    def can_add_questions(self):
+        return self.is_senior_student
+
+    def can_promote_students(self):
+        return self.is_teacher
+
+    def can_delete_others_comments(self, post):
+        if self.is_admin:
+            return True
+        if self.role == "teacher":
+            return True
+        if self.role == "senior_student" and post.user_id == self.id:
+            return True
+        return False
 
     def __repr__(self):
         return f"User('{self.id}', '{self.username}', '{self.profile_image}')"

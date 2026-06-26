@@ -55,3 +55,48 @@ def sample_post(authenticated_client, db):
     db.session.add(post)
     db.session.commit()
     return post
+
+
+@pytest.fixture
+def teacher_client(app, db):
+    user = User(username="teacheruser", role="teacher")
+    user.set_password("teacherpass")
+    db.session.add(user)
+    db.session.commit()
+    client = app.test_client()
+    client.post(
+        "/login",
+        data={"username": "teacheruser", "password": "teacherpass"},
+        follow_redirects=True,
+    )
+    return client
+
+
+@pytest.fixture
+def senior_student_client(app, db):
+    user = User(username="senioruser", role="senior_student")
+    user.set_password("seniorpass")
+    db.session.add(user)
+    db.session.commit()
+    client = app.test_client()
+    client.post(
+        "/login",
+        data={"username": "senioruser", "password": "seniorpass"},
+        follow_redirects=True,
+    )
+    return client
+
+
+@pytest.fixture
+def admin_client(app, db):
+    user = User(username="ADMIN_USER", role="teacher")
+    user.set_password("adminpass")
+    db.session.add(user)
+    db.session.commit()
+    client = app.test_client()
+    client.post(
+        "/login",
+        data={"username": "ADMIN_USER", "password": "adminpass"},
+        follow_redirects=True,
+    )
+    return client

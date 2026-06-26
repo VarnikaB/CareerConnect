@@ -96,7 +96,7 @@ def update_post(post_id):
 @login_required
 def delete_post(post_id):
     post = Post.query.get_or_404(post_id)
-    if post.user != current_user and current_user.username != "ADMIN_USER":
+    if post.user != current_user and not current_user.is_admin:
         abort(403)
 
     form = DeletePostForm()

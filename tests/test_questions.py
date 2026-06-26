@@ -11,13 +11,13 @@ def test_questions_page(authenticated_client, db):
     assert response.status_code == 200
 
 
-def test_add_question_get(authenticated_client, db):
-    response = authenticated_client.get("/question/add_question")
+def test_add_question_get(senior_student_client, db):
+    response = senior_student_client.get("/question/add_question")
     assert response.status_code == 200
 
 
-def test_add_question_post(authenticated_client, db):
-    response = authenticated_client.post(
+def test_add_question_post(senior_student_client, db):
+    response = senior_student_client.post(
         "/question/add_question",
         data={
             "question": "What is Python?",
