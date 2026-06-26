@@ -1,4 +1,4 @@
-from app.models import User, Chat
+from app.models import Chat, User
 
 
 def test_chat_requires_login(client):

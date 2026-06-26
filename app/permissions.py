@@ -14,7 +14,9 @@ def role_required(*allowed_roles: str) -> Callable:
             if current_user.role not in allowed_roles:
                 abort(403)
             return f(*args, **kwargs)
+
         return decorated_function
+
     return decorator
 
 
@@ -24,4 +26,5 @@ def teacher_required(f: Callable) -> Callable:
         if not current_user.is_teacher:
             abort(403)
         return f(*args, **kwargs)
+
     return decorated_function

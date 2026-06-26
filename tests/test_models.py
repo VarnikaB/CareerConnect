@@ -1,4 +1,4 @@
-from app.models import User, Post, Comment, Like, Question, Chat
+from app.models import Chat, Comment, Like, Post, Question, User
 
 
 def test_user_set_and_check_password(db):

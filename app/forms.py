@@ -2,13 +2,13 @@ from flask_login import current_user
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileAllowed
 from wtforms import (
-    StringField,
-    PasswordField,
-    SubmitField,
-    TextAreaField,
     BooleanField,
     FileField,
+    PasswordField,
     SelectField,
+    StringField,
+    SubmitField,
+    TextAreaField,
 )
 from wtforms.validators import DataRequired, EqualTo, ValidationError
 
@@ -33,9 +33,7 @@ class RegistrationForm(FlaskForm):
     def validate_username(self, username):
         user = User.query.filter_by(username=username.data).first()
         if user:
-            raise ValidationError(
-                "Username is already taken. Please choose another one!"
-            )
+            raise ValidationError("Username is already taken. Please choose another one!")
 
 
 class LoginForm(FlaskForm):
@@ -76,9 +74,7 @@ class QuestionForm(FlaskForm):
 
 class UpdateAccountForm(FlaskForm):
     username = StringField("Username", validators=[DataRequired()])
-    profile_image = FileField(
-        "Profile Image", validators=[FileAllowed(["jpg", "png"])]
-    )
+    profile_image = FileField("Profile Image", validators=[FileAllowed(["jpg", "png"])])
     occupation = StringField("Occupation", validators=[DataRequired()])
     submit = SubmitField("Update")
 
@@ -86,9 +82,7 @@ class UpdateAccountForm(FlaskForm):
         if username.data != current_user.username:
             user = User.query.filter_by(username=username.data).first()
             if user is not None:
-                raise ValidationError(
-                    "Username is already taken. Please choose another one!"
-                )
+                raise ValidationError("Username is already taken. Please choose another one!")
 
 
 class DeleteAccountForm(FlaskForm):

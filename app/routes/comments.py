@@ -1,10 +1,10 @@
-from flask import Blueprint, render_template, request, flash, redirect, url_for, abort
-from flask_login import login_required, current_user
+from flask import Blueprint, abort, flash, redirect, render_template, request, url_for
+from flask_login import current_user, login_required
 
 from app.extensions import db
-from app.models import Post, Comment
-from app.forms import CommentForm, EditCommentForm, DeleteCommentForm
+from app.forms import CommentForm, DeleteCommentForm, EditCommentForm
 from app.metrics import COMMENTS_CREATED
+from app.models import Comment, Post
 
 comments_bp = Blueprint("comments", __name__)
 
@@ -18,13 +18,12 @@ def comment(post_id):
     form = CommentForm()
 
     if form.validate_on_submit():
-        new_comment = Comment(
-            content=form.content.data, user_id=current_user.id, post_id=post_id
-        )
+        new_comment = Comment(content=form.content.data, user_id=current_user.id, post_id=post_id)
         db.session.add(new_comment)
         db.session.commit()
 
         from app.metrics import COMMENTS_CREATED
+
         COMMENTS_CREATED.inc()
 
         flash("Comment added!", "success")
@@ -39,9 +38,7 @@ def comment(post_id):
     )
 
 
-@comments_bp.route(
-    "/post/<int:post_id>/comment/<int:comment_id>/edit", methods=["GET", "POST"]
-)
+@comments_bp.route("/post/<int:post_id>/comment/<int:comment_id>/edit", methods=["GET", "POST"])
 @login_required
 def edit_comment(post_id, comment_id):
     particular_comment = Comment.query.get_or_404(comment_id)
@@ -55,9 +52,7 @@ def edit_comment(post_id, comment_id):
         db.session.commit()
 
         flash("Comment edited!", "success")
-        return redirect(
-            url_for("comments.comment", post_id=particular_comment.post_id)
-        )
+        return redirect(url_for("comments.comment", post_id=particular_comment.post_id))
 
     if request.method == "GET":
         form.content.data = particular_comment.content
@@ -70,16 +65,13 @@ def edit_comment(post_id, comment_id):
     )
 
 
-@comments_bp.route(
-    "/post/<int:post_id>/comment/<int:comment_id>/delete", methods=["GET", "POST"]
-)
+@comments_bp.route("/post/<int:post_id>/comment/<int:comment_id>/delete", methods=["GET", "POST"])
 @login_required
 def delete_comment(post_id, comment_id):
     particular_comment = Comment.query.get_or_404(comment_id)
     post = Post.query.get_or_404(post_id)
-    if (
-        particular_comment.user != current_user
-        and not current_user.can_delete_others_comments(post)
+    if particular_comment.user != current_user and not current_user.can_delete_others_comments(
+        post
     ):
         abort(403)
 

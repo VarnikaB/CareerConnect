@@ -1,4 +1,4 @@
-from app.models import User, Post, Like, Comment
+from app.models import Comment, Like, Post, User
 
 
 def test_profile_requires_login(client):

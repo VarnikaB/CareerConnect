@@ -1,4 +1,4 @@
-from app.models import User, Post, Comment
+from app.models import Comment, Post, User
 
 
 def test_student_cannot_add_question(authenticated_client):
@@ -112,9 +112,7 @@ def test_student_cannot_delete_others_comment_on_own_post(authenticated_client, 
     db.session.add(comment)
     db.session.commit()
 
-    response = authenticated_client.get(
-        f"/post/{post.id}/comment/{comment.id}/delete"
-    )
+    response = authenticated_client.get(f"/post/{post.id}/comment/{comment.id}/delete")
     assert response.status_code == 403
 
 

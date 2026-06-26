@@ -1,9 +1,9 @@
-from flask import Blueprint, render_template, request, flash
+from flask import Blueprint, flash, render_template, request
 from flask_login import login_required
 from sqlalchemy import or_
 
-from app.models import User, Post
 from app.forms import SearchForm
+from app.models import Post, User
 
 search_bp = Blueprint("search", __name__)
 

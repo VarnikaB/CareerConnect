@@ -38,7 +38,5 @@ def configure_logging(app: Flask) -> None:
     @app.after_request
     def log_request(response: Any) -> Any:
         if request.path != "/health":
-            app.logger.info(
-                "%s %s %s", request.method, request.path, response.status_code
-            )
+            app.logger.info("%s %s %s", request.method, request.path, response.status_code)
         return response

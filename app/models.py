@@ -2,8 +2,8 @@ from datetime import datetime
 from zoneinfo import ZoneInfo
 
 from flask_login import UserMixin
-from sqlalchemy import or_, and_
-from werkzeug.security import generate_password_hash, check_password_hash
+from sqlalchemy import and_, or_
+from werkzeug.security import check_password_hash, generate_password_hash
 
 from app.extensions import db, login_manager
 
@@ -67,10 +67,7 @@ class User(db.Model, UserMixin):
         return check_password_hash(self.password_hash, password)
 
     def has_liked_post(self, post):
-        return (
-            Like.query.filter(Like.user_id == self.id, Like.post_id == post.id).count()
-            > 0
-        )
+        return Like.query.filter(Like.user_id == self.id, Like.post_id == post.id).count() > 0
 
     def like_post(self, post):
         if not self.has_liked_post(post):
@@ -129,9 +126,7 @@ class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
     timestamp = db.Column(db.DateTime, nullable=False, default=get_current_time)
-    last_updated = db.Column(
-        db.DateTime, default=get_current_time, onupdate=get_current_time
-    )
+    last_updated = db.Column(db.DateTime, default=get_current_time, onupdate=get_current_time)
     is_anonymous = db.Column(db.Boolean, default=False)
     status = db.Column(db.String(20))
     caption = db.Column(db.Text, nullable=False)
@@ -164,9 +159,7 @@ class Question(db.Model):
 class Like(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
-    post_id = db.Column(
-        db.Integer, db.ForeignKey("post.id", ondelete="CASCADE"), nullable=False
-    )
+    post_id = db.Column(db.Integer, db.ForeignKey("post.id", ondelete="CASCADE"), nullable=False)
     timestamp = db.Column(db.DateTime, default=get_current_time)
 
     def __repr__(self):
@@ -176,14 +169,10 @@ class Like(db.Model):
 class Comment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     timestamp = db.Column(db.DateTime, nullable=False, default=get_current_time)
-    last_edited = db.Column(
-        db.DateTime, default=get_current_time, onupdate=get_current_time
-    )
+    last_edited = db.Column(db.DateTime, default=get_current_time, onupdate=get_current_time)
     content = db.Column(db.Text, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
-    post_id = db.Column(
-        db.Integer, db.ForeignKey("post.id", ondelete="CASCADE"), nullable=False
-    )
+    post_id = db.Column(db.Integer, db.ForeignKey("post.id", ondelete="CASCADE"), nullable=False)
 
     def __repr__(self):
         return f"Comment('{self.id}', '{self.timestamp}')"

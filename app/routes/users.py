@@ -1,18 +1,18 @@
-from flask import Blueprint, render_template, request, flash, redirect, url_for
-from flask_login import login_required, current_user, logout_user
+from flask import Blueprint, flash, redirect, render_template, request, url_for
+from flask_login import current_user, login_required, logout_user
 
 from app.extensions import db
-from app.models import User, Post, Like, Comment
 from app.forms import (
-    UpdateAccountForm,
-    DeleteAccountForm,
     ChangeRoleForm,
     ChatForm,
+    DeleteAccountForm,
     LikeForm,
     UnlikeForm,
+    UpdateAccountForm,
 )
-from app.utils import save_profile
+from app.models import Comment, Like, Post, User
 from app.permissions import teacher_required
+from app.utils import save_profile
 
 users_bp = Blueprint("users", __name__)
 
@@ -70,9 +70,7 @@ def update_account():
     elif request.method == "GET":
         form.username.data = current_user.username
 
-    return render_template(
-        "update_account.html", title="Update Account", form=form
-    )
+    return render_template("update_account.html", title="Update Account", form=form)
 
 
 @users_bp.route("/delete_account", methods=["GET", "POST"])

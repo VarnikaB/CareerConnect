@@ -1,10 +1,10 @@
-from flask import Blueprint, render_template, request, flash, redirect, url_for
-from flask_login import current_user, login_user, logout_user, login_required
+from flask import Blueprint, flash, redirect, render_template, request, url_for
+from flask_login import current_user, login_required, login_user, logout_user
 from werkzeug.security import generate_password_hash
 
 from app.extensions import db, limiter
+from app.forms import LoginForm, RegistrationForm
 from app.models import User
-from app.forms import RegistrationForm, LoginForm
 
 auth_bp = Blueprint("auth", __name__)
 
@@ -38,6 +38,7 @@ def register():
         db.session.commit()
 
         from app.metrics import USER_REGISTRATIONS
+
         USER_REGISTRATIONS.inc()
 
         flash("Successfully Registered!", "info")
@@ -60,6 +61,7 @@ def login():
             login_user(user)
 
             from app.metrics import USER_LOGINS
+
             USER_LOGINS.inc()
 
             flash("Successfully logged in!", "success")

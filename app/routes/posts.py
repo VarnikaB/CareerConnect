@@ -2,12 +2,12 @@ import os
 from datetime import datetime
 from zoneinfo import ZoneInfo
 
-from flask import Blueprint, render_template, request, flash, redirect, url_for, abort, current_app
-from flask_login import login_required, current_user
+from flask import Blueprint, abort, current_app, flash, redirect, render_template, request, url_for
+from flask_login import current_user, login_required
 
 from app.extensions import db
-from app.models import Post, Like, Comment
-from app.forms import PostForm, UpdatePostForm, DeletePostForm, LikeForm, UnlikeForm
+from app.forms import DeletePostForm, LikeForm, PostForm, UnlikeForm, UpdatePostForm
+from app.models import Comment, Like, Post
 from app.utils import save_post
 
 IST = ZoneInfo("Asia/Kolkata")
@@ -37,6 +37,7 @@ def create_post():
         db.session.commit()
 
         from app.metrics import POSTS_CREATED
+
         POSTS_CREATED.inc()
 
         flash("Post created!", "success")
@@ -61,11 +62,7 @@ def update_post(post_id):
         if form.image.data:
             if post.image:
                 try:
-                    os.remove(
-                        os.path.join(
-                            current_app.root_path, "static/posts", post.image
-                        )
-                    )
+                    os.remove(os.path.join(current_app.root_path, "static/posts", post.image))
                 except OSError:
                     pass
 
@@ -121,6 +118,7 @@ def like(post_id):
     db.session.commit()
 
     from app.metrics import LIKES_GIVEN
+
     LIKES_GIVEN.inc()
 
     flash(

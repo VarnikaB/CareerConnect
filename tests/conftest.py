@@ -2,7 +2,7 @@ import pytest
 
 from app import create_app
 from app.extensions import db as _db
-from app.models import User, Post
+from app.models import Post, User
 
 
 @pytest.fixture(scope="session")

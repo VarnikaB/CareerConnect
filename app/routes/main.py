@@ -1,8 +1,8 @@
-from flask import Blueprint, render_template, request, current_app
-from flask_login import login_required, current_user
+from flask import Blueprint, current_app, render_template, request
+from flask_login import current_user, login_required
 
-from app.models import Post
 from app.forms import LikeForm, UnlikeForm
+from app.models import Post
 
 main_bp = Blueprint("main", __name__)
 

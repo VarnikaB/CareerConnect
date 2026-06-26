@@ -49,15 +49,11 @@ def test_edit_own_comment(authenticated_client, sample_post, db):
 
 
 def test_edit_comment_forbidden(authenticated_client, sample_post, second_user, db):
-    comment = Comment(
-        content="Not yours", user_id=second_user.id, post_id=sample_post.id
-    )
+    comment = Comment(content="Not yours", user_id=second_user.id, post_id=sample_post.id)
     db.session.add(comment)
     db.session.commit()
 
-    response = authenticated_client.get(
-        f"/post/{sample_post.id}/comment/{comment.id}/edit"
-    )
+    response = authenticated_client.get(f"/post/{sample_post.id}/comment/{comment.id}/edit")
     assert response.status_code == 403
 
 
@@ -78,15 +74,11 @@ def test_delete_own_comment(authenticated_client, sample_post, db):
 
 
 def test_delete_comment_forbidden(authenticated_client, sample_post, second_user, db):
-    comment = Comment(
-        content="Protected", user_id=second_user.id, post_id=sample_post.id
-    )
+    comment = Comment(content="Protected", user_id=second_user.id, post_id=sample_post.id)
     db.session.add(comment)
     db.session.commit()
 
-    response = authenticated_client.get(
-        f"/post/{sample_post.id}/comment/{comment.id}/delete"
-    )
+    response = authenticated_client.get(f"/post/{sample_post.id}/comment/{comment.id}/delete")
     assert response.status_code == 403
 
 
@@ -95,9 +87,7 @@ def test_delete_comment_by_admin(app, second_user, db):
     db.session.add(post)
     db.session.commit()
 
-    comment = Comment(
-        content="Admin delete", user_id=second_user.id, post_id=post.id
-    )
+    comment = Comment(content="Admin delete", user_id=second_user.id, post_id=post.id)
     db.session.add(comment)
     db.session.commit()
 

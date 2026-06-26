@@ -1,10 +1,10 @@
-from flask import Blueprint, render_template, request, flash, redirect, url_for
-from flask_login import login_required, current_user
-from sqlalchemy import or_, and_
+from flask import Blueprint, flash, redirect, render_template, request, url_for
+from flask_login import current_user, login_required
+from sqlalchemy import and_, or_
 
 from app.extensions import db
-from app.models import User, Chat
 from app.forms import ChatForm
+from app.models import Chat, User
 
 chat_bp = Blueprint("chat", __name__)
 
@@ -33,6 +33,7 @@ def chat():
         current_user_send.send_chat(user, message)
 
         from app.metrics import CHATS_SENT
+
         CHATS_SENT.inc()
         all_chats = Chat.query.filter(
             or_(
@@ -54,9 +55,9 @@ def chat():
 @login_required
 def all_chats_with_people():
     user = User.query.filter_by(username=current_user.username).first()
-    all_chats = Chat.query.filter(
-        (Chat.sender == user) | (Chat.receiver == user)
-    ).order_by(Chat.timestamp.desc())
+    all_chats = Chat.query.filter((Chat.sender == user) | (Chat.receiver == user)).order_by(
+        Chat.timestamp.desc()
+    )
 
     people = []
     chat_text = []
@@ -70,6 +71,4 @@ def all_chats_with_people():
                 people.append(chat_element.receiver)
                 chat_text.append(chat_element.chat_text)
 
-    return render_template(
-        "all_chats.html", people=list(zip(people, chat_text)), form=ChatForm()
-    )
+    return render_template("all_chats.html", people=list(zip(people, chat_text)), form=ChatForm())

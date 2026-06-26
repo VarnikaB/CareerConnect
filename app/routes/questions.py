@@ -1,9 +1,9 @@
-from flask import Blueprint, render_template, request, flash, redirect, url_for
-from flask_login import login_required, current_user
+from flask import Blueprint, flash, redirect, render_template, request, url_for
+from flask_login import current_user, login_required
 
 from app.extensions import db
-from app.models import Question
 from app.forms import QuestionForm
+from app.models import Question
 from app.permissions import role_required
 
 questions_bp = Blueprint("questions", __name__)

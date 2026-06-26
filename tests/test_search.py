@@ -1,4 +1,4 @@
-from app.models import User, Post
+from app.models import Post, User
 
 
 def test_search_requires_login(client):

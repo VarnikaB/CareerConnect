@@ -30,9 +30,7 @@ def save_profile(prof_image: FileStorage) -> str:
     hex_random = secrets.token_hex(8)
     _, file_extension = os.path.splitext(prof_image.filename or "")
     profile_filename = hex_random + file_extension
-    profile_path = os.path.join(
-        current_app.root_path, "static/profile", profile_filename
-    )
+    profile_path = os.path.join(current_app.root_path, "static/profile", profile_filename)
 
     try:
         i = Image.open(prof_image)
